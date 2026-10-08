@@ -6,8 +6,7 @@
   
   <title>Watanyoo Putta | Medical Researcher & Biomedical Innovator</title>
   
-  <!-- SECURITY: Airtight Content Security Policy permitting Zenodo, Crossref API, Gemini API, and Formspree -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://placehold.co; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'self' https://generativelanguage.googleapis.com https://api.crossref.org https://zenodo.org https://formspree.io;">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://placehold.co; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'self' https://generativelanguage.googleapis.com https://api.crossref.org https://zenodo.org;">
   
   <meta name="description" content="Official entity hub of Watanyoo Putta, Thai medical researcher and biomedical innovator specialising in tropical medicine, biosensors, and public health.">
   <meta name="author" content="Watanyoo Putta">
@@ -437,33 +436,6 @@
       box-shadow: 0 4px 12px var(--accent-glow);
     }
 
-    /* Metrics Counter Bar */
-    .metrics-bar {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin-bottom: 24px;
-    }
-    .metric-card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: var(--radius-sm);
-      padding: 20px;
-      text-align: center;
-      box-shadow: var(--shadow-elevation);
-    }
-    .metric-value {
-      font-size: 1.8rem;
-      font-weight: 800;
-      color: var(--accent);
-      margin-bottom: 4px;
-    }
-    .metric-label {
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--text-muted);
-    }
-
     /* Modal Styles */
     .modal-overlay {
       position: fixed;
@@ -511,7 +483,6 @@
     }
     .modal-close:hover { background: var(--accent); color: #fff; }
 
-    /* Inquiry Form Styles */
     .form-group { margin-bottom: 16px; }
     .form-group label { display: block; font-size: 0.9rem; font-weight: 600; color: var(--text-main); margin-bottom: 6px; }
     .form-input {
@@ -531,7 +502,6 @@
       box-shadow: 0 0 0 3px var(--accent-glow);
       background: var(--card-bg);
     }
-    textarea.form-input { resize: vertical; min-height: 120px; }
     .form-submit-btn {
       width: 100%;
       background-color: var(--accent);
@@ -547,22 +517,28 @@
     }
     .form-submit-btn:hover { transform: translateY(-2px); filter: brightness(1.1); }
 
+    /* Floating Toast Notification (Fades Away Properly) */
     #toast {
       position: fixed;
       bottom: 30px;
       left: 50%;
-      transform: translateX(-50%) translateY(100px);
+      transform: translateX(-50%) translateY(20px);
       background: var(--text-main);
       color: var(--bg);
       padding: 12px 24px;
       border-radius: 30px;
       font-weight: 600;
       box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
       z-index: 3000;
       font-size: 0.9rem;
     }
-    #toast.show { transform: translateX(-50%) translateY(0); }
+    #toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
 
     .faq-container { display: flex; flex-direction: column; gap: 12px; }
     details { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-sm); overflow: hidden; transition: var(--transition); }
@@ -580,7 +556,6 @@
       header { flex-direction: column; text-align: center; padding: 24px; }
       .bento-grid { grid-template-columns: 1fr; }
       .bento-card.full-width { grid-column: span 1; }
-      .metrics-bar { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -593,26 +568,11 @@
       <h1 class="p-name" itemprop="name">Watanyoo Putta</h1>
       <p class="bio p-note" itemprop="description">Medical Researcher & Biomedical Innovator</p>
       <div style="margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap;">
-        <button class="pill" onclick="speakBio()" style="font-size: 0.8rem; padding: 4px 10px;">🔊 Audio Pronunciation / Bio</button>
+        <button class="pill" onclick="speakIPA()" style="font-size: 0.8rem; padding: 4px 10px;">🔊 Audio Pronunciation (/wəˈtɑːn.juː ˈpʊt.tə/)</button>
         <button class="pill" onclick="openLabSimulatorModal()" style="font-size: 0.8rem; padding: 4px 10px;">🧪 Biosensor Lab Simulator</button>
       </div>
     </div>
   </header>
-
-  <section class="metrics-bar" aria-label="Key Research Metrics">
-    <div class="metric-card">
-      <div class="metric-value" id="metric-downloads">142</div>
-      <div class="metric-label">Live Zenodo Downloads</div>
-    </div>
-    <div class="metric-card">
-      <div class="metric-value">2026</div>
-      <div class="metric-label">NRCT Award Winner</div>
-    </div>
-    <div class="metric-card">
-      <div class="metric-value">E25ZVB</div>
-      <div class="metric-label">Active Radio Callsign</div>
-    </div>
-  </section>
 
   <section class="bento-card full-width" style="padding: 20px 32px; margin-bottom: 24px; background: linear-gradient(135deg, var(--card-bg), var(--pill-bg));">
     <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
@@ -648,14 +608,6 @@
         <h2>Research Publication</h2>
         <h3 class="p-category">Industrial Noise & Mental Health</h3>
         <p>Independent Study (IS) investigating construction-generated noise impacts in school environments. Published openly on Zenodo in <time datetime="2026">2026</time>.</p>
-      </div>
-      <!-- LIVE Crossref API Citation Tracker Widget -->
-      <div style="background: var(--pill-bg); padding: 14px; border-radius: var(--radius-sm); margin-top: 16px; border: 1px solid var(--card-border);">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-          <span style="font-size: 0.8rem; font-weight: 700; color: var(--accent);">🌐 Live Crossref Citation Tracker</span>
-          <span id="citation-count" style="font-size: 0.85rem; font-weight: 800;">Querying API...</span>
-        </div>
-        <p style="font-size: 0.8rem; margin: 0; color: var(--text-muted);">Live REST API queries targeting DOI: 10.5281/zenodo.23219819</p>
       </div>
       <div class="links-container" style="margin-top: 16px;">
         <button class="pill" onclick="openResearchModal()">📖 Quick-Read Abstract</button>
@@ -730,9 +682,9 @@
 
     <section class="bento-card full-width" id="contact" aria-label="Contact">
       <h2>Contact & Professional Inquiries</h2>
-      <p>For research collaborations, academic inquiries, or professional communications, reach out directly or send an inquiry below:</p>
+      <p>For research collaborations, academic inquiries, or professional communications, reach out directly via official institutional channels:</p>
       
-      <div class="links-container" style="margin-top: 20px; margin-bottom: 24px;">
+      <div class="links-container" style="margin-top: 20px;">
         <button class="interactive-btn" onclick="copyContactInfo()">
           📋 Copy Professional Handle
         </button>
@@ -740,26 +692,6 @@
         <a class="pill" href="https://github.com/watanyooputta" target="_blank" rel="noopener">GitHub Profile</a>
         <a class="pill" href="https://www.facebook.com/peakwatan" target="_blank" rel="noopener">Facebook</a>
       </div>
-
-      <!-- LIVE Formspree-Connected Inquiry Form -->
-      <form id="inquiry-form" action="https://formspree.io/f/xblyqjzn" method="POST" onsubmit="handleLiveInquirySubmit(event)" style="background: var(--pill-bg); padding: 24px; border-radius: var(--radius-sm); border: 1px solid var(--card-border);">
-        <h3 style="margin-bottom: 16px; font-size: 1.05rem;">Direct Live Message Inquiry</h3>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px;">
-          <div class="form-group">
-            <label for="inquirer-name">Your Name</label>
-            <input type="text" id="inquirer-name" name="name" class="form-input" placeholder="Dr. Jane Doe" required>
-          </div>
-          <div class="form-group">
-            <label for="inquirer-email">Your Email / Contact</label>
-            <input type="email" id="inquirer-email" name="email" class="form-input" placeholder="name@institution.ac.th" required>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="inquirer-message">Inquiry / Message</label>
-          <textarea id="inquirer-message" name="message" class="form-input" placeholder="Describe your research collaboration or academic inquiry..." required></textarea>
-        </div>
-        <button type="submit" id="form-submit-btn" class="form-submit-btn">Send Live Inquiry</button>
-      </form>
     </section>
 
     <section class="bento-card full-width" id="faq" aria-label="FAQ">
@@ -849,7 +781,7 @@
     </div>
   </div>
 
-  <!-- Interactive Toast Notification Element -->
+  <!-- Interactive Toast Notification Element (Fades Out Gracefully) -->
   <div id="toast">Action completed successfully!</div>
 
   <script>
@@ -861,38 +793,6 @@
     }
     setInterval(updateClock, 1000);
     updateClock();
-
-    // LIVE Crossref API Citation Fetcher & Zenodo Analytics
-    async function fetchLiveMetrics() {
-      const countEl = document.getElementById('citation-count');
-      const downloadsEl = document.getElementById('metric-downloads');
-      const doi = "10.5281/zenodo.23219819";
-      
-      // Fetch Crossref live citations
-      try {
-        const response = await fetch(`https://api.crossref.org/works/${doi}`);
-        if (!response.ok) throw new Error("Crossref API error");
-        const data = await response.json();
-        const count = data.message['is-referenced-by-count'] ?? 0;
-        countEl.textContent = count + (count === 1 ? " Citation" : " Citations");
-      } catch (err) {
-        countEl.textContent = "14 Citations (Indexed)";
-      }
-
-      // Fetch Zenodo live download stats
-      try {
-        const zenodoResponse = await fetch(`https://zenodo.org/api/records/23219819`);
-        if (!zenodoResponse.ok) throw new Error("Zenodo API error");
-        const zenodoData = await zenodoResponse.json();
-        const stats = zenodoData.stats?.downloads ?? zenodoData.files?.[0]?.downloads;
-        if (stats) {
-          downloadsEl.textContent = stats;
-        }
-      } catch (err) {
-        // Fallback default
-      }
-    }
-    fetchLiveMetrics();
 
     // Research Modal Handlers
     function openResearchModal() {
@@ -973,20 +873,19 @@
       }
     }
 
-    // Audio Bio TTS using Web Speech API (Fixed with Voice Loading Fallbacks & Interaction Check)
-    function speakBio() {
+    // Audio Pronunciation configured with phonetic IPA guidance ("wuh-TAHN-yoo POOT-tuh")
+    function speakIPA() {
       if (!('speechSynthesis' in window)) {
         showToast("Speech synthesis is not supported on your browser.");
         return;
       }
       
-      window.speechSynthesis.cancel(); // Stop any previous speech
-      const text = "Watanyoo Putta is a Thai medical researcher and biomedical innovator based in Khon Kaen, specialising in tropical medicine, biosensors, and public health.";
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.rate = 0.95;
+      window.speechSynthesis.cancel();
+      const phoneticText = "Watanyoo Putta. Pronounced: wuh TAHN yoo POOT tuh.";
+      const utterance = new SpeechSynthesisUtterance(phoneticText);
+      utterance.rate = 0.9;
       utterance.pitch = 1.0;
 
-      // Handle voices list loading asynchronously in some browsers (like Chrome)
       const voices = window.speechSynthesis.getVoices();
       if (voices.length > 0) {
         const enVoice = voices.find(v => v.lang.startsWith('en'));
@@ -994,11 +893,11 @@
       }
 
       utterance.onstart = () => {
-        showToast("Playing audio pronunciation...");
+        showToast("Playing correct IPA name pronunciation...");
       };
 
       utterance.onerror = (e) => {
-        console.error("Speech synthesis error:", e);
+        console.error("Speech error:", e);
         showToast("Unable to play audio pronunciation.");
       };
 
@@ -1045,44 +944,15 @@
       }
     }
 
-    // LIVE Inquiry Form Submission Handler via Formspree AJAX
-    async function handleLiveInquirySubmit(event) {
-      event.preventDefault();
-      const form = document.getElementById('inquiry-form');
-      const submitBtn = document.getElementById('form-submit-btn');
-      const formData = new FormData(form);
-      
-      submitBtn.textContent = "Sending message live...";
-      submitBtn.disabled = true;
-
-      try {
-        const response = await fetch(form.action, {
-          method: 'POST',
-          body: formData,
-          headers: { 'Accept': 'application/json' }
-        });
-        
-        if (response.ok) {
-          showToast("Success! Your message was dispatched directly.");
-          form.reset();
-        } else {
-          showToast("Message sent successfully!");
-          form.reset();
-        }
-      } catch (err) {
-        showToast("Message sent successfully!");
-        form.reset();
-      } finally {
-        submitBtn.textContent = "Send Live Inquiry";
-        submitBtn.disabled = false;
-      }
-    }
-
+    // Floating Toast Notification with smooth fade-out
+    let toastTimeout;
     function showToast(message) {
       const toast = document.getElementById('toast');
       toast.textContent = message;
       toast.classList.add('show');
-      setTimeout(() => {
+      
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
         toast.classList.remove('show');
       }, 3500);
     }
