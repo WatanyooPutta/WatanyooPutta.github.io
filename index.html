@@ -84,25 +84,25 @@
         },
         "about": { "@id": "https://watanyooputta.github.io/#person" },
         "author": { "@id": "https://watanyooputta.github.io/#person" },
-        "primaryImageOfPage": { "@id": "https://watanyooputta.github.io/#primaryimage" },
-        "breadcrumb": { "@id": "https://watanyooputta.github.io/#breadcrumb" }
-      },
-      {
-        "@type": "BreadcrumbList",
-        "@id": "https://watanyooputta.github.io/#breadcrumb",
-        "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Home",
-            "item": "https://watanyooputta.github.io/"
-          }
-        ]
+        "primaryImageOfPage": {
+          "@type": "ImageObject",
+          "@id": "https://watanyooputta.github.io/#primaryimage"
+        },
+        "breadcrumb": {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://watanyooputta.github.io/"
+            }
+          ]
+        }
       },
       {
         "@type": "Person",
         "@id": "https://watanyooputta.github.io/#person",
-        "mainEntityOfPage": { "@id": "https://watanyooputta.github.io/#webpage" },
         "name": "Watanyoo Putta",
         "alternateName": ["วทัญญู พุทธา", "นายวทัญญู พุทธา"],
         "description": "Thai medical researcher and biomedical innovator based in Khon Kaen, specialising in tropical medicine, biosensors, and public health.",
@@ -219,7 +219,6 @@
       {
         "@type": "FAQPage",
         "@id": "https://watanyooputta.github.io/#faq",
-        "mainEntityOfPage": { "@id": "https://watanyooputta.github.io/#webpage" },
         "mainEntity": [
           {
             "@type": "Question",
@@ -881,7 +880,7 @@
       }
       
       window.speechSynthesis.cancel();
-      const phoneticText = "wuh TAHN yoo POOT tuh.";
+      const phoneticText = "Watanyoo Putta. Pronounced: wuh TAHN yoo POOT tuh.";
       const utterance = new SpeechSynthesisUtterance(phoneticText);
       utterance.rate = 0.9;
       utterance.pitch = 1.0;
