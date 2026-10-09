@@ -55,7 +55,7 @@
   <meta name="DC.publisher" content="Watanyoo Putta">
   <meta name="DC.language" content="en-GB" scheme="DCTERMS.RFC4646">
 
-  <!-- GOOGLE SCHOLAR HIGH-WIRE META TAGS -->
+  <!-- SCHOLARLY METADATA -->
   <meta name="citation_author" content="Putta, Watanyoo">
   <meta name="citation_author" content="Rujikietkumjorn, Didvarin">
   <meta name="citation_author" content="Klaphajon, Boonyaon">
@@ -69,7 +69,7 @@
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "WebPage",
+        "@type": "ProfilePage",
         "@id": "https://watanyooputta.github.io/#webpage",
         "url": "https://watanyooputta.github.io/",
         "name": "Watanyoo Putta | Medical Researcher & Biomedical Innovator",
@@ -82,7 +82,7 @@
           "url": "https://watanyooputta.github.io/",
           "name": "Watanyoo Putta Official Entity Hub"
         },
-        "about": { "@id": "https://watanyooputta.github.io/#person" },
+        "mainEntity": { "@id": "https://watanyooputta.github.io/#person" },
         "author": { "@id": "https://watanyooputta.github.io/#person" },
         "primaryImageOfPage": {
           "@type": "ImageObject",
@@ -558,7 +558,7 @@
     }
   </style>
 </head>
-<body class="h-card" itemscope itemtype="https://schema.org/ProfilePage">
+<body class="h-card">
 
   <header>
     <img src="IMG_9921.jpeg" alt="Watanyoo Putta" class="profile-img u-photo" itemprop="image" onerror="this.onerror=null;this.src='https://placehold.co/110x110/2563eb/ffffff?text=WP';">
@@ -872,7 +872,7 @@
       }
     }
 
-    // Audio Pronunciation configured with phonetic IPA guidance ("wuh-TAHN-yoo POOT-tuh")
+    // Audio Pronunciation configured with precise IPA guidance (/wəˈtɑːn.juː ˈpʊt.tə/)
     function speakIPA() {
       if (!('speechSynthesis' in window)) {
         showToast("Speech synthesis is not supported on your browser.");
