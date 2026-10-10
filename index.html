@@ -13,7 +13,7 @@
   <meta name="theme-color" content="#2563eb" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#0f1115" media="(prefers-color-scheme: dark)">
   
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://cdnjs.cloudflare.com https://*.basemaps.cartocdn.com; img-src 'self' https://commons.wikimedia.org https://upload.wikimedia.org https://*.basemaps.cartocdn.com data: blob:; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; connect-src 'self' https://*.basemaps.cartocdn.com;">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://cdnjs.cloudflare.com https://basemaps.cartocdn.com; img-src 'self' https://commons.wikimedia.org https://upload.wikimedia.org https://basemaps.cartocdn.com data: blob:; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; connect-src 'self' https://basemaps.cartocdn.com;">
 
   <link rel="canonical" href="https://watanyooputta.github.io/">
   <link rel="icon" href="IMG_9921.jpeg" type="image/jpeg">
@@ -161,7 +161,6 @@
     
     body {
       background-color: var(--bg-color);
-      /* Living Animated Aurora Mesh Background */
       background-image: 
         radial-gradient(at 15% 15%, rgba(37, 99, 235, 0.24) 0px, transparent 45%),
         radial-gradient(at 85% 10%, rgba(147, 197, 253, 0.20) 0px, transparent 40%),
@@ -192,7 +191,6 @@
       100% { opacity: 1; transform: translateY(0) scale(1); }
     }
 
-    /* World-Class Header */
     header {
       display: flex;
       align-items: center;
@@ -310,7 +308,6 @@
       gap: 24px;
     }
 
-    /* Bento Card with Mouse-Tracking Spotlight & 3D Tilt Physics */
     .bento-card {
       background: var(--card-bg);
       border-radius: var(--radius);
@@ -416,7 +413,6 @@
     .tag { font-size: 0.82rem; font-weight: 600; padding: 6px 14px; background: rgba(37, 99, 235, 0.08); border-radius: 12px; color: var(--accent); border: 1px solid rgba(37, 99, 235, 0.15); transition: background 0.3s ease; }
     .tag:hover { background: rgba(37, 99, 235, 0.16); }
 
-    /* Radar Pulse Badge */
     .radar-pulse-badge {
       display: inline-flex;
       align-items: center;
@@ -571,7 +567,6 @@
       transform: translateX(-50%) translateY(0);
     }
 
-    /* World-Class Footer */
     footer {
       width: 100%;
       max-width: 1080px;
@@ -803,7 +798,7 @@
         </div>
       </section>
 
-      <!-- Interactive Field Research Map (Leaflet.js) with Exact User Coordinates -->
+      <!-- Interactive Field Research Map (Leaflet.js) with Authenticated CartoDB Voyager Tiles -->
       <section class="bento-card col-span-2">
         <h2>
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5 z"/></svg>
@@ -1047,7 +1042,7 @@
     }
     window.addEventListener('load', initTelemetryCanvas);
 
-    // 4. Initialize Leaflet Map with Exact User Coordinates & Free CartoDB Tiles (Zero API Key)
+    // 4. Initialize Leaflet Map with Authenticated CartoDB Voyager Tiles
     function initFieldMap() {
       const mapElement = document.getElementById('map');
       if (!mapElement) return;
@@ -1059,9 +1054,9 @@
         scrollWheelZoom: false
       }).setView([centerLat, centerLng], 11);
 
-      L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+      // Authenticated CartoDB Voyager Tile Layer with your API Key
+      L.tileLayer('https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png?key=cb1_4gfd_1_8f4a0c9e8b3d85a310477693', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-        subdomains: 'abcd',
         maxZoom: 19
       }).addTo(map);
 
