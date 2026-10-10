@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "If you use this entity hub or research code, please cite it as below."
+authors:
+  - family-names: Putta
+    given-names: Watanyoo
+title: "Watanyoo Putta | Verified Entity Hub"
+version: 1.0.0
+date-released: 2026-03-30
+url: "https://watanyooputta.github.io/"
