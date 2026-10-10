@@ -199,8 +199,6 @@ border: 1px solid var(--glass-border);
 box-shadow: var(--shadow);
 position: relative;
 overflow: hidden;
-opacity: 0;
-animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 header::before {
 content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
@@ -320,16 +318,6 @@ background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='ht
 position: fixed; top: 0; left: 0; height: 4px; background: linear-gradient(90deg, var(--accent), #93c5fd);
 width: 0%; z-index: 10000; transition: width 0.1s ease-out; box-shadow: 0 0 12px var(--accent);
 }
-.reveal {
-opacity: 0;
-transform: translateY(40px) scale(0.98);
-transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-will-change: opacity, transform;
-}
-.reveal.active {
-opacity: 1;
-transform: translateY(0) scale(1);
-}
 .bento-grid {
 display: grid;
 grid-template-columns: repeat(3, 1fr);
@@ -402,7 +390,6 @@ cursor: pointer;
 transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 flex: 1 1 auto;
 box-shadow: 0 4px 14px var(--glow);
-will-change: transform;
 }
 .btn:hover { background: var(--accent-hover); box-shadow: 0 8px 22px var(--glow); }
 .btn.secondary { background: rgba(37, 99, 235, 0.08); color: var(--accent); box-shadow: none; border: 1px solid rgba(37, 99, 235, 0.15); }
@@ -432,6 +419,7 @@ width: 8px; height: 8px; background: #22c55e; border-radius: 50%;
 box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
 animation: radarPulse 1.8s infinite cubic-bezier(0.4, 0, 0.6, 1);
 }
+@keyframes radarPulse { 0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); } 70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(34, 197, 94, 0); } 100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); } }
 .feature-img-container {
 width: 100%; border-radius: 20px; overflow: hidden; margin-top: 20px;
 background: rgba(0, 0, 0, 0.04); display: flex; align-items: center; justify-content: center;
@@ -617,7 +605,7 @@ h1 { background: none !important; -webkit-text-fill-color: #000 !important; colo
 <div class="noise-overlay"></div>
 <div class="cursor-glow" id="cursorGlow"></div>
 <main class="container">
-<header class="reveal active">
+<header>
 <div class="profile-wrapper">
 <div class="orbit-ring"></div>
 <img src="IMG_9921.jpeg" alt="Portrait of Watanyoo Putta (วทัญญู พุทธา)" class="profile-img u-photo" itemprop="image" fetchpriority="high" decoding="sync" onclick="openLightbox('IMG_9921.jpeg', 'Official portrait of Watanyoo Putta')" onerror="this.onerror=null;this.src='https://placehold.co/160x160/2563eb/ffffff?text=WP';">
@@ -643,7 +631,7 @@ QR Business Card
 </header>
 <div class="bento-grid">
 <!-- English Professional Overview -->
-<section class="bento-card col-span-2 highlight reveal" lang="en">
+<section class="bento-card col-span-2 highlight" lang="en">
 <h2>
 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
 Professional Overview (English Bio)
@@ -653,7 +641,7 @@ Watanyoo Putta is a high school researcher and biomedical innovator based in Kho
 </p>
 </section>
 <!-- Native Thai Biography (Neutral Formal Academic Tone) -->
-<section class="bento-card col-span-2 highlight reveal" lang="th">
+<section class="bento-card col-span-2 highlight" lang="th">
 <h2>
 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
 ประวัติส่วนตัว (Formal Thai Biography)
@@ -663,7 +651,7 @@ Watanyoo Putta is a high school researcher and biomedical innovator based in Kho
 </p>
 </section>
 <!-- Live Khon Kaen Clock & Location -->
-<section class="bento-card reveal">
+<section class="bento-card">
 <h2>
 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
 Current Status
@@ -673,7 +661,7 @@ Current Status
 <div id="kk-clock" style="font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 1.8rem; font-weight: 800; color: var(--accent); margin-top: 6px; letter-spacing: -1px;">Loading...</div>
 </section>
 <!-- Dedicated Prince Mahidol Quote Section -->
-<section class="bento-card col-span-2 highlight reveal" style="background: linear-gradient(135deg, rgba(37,99,235,0.08), rgba(15,23,42,0.02)); border-left: 4px solid var(--accent);">
+<section class="bento-card col-span-2 highlight" style="background: linear-gradient(135deg, rgba(37,99,235,0.08), rgba(15,23,42,0.02)); border-left: 4px solid var(--accent);">
 <h2>
 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z"/></svg>
 Guiding Principle
@@ -685,7 +673,7 @@ Guiding Principle
 <p class="text-sm" style="margin-top: 8px;">Embodied daily through biomedical innovations, tropical medicine research, and prehospital emergency care in Khon Kaen and rural Thailand.</p>
 </section>
 <!-- Press & Media Mentions Card (Trust Signal) -->
-<section class="bento-card reveal">
+<section class="bento-card">
 <h2>
 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-5 14H4v-4h11v4zm0-5H4V9h11v4zm5 5h-4V9h4v9z"/></svg>
 Press & Media Mentions
@@ -698,7 +686,7 @@ Press & Media Mentions
 </div>
 </section>
 <!-- Honors & Awards (Highlighted) -->
-<section class="bento-card col-span-2 highlight reveal">
+<section class="bento-card col-span-2 highlight">
 <h2>
 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 6c1.4 0 2.8 1.4 2.8 2.8 0 1.96-2.8 4.2-2.8 4.2s-2.8-2.24-2.8-4.2C9.2 8.4 10.6 7 12 7z"/></svg>
 Featured Honors & Innovation
@@ -716,7 +704,7 @@ Featured Honors & Innovation
 </div>
 </section>
 <!-- Academic Lineage & Education Timeline -->
-<section class="bento-card col-span-2 reveal">
+<section class="bento-card col-span-2">
 <h2>
 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/></svg>
 Education & Training Timeline
@@ -740,7 +728,7 @@ Education & Training Timeline
 </div>
 </section>
 <!-- Conferences & Workshops -->
-<section class="bento-card reveal">
+<section class="bento-card">
 <h2>
 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6h-4V4c0-1.1-.9-2-2-2h-4c-1.1 0-2 .9-2 2v2H4c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM10 4h4v2h-4V4zm10 15H4V8h16v11z"/></svg>
 Conferences & Workshops
@@ -749,7 +737,7 @@ Conferences & Workshops
 <ul class="clean-list" style="margin-top: 16px;">
 <li>
 <strong style="font-size: 0.98rem; display: block; margin-bottom: 2px;">Japan-ASEAN Training Workshop on One Health Approaches for Neglected Tropical Disease Control: Global Networking and Capacity Building</strong>
-<p class="text-sm">June 2026 | International training on One Health strategies and NTD surveillance.</p>
+<p class="text-sm">International training on One Health strategies and NTD surveillance.</p>
 </li>
 <li>
 <strong style="font-size: 0.98rem; display: block; margin-bottom: 2px;">Asian Neglected Tropical Diseases Conference: Translating Systems Thinking into Real-World Impact for SDG 2030</strong>
@@ -758,7 +746,7 @@ Conferences & Workshops
 </ul>
 </section>
 <!-- Authored Nodes / Registries -->
-<section class="bento-card reveal">
+<section class="bento-card">
 <h2>
 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
 Verified Registries
@@ -772,7 +760,7 @@ Verified Registries
 </nav>
 </section>
 <!-- One Health Professional Certificate Program (OHPCP) -->
-<section class="bento-card col-span-2 highlight reveal" style="background: linear-gradient(135deg, rgba(34,197,94,0.06), rgba(37,99,235,0.06)); border-left: 4px solid #22c55e;">
+<section class="bento-card col-span-2 highlight" style="background: linear-gradient(135deg, rgba(34,197,94,0.06), rgba(37,99,235,0.06)); border-left: 4px solid #22c55e;">
 <h2>
 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
 One Health Professional Certificate (OHPCP)
@@ -804,10 +792,8 @@ One Health Professional Certificate (OHPCP)
 <span class="tag">Disease Surveillance</span>
 </div>
 </section>
-<!-- Open Source Tech with Sweeping Radar -->
-<section class="bento-card reveal" style="position: relative; overflow: hidden;">
-<canvas id="telemetryCanvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; opacity: 0.45; z-index: 1;"></canvas>
-<div style="position: relative; z-index: 2;">
+<!-- Open Source Tech -->
+<section class="bento-card">
 <h2>
 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.29 2.29L12 9.59 4.71 2.29c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41L10.59 11 3.29 18.29c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0L12 12.41l7.29 7.29c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L13.41 11l7.29-7.29c.39-.39.39-1.02 0-1.41-.39-.38-1.02-.38-1.41 0z"/></svg>
 Open Source Tech
@@ -816,8 +802,8 @@ Open Source Tech
 <div class="radar-dot"></div> 433 MHz TinyGS Active
 </div>
 <p><strong>Station:</strong> SatFinder_KKN_KKW</p>
-<p class="text-sm">Amateur Radio Callsign: <span class="scramble-text" data-scramble="E25ZVB" style="font-family: monospace; font-size: 1.1em; font-weight: 800; color: var(--accent); cursor: crosshair;" title="Tap to cryptographically decode">E25ZVB</span></p>
-<p class="text-sm" style="margin-top: 12px;">433 MHz TinyGS satellite ground station (SatFinder_KKN_KKW) utilizing LILYGO LoRa32 and eggbeater antenna, enabling real-time CubeSat telemetry reception and integration with a global distributed network.</p>
+<p class="text-sm" style="margin-top: 6px;">Amateur Radio Callsign: <span class="scramble-text" data-scramble="E25ZVB" style="font-family: monospace; font-size: 1.1em; font-weight: 800; color: var(--accent); cursor: crosshair;" title="Tap to cryptographically decode">E25ZVB</span></p>
+<p class="text-sm" style="margin-top: 12px;">433 MHz TinyGS satellite ground station (SatFinder_KKN_KKW) utilizing LILYGO LoRa32 and eggbeater antenna, enabling real-time CubeSat telemetry reception.</p>
 <div class="feature-img-container" style="margin-top: 14px;" onclick="openLightbox('IMG_1311.jpeg', 'TinyGS Ground Station hardware setup')">
 <img src="IMG_1311.jpeg" loading="lazy" alt="TinyGS Ground Station hardware setup" class="feature-img" onerror="this.style.display='none';">
 </div>
@@ -826,10 +812,9 @@ Open Source Tech
 <span class="tag">LoRa32</span>
 <span class="tag">E25ZVB</span>
 </div>
-</div>
 </section>
 <!-- Interactive Field Research Map (Leaflet.js) -->
-<section class="bento-card col-span-2 reveal">
+<section class="bento-card col-span-2">
 <h2>
 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
 Khon Kaen Field Research & Station Map
@@ -843,7 +828,7 @@ Khon Kaen Field Research & Station Map
 </div>
 </section>
 <!-- Open Access Research Publication -->
-<section class="bento-card full-width reveal">
+<section class="bento-card full-width">
 <h2>
 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
 Academic Publications
@@ -861,7 +846,7 @@ Academic Publications
 </ul>
 </section>
 <!-- Clinical & Research Domains -->
-<section class="bento-card full-width reveal">
+<section class="bento-card full-width">
 <h2>
 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3L7.17 5H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2h-3.17L15 3H9zm3 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5 z"/></svg>
 Clinical & Research Domains
@@ -886,7 +871,7 @@ Clinical & Research Domains
 </div>
 </section>
 <!-- Field Research: The Lawa Model -->
-<section class="bento-card col-span-2 reveal">
+<section class="bento-card col-span-2">
 <h2>
 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2L2 12h3v8h6v-6h2v6h6v-8h3L12 2zm0 2.84L19.5 12h-1.5v6h-3v-6h-6v6H6v-6H4.5L12 4.84z"/></svg>
 Field Research: The Lawa Model
@@ -900,7 +885,7 @@ Field Research: The Lawa Model
 </div>
 </section>
 <!-- Disaster Comms & Emergency Response -->
-<section class="bento-card reveal">
+<section class="bento-card">
 <h2>
 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-1 5h2v4h-2V6zm1 9c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1 z"/></svg>
 Disaster Comms
@@ -915,7 +900,7 @@ Disaster Comms
 </section>
 </div>
 </main>
-<footer class="reveal">
+<footer>
 <div class="footer-grid">
 <div class="footer-brand">
 <h3>Watanyoo Putta <span style="font-weight: 500; opacity: 0.7;">(วทัญญู พุทธา)</span></h3>
@@ -999,17 +984,7 @@ const height = document.documentElement.scrollHeight - document.documentElement.
 const scrolled = (winScroll / height) * 100;
 document.getElementById('scroll-progress').style.width = scrolled + '%';
 });
-const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
-const observer = new IntersectionObserver((entries) => {
-entries.forEach(entry => {
-if (entry.isIntersecting) {
-entry.target.classList.add('active');
-observer.unobserve(entry.target);
-}
-});
-}, observerOptions);
 document.addEventListener("DOMContentLoaded", () => {
-document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
 initMagneticButtons();
 initScrambleText();
 });
@@ -1068,81 +1043,6 @@ document.getElementById('kk-clock').innerText = "12:00:00";
 }
 setInterval(updateClock, 1000);
 updateClock();
-function initTelemetryCanvas() {
-const canvas = document.getElementById('telemetryCanvas');
-if (!canvas) return;
-const ctx = canvas.getContext('2d');
-let width = canvas.width = canvas.offsetWidth;
-let height = canvas.height = canvas.offsetHeight;
-window.addEventListener('resize', () => {
-width = canvas.width = canvas.offsetWidth;
-height = canvas.height = canvas.offsetHeight;
-});
-let angle = 0;
-const blips = [];
-function animateRadar() {
-ctx.fillStyle = 'rgba(15, 23, 42, 0.15)';
-ctx.fillRect(0, 0, width, height);
-const centerX = width / 2;
-const centerY = height / 2;
-const radius = Math.min(width, height) * 0.95;
-ctx.strokeStyle = 'rgba(37, 99, 235, 0.2)';
-ctx.lineWidth = 1;
-for(let i=1; i<=4; i++) {
-ctx.beginPath();
-ctx.arc(centerX, centerY, radius * (i/4), 0, Math.PI * 2);
-ctx.stroke();
-}
-ctx.beginPath();
-ctx.moveTo(centerX, centerY - radius); ctx.lineTo(centerX, centerY + radius);
-ctx.moveTo(centerX - radius, centerY); ctx.lineTo(centerX + radius, centerY);
-ctx.stroke();
-angle += 0.04;
-ctx.save();
-ctx.translate(centerX, centerY);
-ctx.rotate(angle);
-ctx.beginPath();
-ctx.moveTo(0, 0);
-ctx.arc(0, 0, radius, 0, -0.45, true);
-ctx.lineTo(0, 0);
-const gradient = ctx.createLinearGradient(0, 0, radius, 0);
-gradient.addColorStop(0, 'rgba(37, 99, 235, 0.7)');
-gradient.addColorStop(1, 'rgba(37, 99, 235, 0.0)');
-ctx.fillStyle = gradient;
-ctx.fill();
-ctx.restore();
-if(Math.random() < 0.06) {
-const r = Math.random() * radius;
-const theta = Math.random() * Math.PI * 2;
-blips.push({ x: centerX + r * Math.cos(theta), y: centerY + r * Math.sin(theta), alpha: 1.0 });
-}
-for(let i = blips.length - 1; i >= 0; i--) {
-const b = blips[i];
-ctx.beginPath();
-ctx.arc(b.x, b.y, 3, 0, Math.PI * 2);
-ctx.fillStyle = ⁠rgba(96, 165, 250, ${b.alpha})⁠;
-ctx.fill();
-ctx.shadowBlur = 12;
-ctx.shadowColor = '#60a5fa';
-b.alpha -= 0.01;
-if(b.alpha <= 0) blips.splice(i, 1);
-}
-ctx.shadowBlur = 0;
-canvas.animationFrameId = requestAnimationFrame(animateRadar);
-}
-const canvasObserver = new IntersectionObserver((entries) => {
-entries.forEach(entry => {
-if (entry.isIntersecting) {
-if (!canvas.animationFrameId) animateRadar();
-} else {
-cancelAnimationFrame(canvas.animationFrameId);
-canvas.animationFrameId = null;
-}
-});
-}, { threshold: 0 });
-canvasObserver.observe(canvas);
-}
-window.addEventListener('load', initTelemetryCanvas);
 function initFieldMap() {
 const mapElement = document.getElementById('map');
 if (!mapElement) return;
@@ -1158,7 +1058,7 @@ maxZoom: 19
 const locations = [
 { title: "Khon Kaen University", coords: [16.4692, 102.8290], desc: "Academic affiliation & research base." },
 { title: "SatFinder_KKN_KKW (E25ZVB)", coords: [16.4336, 102.8355], desc: "433 MHz TinyGS satellite ground station." },
-{ title: "Lawa Model Field Site", coords: [16.2850, 102.5833], desc: "Epidemiological fieldwork & community engagement." }
+{ title: "Lawa Model Field Site", coords: [16.2850, 102.5833], desc: "Epidemiological fieldwork & community health engagement." }
 ];
 locations.forEach(loc => {
 const marker = L.marker(loc.coords).addTo(map);
