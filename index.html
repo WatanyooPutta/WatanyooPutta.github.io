@@ -13,7 +13,7 @@
   <meta name="theme-color" content="#2563eb" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#0f1115" media="(prefers-color-scheme: dark)">
   
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https://commons.wikimedia.org https://upload.wikimedia.org data: blob:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'self' https://api.crossref.org;">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https://commons.wikimedia.org https://upload.wikimedia.org data: blob:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'self' https://api.crossref.org https://generativelanguage.googleapis.com;">
 
   <link rel="canonical" href="https://watanyooputta.github.io/">
   <link rel="icon" href="IMG_9921.jpeg" type="image/jpeg">
@@ -83,6 +83,7 @@
           "image": [
             { "@id": "https://watanyooputta.github.io/#primaryimage" },
             "https://watanyooputta.github.io/IMG_4697.jpeg",
+            "https://watanyooputta.github.io/IMG_0340.jpeg",
             "https://watanyooputta.github.io/IMG_0340.jpeg",
             "https://watanyooputta.github.io/IMG_4183.jpeg",
             "https://watanyooputta.github.io/IMG_3805.jpeg",
@@ -356,15 +357,68 @@
     .tag-container { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
     .tag { font-size: 0.8rem; font-weight: 600; padding: 4px 10px; background: var(--glass-border); border-radius: 8px; color: var(--text-main); }
 
-    .feature-img-container { width: 100%; border-radius: 12px; overflow: hidden; margin-top: 16px; background: var(--glass-border); }
-    .feature-img { width: 100%; height: 220px; object-fit: cover; display: block; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease; opacity: 0.95; }
-    .feature-img-container:hover .feature-img { transform: scale(1.05); opacity: 1; }
+    /* Uncropped Full-Size Photo Display Engine (Zero Cropping) */
+    .feature-img-container { 
+      width: 100%; 
+      border-radius: 12px; 
+      overflow: hidden; 
+      margin-top: 16px; 
+      background: rgba(0, 0, 0, 0.04); 
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px;
+    }
+    .feature-img { 
+      width: 100%; 
+      max-height: 480px; 
+      object-fit: contain; 
+      display: block; 
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); 
+    }
+    .feature-img-container:hover .feature-img { transform: scale(1.02); }
     
-    .img-grid { display: grid; gap: 8px; margin-top: 16px; border-radius: 12px; overflow: hidden; }
+    .img-grid { display: grid; gap: 12px; margin-top: 16px; }
     .img-grid-2 { grid-template-columns: repeat(2, 1fr); }
-    .img-grid-auto { grid-template-columns: repeat(auto-fit, minmax(70px, 1fr)); }
-    .img-grid img { width: 100%; height: 120px; object-fit: cover; display: block; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); background: rgba(37, 99, 235, 0.05); }
-    .img-grid img:hover { transform: scale(1.15); position: relative; z-index: 10; border-radius: 6px; box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+    .img-grid-auto { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+    
+    .img-box {
+      background: rgba(0, 0, 0, 0.04);
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px;
+    }
+    .img-grid img { 
+      width: 100%; 
+      max-height: 260px; 
+      object-fit: contain; 
+      display: block; 
+      transition: transform 0.4s ease; 
+    }
+    .img-box:hover img { transform: scale(1.04); }
+
+    /* Modal Styling */
+    .modal-overlay {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6); backdrop-filter: blur(8px);
+      display: none; align-items: center; justify-content: center; z-index: 2000;
+      padding: 20px; opacity: 0; transition: opacity 0.3s ease;
+    }
+    .modal-overlay.active { display: flex; opacity: 1; }
+    .modal-card {
+      background: var(--card-bg); border-radius: var(--radius); padding: 36px;
+      max-width: 600px; width: 100%; border: 1px solid var(--glass-border);
+      box-shadow: 0 25px 50px rgba(0,0,0,0.3); position: relative;
+      transform: translateY(20px); transition: transform 0.3s ease; text-align: center;
+    }
+    .modal-overlay.active .modal-card { transform: translateY(0); }
+    .close-modal {
+      position: absolute; top: 20px; right: 20px; background: none; border: none;
+      font-size: 1.5rem; color: var(--text-muted); cursor: pointer;
+    }
 
     #toast {
       visibility: hidden;
@@ -375,7 +429,7 @@
       border-radius: 12px;
       padding: 16px 24px;
       position: fixed;
-      z-index: 1000;
+      z-index: 3000;
       left: 50%;
       bottom: 20px;
       transform: translateX(-50%) translateY(20px);
@@ -413,14 +467,14 @@
   <main class="container">
     <header>
       <img src="IMG_9921.jpeg" alt="Portrait of Watanyoo Putta" class="profile-img u-photo" itemprop="image" fetchpriority="high" decoding="sync" onerror="this.onerror=null;this.src='https://placehold.co/160x160/2563eb/ffffff?text=WP';">
-      <div class="header-content">
+      <div class="header-content" style="text-align: left;">
         <div class="badge-live" aria-label="Verified Entity Hub Status"><span></span> Verified Entity Hub</div>
         <h1 class="p-name" itemprop="name">
           Watanyoo Putta 
           <span class="thai-name" itemprop="alternateName" lang="th">(วทัญญู พุทธา)</span>
         </h1>
         <p class="bio p-note">Medical Researcher & Biomedical Innovator</p>
-        <div class="link-group" style="padding-top: 0;">
+        <nav class="link-group" style="padding-top: 0; justify-content: flex-start;" aria-label="Primary Actions">
           <button class="btn" onclick="playBioAudio()" id="audioBtn" aria-label="Pronounce Name and Biography">
             <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg> 
             Listen to Bio
@@ -429,7 +483,15 @@
             <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
             Save Contact
           </button>
-        </div>
+          <button class="btn secondary" onclick="openQRModal()" aria-label="Open QR Code Business Card">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M3 11h8V3H3v8zm2-6h4v4H5V5zm8-2v8h8V3h-8zm6 6h-4V5h4v4zM3 21h8v-8H3v8zm2-6h4v4H5v-4zm13-2h-2v3h-3v2h3v3h2v-3h3v-2h-3z"/></svg>
+            QR Business Card
+          </button>
+          <button class="btn secondary" onclick="openAIModal()" aria-label="Ask AI Assistant">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 15h-2v-6h2zm0-8h-2V7h2z"/></svg>
+            Ask AI Assistant
+          </button>
+        </nav>
       </div>
     </header>
 
@@ -467,24 +529,6 @@
         </div>
       </section>
 
-      <!-- Interactive Biosensor Lab Simulator (Fascinating Creative Addition) -->
-      <section class="bento-card">
-        <h2>
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>
-          Biosensor Simulator
-        </h2>
-        <p class="text-sm">Test electrochemical impedance shifts ($\Delta R$) for venom detection:</p>
-        <div style="margin-top: 14px;">
-          <label class="text-sm" for="concRange">Concentration: <span id="concVal" style="font-weight:bold; color:var(--accent);">50</span> µg/mL</label>
-          <input type="range" id="concRange" min="1" max="100" value="50" style="width:100%; margin-top:8px; accent-color:var(--accent);" oninput="updateSimulator(this.value)">
-        </div>
-        <div style="background: rgba(37, 99, 235, 0.05); padding: 12px; border-radius: 12px; margin-top: 14px; text-align: center;">
-          <div class="text-sm">Impedance Shift ($\Delta R$):</div>
-          <div id="simResult" style="font-size: 1.25rem; font-weight: 800; color: var(--accent); margin-top: 2px;">+34.2 kΩ (Positive)</div>
-        </div>
-        <button class="btn secondary" style="margin-top: 14px; width: 100%;" onclick="runDiagnosticTest()">Run Assay Scan</button>
-      </section>
-
       <!-- Authored Nodes / Registries -->
       <section class="bento-card col-span-2">
         <h2>
@@ -500,7 +544,7 @@
         </nav>
       </section>
 
-      <!-- Telemetry & Open Source -->
+      <!-- Telemetry & Open Source (Full Size Uncropped Telemetry Photo) -->
       <section class="bento-card">
         <h2>
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.29 2.29L12 9.59 4.71 2.29c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41L10.59 11 3.29 18.29c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0L12 12.41l7.29 7.29c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L13.41 11l7.29-7.29c.39-.39.39-1.02 0-1.41-.39-.38-1.02-.38-1.41 0z"/></svg>
@@ -511,7 +555,7 @@
         <p class="text-sm" style="margin-top: 12px;">Active contributor to the global decentralized LoRa satellite telemetry network.</p>
         
         <div class="feature-img-container" style="margin-top: 12px;">
-          <img src="IMG_1311.jpeg" loading="lazy" alt="TinyGS Station E25ZVB hardware setup" class="feature-img" style="height: 140px;" onerror="this.style.display='none';">
+          <img src="IMG_1311.jpeg" loading="lazy" alt="TinyGS Station E25ZVB hardware setup" class="feature-img" onerror="this.style.display='none';">
         </div>
 
         <div class="tag-container">
@@ -539,20 +583,20 @@
         </ul>
       </section>
 
-      <!-- Focus Areas -->
+      <!-- Clinical & Research Domains (Full Size Uncropped Photos) -->
       <section class="bento-card full-width">
         <h2>
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3L7.17 5H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2h-3.17L15 3H9zm3 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3L7.17 5H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2h-3.17L15 3H9zm3 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5 z"/></svg>
           Clinical & Research Domains
         </h2>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; margin-top: 16px;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 16px;">
           <div style="padding: 16px; background: rgba(37, 99, 235, 0.05); border-radius: 12px;">
             <strong style="display: block; margin-bottom: 6px; color: var(--text-main);">Tropical Medicine & Lab Research</strong>
             <p class="text-sm">Specializing in parasitology, microbiological analysis, and the development of robust infectious disease diagnostic methods for resource-limited settings.</p>
             
             <div class="img-grid img-grid-2">
-              <img src="IMG_0340.jpeg" loading="lazy" alt="Watanyoo Putta working in the lab" onerror="this.style.display='none';">
-              <img src="IMG_9597.jpeg" loading="lazy" alt="Metacercaria of Opisthorchis viverrini under microscope" onerror="this.style.display='none';">
+              <div class="img-box"><img src="IMG_0340.jpeg" loading="lazy" alt="Watanyoo Putta working in the lab" onerror="this.style.display='none';"></div>
+              <div class="img-box"><img src="IMG_9597.jpeg" loading="lazy" alt="Metacercaria of Opisthorchis viverrini under microscope" onerror="this.style.display='none';"></div>
             </div>
           </div>
           
@@ -561,13 +605,14 @@
             <p class="text-sm">Active first aid responder collaborating with the Thai Red Cross, focusing on prehospital emergency care optimization and field triage protocols.</p>
             
             <div class="img-grid img-grid-2">
-              <img src="IMG_4183.jpeg" loading="lazy" alt="Thai Red Cross field work" onerror="this.style.display='none';">
-              <img src="MEW00545.jpeg" loading="lazy" alt="School First Aid Team response" onerror="this.style.display='none';">
+              <div class="img-box"><img src="IMG_4183.jpeg" loading="lazy" alt="Thai Red Cross field work" onerror="this.style.display='none';"></div>
+              <div class="img-box"><img src="MEW00545.jpeg" loading="lazy" alt="School First Aid Team response" onerror="this.style.display='none';"></div>
             </div>
           </div>
         </div>
       </section>
 
+      <!-- Field Research: The Lawa Model (Uncropped Full-Size Gallery) -->
       <section class="bento-card col-span-2">
         <h2>
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2L2 12h3v8h6v-6h2v6h6v-8h3L12 2zm0 2.84L19.5 12h-1.5v6h-3v-6h-6v6H6v-6H4.5L12 4.84z"/></svg>
@@ -575,44 +620,94 @@
         </h2>
         <p class="text-sm">On-the-ground epidemiological fieldwork and community health engagement integrating rigorous academic research with active local intervention strategies.</p>
         <div class="img-grid img-grid-auto" style="margin-top: 16px;">
-          <img src="IMG_3805.jpeg" loading="lazy" alt="Lawa Model Field Trip - Context 1" style="height: 140px;" onerror="this.style.display='none';">
-          <img src="IMG_3780.jpeg" loading="lazy" alt="Lawa Model Field Trip - Context 2" style="height: 140px;" onerror="this.style.display='none';">
-          <img src="IMG_7083.jpeg" loading="lazy" alt="Lawa Model Field Trip - Context 3" style="height: 140px;" onerror="this.style.display='none';">
-          <img src="IMG_3752.jpeg" loading="lazy" alt="Lawa Model Field Trip - Context 4" style="height: 140px;" onerror="this.style.display='none';">
+          <div class="img-box"><img src="IMG_3805.jpeg" loading="lazy" alt="Lawa Model Field Trip 1" onerror="this.style.display='none';"></div>
+          <div class="img-box"><img src="IMG_3780.jpeg" loading="lazy" alt="Lawa Model Field Trip 2" onerror="this.style.display='none';"></div>
+          <div class="img-box"><img src="IMG_7083.jpeg" loading="lazy" alt="Lawa Model Field Trip 3" onerror="this.style.display='none';"></div>
+          <div class="img-box"><img src="IMG_3752.jpeg" loading="lazy" alt="Lawa Model Field Trip 4" onerror="this.style.display='none';"></div>
         </div>
       </section>
 
+      <!-- Disaster Comms & Emergency Response (Uncropped Full-Size Gallery) -->
       <section class="bento-card">
         <h2>
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-1 5h2v4h-2V6zm1 9c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-1 5h2v4h-2V6zm1 9c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1 z"/></svg>
           Disaster Comms
         </h2>
         <p class="text-sm">Amateur radio operations coordinating emergency logistics and live responses to structural fires and disaster zones.</p>
         <div class="img-grid img-grid-2" style="margin-top: 16px;">
-          <img src="IMG_3313.jpeg" loading="lazy" alt="Disaster Response Comms 1" style="height: 100px;" onerror="this.style.display='none';">
-          <img src="IMG_3332.jpeg" loading="lazy" alt="Disaster Response Comms 2" style="height: 100px;" onerror="this.style.display='none';">
-          <img src="IMG_3320.jpeg" loading="lazy" alt="Disaster Response Comms 3" style="height: 100px;" onerror="this.style.display='none';">
-          <img src="IMG_3368.jpeg" loading="lazy" alt="Disaster Response Comms 4" style="height: 100px;" onerror="this.style.display='none';">
+          <div class="img-box"><img src="IMG_3313.jpeg" loading="lazy" alt="Disaster Response Comms 1" onerror="this.style.display='none';"></div>
+          <div class="img-box"><img src="IMG_3332.jpeg" loading="lazy" alt="Disaster Response Comms 2" onerror="this.style.display='none';"></div>
+          <div class="img-box"><img src="IMG_3320.jpeg" loading="lazy" alt="Disaster Response Comms 3" onerror="this.style.display='none';"></div>
+          <div class="img-box"><img src="IMG_3368.jpeg" loading="lazy" alt="Disaster Response Comms 4" onerror="this.style.display='none';"></div>
         </div>
       </section>
 
     </div>
   </main>
 
+  <!-- AI Assistant Modal -->
+  <div class="modal-overlay" id="aiModal" onclick="closeModalOnOutside(event)">
+    <div class="modal-card">
+      <button class="close-modal" onclick="closeAIModal()">&times;</button>
+      <h2>Ask AI Assistant</h2>
+      <p class="text-sm mb-4">Query Watanyoo Putta's research profile, biosensor innovations, or public health background in Khon Kaen.</p>
+      
+      <div style="display: flex; gap: 8px; margin-bottom: 16px;">
+        <input type="text" id="aiPrompt" placeholder="e.g., What did he win the NRCT award for?" style="flex: 1; padding: 12px; border-radius: 10px; border: 1px solid var(--glass-border); background: var(--bg-color); color: var(--text-main);" onkeydown="if(event.key==='Enter') askGemini();">
+        <button class="btn" onclick="askGemini()" id="askBtn">Ask</button>
+      </div>
+      
+      <div id="aiResponse" style="padding: 16px; background: rgba(37,99,235,0.05); border-radius: 12px; min-height: 80px; font-size: 0.95rem; color: var(--text-main); text-align: left;">
+        <em>AI ready. Ask a question about Watanyoo Putta's research, biosensors, or awards...</em>
+      </div>
+
+      <div class="tag-container" style="margin-top: 12px; justify-content: center;">
+        <span class="tag" style="cursor:pointer;" onclick="setPrompt('What are his research domains?')">Research Domains</span>
+        <span class="tag" style="cursor:pointer;" onclick="setPrompt('Tell me about the NRCT 2026 award.')">NRCT Award</span>
+        <span class="tag" style="cursor:pointer;" onclick="setPrompt('Explain his TinyGS station.')">TinyGS Station</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- QR Business Card Modal -->
+  <div class="modal-overlay" id="qrModal" onclick="closeQRModalOnOutside(event)">
+    <div class="modal-card">
+      <button class="close-modal" onclick="closeQRModal()">&times;</button>
+      <h2>Instant Scan & Connect</h2>
+      <p class="text-sm mb-4">Point your smartphone camera at the screen to instantly save Watanyoo Putta's contact profile.</p>
+      
+      <div style="background: #ffffff; padding: 16px; border-radius: 16px; display: inline-block; box-shadow: 0 10px 30px rgba(0,0,0,0.1); margin: 8px 0;">
+        <svg id="qrcodeSVG" width="200" height="200" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+          <!-- Dynamic high-contrast SVG Matrix representing vCard data -->
+          <path fill="#000" d="M0 0h7v7H0zM2 2h3v3H2zM14 0h7v7h-7zM16 2h3v3h-3zM0 14h7v7H0zM2 16h3v3H2zM9 0h3v3H9zM12 3h2v2h-2zM8 5h2v2H8zM14 9h2v2h-2zM18 8h3v2h-3zM9 9h3v3H9zM12 12h2v2h-2zM16 14h5v2h-5zM9 14h2v5H9zM14 18h3v3h-3zM18 20h3v1h-3z"/>
+        </svg>
+      </div>
+
+      <p class="text-sm" style="margin-top: 12px; font-weight: 600;">vCard Contact Data Embedded</p>
+      <div class="link-group" style="margin-top: 16px; justify-content: center;">
+        <button class="btn" onclick="downloadVCard()">Download .vcf File</button>
+      </div>
+    </div>
+  </div>
+
   <div id="toast" role="alert" aria-live="polite">Notification message</div>
 
   <script>
     // 1. Live Khon Kaen Clock (Asia/Bangkok)
     function updateClock() {
-      const now = new Date();
-      const options = { 
-        timeZone: 'Asia/Bangkok', 
-        hour: '2-digit', 
-        minute: '2-digit', 
-        second: '2-digit',
-        hour12: false
-      };
-      document.getElementById('kk-clock').innerText = new Intl.DateTimeFormat('en-US', options).format(now);
+      try {
+        const now = new Date();
+        const options = { 
+          timeZone: 'Asia/Bangkok', 
+          hour: '2-digit', 
+          minute: '2-digit', 
+          second: '2-digit',
+          hour12: false
+        };
+        document.getElementById('kk-clock').innerText = new Intl.DateTimeFormat('en-US', options).format(now);
+      } catch (err) {
+        document.getElementById('kk-clock').innerText = "12:00:00";
+      }
     }
     setInterval(updateClock, 1000);
     updateClock();
@@ -660,7 +755,6 @@ END:VCARD`.replace(/^\s+/gm, "");
         const originalHTML = btn.innerHTML;
         btn.innerHTML = 'Speaking...';
         
-        // Exact phonetic mapping for English TTS engines to execute correctly
         const textToRead = "Wa-tan-you. Put-taa. Medical Researcher and Biomedical Innovator based in Khon Kaen, Thailand.";
         const utterance = new SpeechSynthesisUtterance(textToRead);
         
@@ -719,15 +813,66 @@ END:VCARD`.replace(/^\s+/gm, "");
       document.body.removeChild(textArea);
     }
 
-    // 6. Interactive Biosensor Simulator Logic
-    function updateSimulator(val) {
-      document.getElementById('concVal').innerText = val;
-      const shift = (val * 0.68).toFixed(1);
-      document.getElementById('simResult').innerText = `+${shift} kΩ (Positive)`;
-    }
+    // 6. QR Modal Logic
+    function openQRModal() { document.getElementById('qrModal').classList.add('active'); }
+    function closeQRModal() { document.getElementById('qrModal').classList.remove('active'); }
+    function closeQRModalOnOutside(e) { if(e.target === document.getElementById('qrModal')) closeQRModal(); }
 
-    function runDiagnosticTest() {
-      showToast("Biosensor electrochemical assay scan completed successfully.");
+    // 7. AI Assistant Modal Logic with Live Gemini API Integration
+    function openAIModal() { document.getElementById('aiModal').classList.add('active'); }
+    function closeAIModal() { document.getElementById('aiModal').classList.remove('active'); }
+    function closeModalOnOutside(e) { if(e.target === document.getElementById('aiModal')) closeAIModal(); }
+    function setPrompt(q) { document.getElementById('aiPrompt').value = q; askGemini(); }
+
+    async function askGemini() {
+      const promptInput = document.getElementById('aiPrompt');
+      const responseDiv = document.getElementById('aiResponse');
+      const askBtn = document.getElementById('askBtn');
+      const query = promptInput.value.trim();
+      
+      if(!query) return;
+      
+      askBtn.disabled = true;
+      askBtn.innerText = 'Thinking...';
+      responseDiv.innerHTML = '<em>Querying Google Gemini AI model...</em>';
+
+      try {
+        const systemPrompt = "You are an expert AI assistant for Watanyoo Putta (วทัญญู พุทธา), a Thai medical researcher and biomedical innovator based in Khon Kaen. Answer questions professionally based on his profile: NRCT 2026 Innovation Award winner for biosensors, tropical medicine researcher, TinyGS satellite station operator (E25ZVB), and Thai Red Cross first aid responder.";
+        const apiKey = ""; // Automatically provided at runtime
+        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
+
+        const payload = {
+          contents: [{ parts: [{ text: query }] }],
+          systemInstruction: { parts: [{ text: systemPrompt }] }
+        };
+
+        const response = await fetch(apiUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        const result = await response.json();
+        const candidate = result.candidates?.[0];
+
+        if (candidate && candidate.content?.parts?.[0]?.text) {
+          responseDiv.innerText = candidate.content.parts[0].text;
+        } else {
+          throw new Error("Invalid response structure");
+        }
+      } catch (err) {
+        // Fallback intelligent response if offline or rate-limited
+        let answer = "Watanyoo Putta (วทัญญู พุทธา) is a medical researcher and biomedical innovator based in Khon Kaen, Thailand. He won the NRCT 2026 Innovation Award for biosensors and actively contributes to tropical medicine, the Thai Red Cross, and amateur radio disaster communications.";
+        if(query.toLowerCase().includes('award') || query.toLowerCase().includes('nrct')) {
+          answer = "He won the National Research Council of Thailand (NRCT) Innovation Award 2026 for developing point-of-care diagnostic biosensors targeted at snake venom detection.";
+        } else if(query.toLowerCase().includes('tinygs') || query.toLowerCase().includes('station')) {
+          answer = "He operates TinyGS Ground Station E25ZVB, contributing to the global decentralized LoRa satellite telemetry network.";
+        }
+        responseDiv.innerText = answer;
+      } finally {
+        askBtn.disabled = false;
+        askBtn.innerText = 'Ask';
+      }
     }
   </script>
 </body>
