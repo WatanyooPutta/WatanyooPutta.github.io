@@ -13,7 +13,7 @@
   <meta name="theme-color" content="#2563eb" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#0f1115" media="(prefers-color-scheme: dark)">
   
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https://commons.wikimedia.org https://upload.wikimedia.org data: blob:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'self' https://api.crossref.org https://generativelanguage.googleapis.com;">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https://commons.wikimedia.org https://upload.wikimedia.org data: blob:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; connect-src 'self';">
 
   <link rel="canonical" href="https://watanyooputta.github.io/">
   <link rel="icon" href="IMG_9921.jpeg" type="image/jpeg">
@@ -37,6 +37,9 @@
   <meta name="twitter:description" content="Official profile of Watanyoo Putta (วทัญญู พุทธา), Thai medical researcher and biomedical innovator.">
   <meta name="twitter:image" content="https://watanyooputta.github.io/IMG_9921.jpeg">
   
+  <!-- Client-side dynamic QR Code generation library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -83,7 +86,6 @@
           "image": [
             { "@id": "https://watanyooputta.github.io/#primaryimage" },
             "https://watanyooputta.github.io/IMG_4697.jpeg",
-            "https://watanyooputta.github.io/IMG_0340.jpeg",
             "https://watanyooputta.github.io/IMG_0340.jpeg",
             "https://watanyooputta.github.io/IMG_4183.jpeg",
             "https://watanyooputta.github.io/IMG_3805.jpeg",
@@ -144,33 +146,35 @@
     :root {
       --bg-color: #f8fafc;
       --bg-mesh: radial-gradient(at 0% 0%, rgba(37, 99, 235, 0.12) 0px, transparent 50%), radial-gradient(at 100% 100%, rgba(37, 99, 235, 0.05) 0px, transparent 50%);
-      --card-bg: rgba(255, 255, 255, 0.75);
+      --card-bg: rgba(255, 255, 255, 0.82);
+      --card-hover-bg: rgba(255, 255, 255, 0.96);
       --text-main: #0f172a;
       --text-muted: #475569;
       --accent: #2563eb;
       --accent-hover: #1d4ed8;
-      --glass-border: rgba(255, 255, 255, 0.6);
-      --shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.05);
-      --radius: 24px;
-      --glow: rgba(37, 99, 235, 0.15);
+      --glass-border: rgba(255, 255, 255, 0.7);
+      --shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.06);
+      --radius: 28px;
+      --glow: rgba(37, 99, 235, 0.2);
     }
 
     @media (prefers-color-scheme: dark) {
       :root {
         --bg-color: #020617;
         --bg-mesh: radial-gradient(at 0% 0%, rgba(37, 99, 235, 0.18) 0px, transparent 50%), radial-gradient(at 100% 100%, rgba(37, 99, 235, 0.08) 0px, transparent 50%);
-        --card-bg: rgba(15, 23, 42, 0.65);
+        --card-bg: rgba(15, 23, 42, 0.75);
+        --card-hover-bg: rgba(30, 41, 59, 0.9);
         --text-main: #f8fafc;
         --text-muted: #94a3b8;
         --accent: #3b82f6;
         --accent-hover: #60a5fa;
         --glass-border: rgba(255, 255, 255, 0.08);
         --shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
-        --glow: rgba(59, 130, 246, 0.2);
+        --glow: rgba(59, 130, 246, 0.28);
       }
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: "Inter", system-ui, -apple-system, sans-serif; }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: "Inter", system-ui, -apple-system, sans-serif; scroll-behavior: smooth; }
     
     body {
       background-color: var(--bg-color);
@@ -179,8 +183,9 @@
       color: var(--text-main);
       line-height: 1.6;
       display: flex;
-      justify-content: center;
-      padding: 60px 20px;
+      flex-direction: column;
+      align-items: center;
+      padding: 60px 20px 40px 20px;
       min-height: 100vh;
       -webkit-font-smoothing: antialiased;
     }
@@ -211,8 +216,8 @@
     }
 
     header::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
     }
 
     .profile-img {
@@ -223,8 +228,19 @@
       border: 3px solid transparent;
       background: linear-gradient(var(--card-bg), var(--card-bg)) padding-box, 
                   linear-gradient(135deg, var(--accent), #93c5fd) border-box;
-      box-shadow: 0 0 30px var(--glow);
+      box-shadow: 0 0 35px var(--glow);
       flex-shrink: 0;
+      cursor: pointer;
+      transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .profile-img:hover { transform: scale(1.06) rotate(2deg); }
+
+    .header-content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+      width: 100%;
     }
 
     .header-content h1 {
@@ -263,9 +279,10 @@
       letter-spacing: 1.2px;
       background: rgba(37, 99, 235, 0.1);
       color: var(--accent);
-      padding: 6px 12px;
+      padding: 6px 14px;
       border-radius: 20px;
       margin-bottom: 16px;
+      border: 1px solid rgba(37, 99, 235, 0.2);
     }
 
     .badge-live span {
@@ -273,7 +290,7 @@
       height: 6px;
       background-color: var(--accent);
       border-radius: 50%;
-      box-shadow: 0 0 8px var(--accent);
+      box-shadow: 0 0 10px var(--accent);
       animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
     }
 
@@ -288,22 +305,30 @@
     .bento-card {
       background: var(--card-bg);
       border-radius: var(--radius);
-      padding: 32px;
+      padding: 36px;
       backdrop-filter: blur(24px);
       -webkit-backdrop-filter: blur(24px);
       border: 1px solid var(--glass-border);
       box-shadow: var(--shadow);
-      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease, border-color 0.3s ease;
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, background 0.4s ease, border-color 0.4s ease;
       position: relative;
       opacity: 0;
       animation: fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
       display: flex;
       flex-direction: column;
+      overflow: hidden;
     }
     
+    .bento-card::after {
+      content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0; transition: opacity 0.3s ease;
+    }
+
     .bento-card.highlight {
-      border: 1px solid var(--accent);
-      box-shadow: 0 10px 30px var(--glow);
+      border: 1px solid rgba(37, 99, 235, 0.4);
+      background: linear-gradient(135deg, var(--card-bg), rgba(37, 99, 235, 0.05));
+      box-shadow: 0 20px 40px var(--glow);
     }
 
     .bento-card:nth-child(1) { animation-delay: 0.1s; }
@@ -312,17 +337,21 @@
     .bento-card:nth-child(4) { animation-delay: 0.25s; }
     .bento-card:nth-child(5) { animation-delay: 0.3s; }
     .bento-card:nth-child(6) { animation-delay: 0.35s; }
+    .bento-card:nth-child(7) { animation-delay: 0.4s; }
 
     .bento-card:hover { 
-      transform: translateY(-4px); 
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); 
+      transform: translateY(-8px) scale(1.01); 
+      box-shadow: 0 35px 70px -15px rgba(0, 0, 0, 0.22); 
+      background: var(--card-hover-bg);
+      border-color: var(--accent);
     }
+    .bento-card:hover::after { opacity: 1; }
     
     .bento-card.col-span-2 { grid-column: span 2; }
     .bento-card.full-width { grid-column: span 3; }
 
-    h2 { font-size: 1.25rem; font-weight: 700; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
-    h2 svg { width: 22px; height: 22px; fill: var(--accent); flex-shrink: 0; }
+    h2 { font-size: 1.3rem; font-weight: 700; margin-bottom: 16px; display: flex; align-items: center; gap: 12px; letter-spacing: -0.01em; }
+    h2 svg { width: 24px; height: 24px; fill: var(--accent); flex-shrink: 0; }
 
     .link-group { display: flex; gap: 12px; flex-wrap: wrap; margin-top: auto; padding-top: 20px;}
     .btn {
@@ -330,118 +359,217 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
-      padding: 12px 20px;
+      padding: 12px 24px;
       background: var(--accent);
       color: #fff;
       text-decoration: none;
-      border-radius: 12px;
+      border-radius: 14px;
       font-size: 0.95rem;
       font-weight: 600;
       border: none;
       cursor: pointer;
-      transition: all 0.2s ease;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
       flex: 1 1 auto;
+      box-shadow: 0 4px 14px var(--glow);
     }
-    .btn:hover { background: var(--accent-hover); transform: scale(1.02); }
+    .btn:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 8px 22px var(--glow); }
     .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
     
-    .btn.secondary { background: rgba(37, 99, 235, 0.1); color: var(--accent); }
-    .btn.secondary:hover { background: rgba(37, 99, 235, 0.15); }
+    .btn.secondary { background: rgba(37, 99, 235, 0.08); color: var(--accent); box-shadow: none; border: 1px solid rgba(37, 99, 235, 0.15); }
+    .btn.secondary:hover { background: rgba(37, 99, 235, 0.16); transform: translateY(-2px); }
 
     ul.clean-list { list-style: none; }
     ul.clean-list li { margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid var(--glass-border); }
     ul.clean-list li:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
     
-    .text-sm { font-size: 0.9rem; color: var(--text-muted); }
+    .text-sm { font-size: 0.92rem; color: var(--text-muted); }
 
-    .tag-container { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
-    .tag { font-size: 0.8rem; font-weight: 600; padding: 4px 10px; background: var(--glass-border); border-radius: 8px; color: var(--text-main); }
+    .tag-container { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .tag { font-size: 0.8rem; font-weight: 600; padding: 6px 14px; background: rgba(37, 99, 235, 0.08); border-radius: 12px; color: var(--accent); border: 1px solid rgba(37, 99, 235, 0.15); }
 
-    /* Uncropped Full-Size Photo Display Engine (Zero Cropping) */
     .feature-img-container { 
       width: 100%; 
-      border-radius: 12px; 
+      border-radius: 20px; 
       overflow: hidden; 
-      margin-top: 16px; 
+      margin-top: 20px; 
       background: rgba(0, 0, 0, 0.04); 
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 12px;
+      cursor: pointer;
+      position: relative;
+      border: 1px solid var(--glass-border);
+      transition: transform 0.4s ease, border-color 0.4s ease;
     }
+    .feature-img-container:hover { border-color: var(--accent); }
     .feature-img { 
       width: 100%; 
-      max-height: 480px; 
+      max-height: 500px; 
       object-fit: contain; 
       display: block; 
       transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); 
     }
-    .feature-img-container:hover .feature-img { transform: scale(1.02); }
+    .feature-img-container:hover .feature-img { transform: scale(1.04); }
+    .feature-img-container::after {
+      content: '🔍 Click to Expand';
+      position: absolute;
+      bottom: 16px; right: 16px;
+      background: rgba(15, 23, 42, 0.85);
+      color: #fff;
+      padding: 6px 14px;
+      border-radius: 10px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      backdrop-filter: blur(6px);
+    }
+    .feature-img-container:hover::after { opacity: 1; }
     
-    .img-grid { display: grid; gap: 12px; margin-top: 16px; }
+    .img-grid { display: grid; gap: 14px; margin-top: 20px; }
     .img-grid-2 { grid-template-columns: repeat(2, 1fr); }
-    .img-grid-auto { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+    .img-grid-auto { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
     
     .img-box {
       background: rgba(0, 0, 0, 0.04);
-      border-radius: 10px;
+      border-radius: 16px;
       overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 8px;
+      padding: 10px;
+      cursor: pointer;
+      border: 1px solid var(--glass-border);
+      position: relative;
+      transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+    }
+    .img-box:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.18);
+      border-color: var(--accent);
     }
     .img-grid img { 
       width: 100%; 
-      max-height: 260px; 
+      max-height: 280px; 
       object-fit: contain; 
       display: block; 
       transition: transform 0.4s ease; 
     }
-    .img-box:hover img { transform: scale(1.04); }
+    .img-box:hover img { transform: scale(1.06); }
 
-    /* Modal Styling */
     .modal-overlay {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.6); backdrop-filter: blur(8px);
+      background: rgba(0,0,0,0.8); backdrop-filter: blur(14px);
       display: none; align-items: center; justify-content: center; z-index: 2000;
-      padding: 20px; opacity: 0; transition: opacity 0.3s ease;
+      padding: 20px; opacity: 0; transition: opacity 0.35s ease;
     }
     .modal-overlay.active { display: flex; opacity: 1; }
+    
     .modal-card {
-      background: var(--card-bg); border-radius: var(--radius); padding: 36px;
-      max-width: 600px; width: 100%; border: 1px solid var(--glass-border);
-      box-shadow: 0 25px 50px rgba(0,0,0,0.3); position: relative;
-      transform: translateY(20px); transition: transform 0.3s ease; text-align: center;
+      background: var(--card-bg); border-radius: var(--radius); padding: 42px;
+      max-width: 500px; width: 100%; border: 1px solid var(--glass-border);
+      box-shadow: 0 30px 70px rgba(0,0,0,0.45); position: relative;
+      transform: translateY(20px); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); text-align: center;
+      backdrop-filter: blur(28px);
     }
     .modal-overlay.active .modal-card { transform: translateY(0); }
-    .close-modal {
-      position: absolute; top: 20px; right: 20px; background: none; border: none;
-      font-size: 1.5rem; color: var(--text-muted); cursor: pointer;
+    
+    .lightbox-card {
+      background: transparent; max-width: 92vw; max-height: 92vh; padding: 0;
+      box-shadow: none; border: none; display: flex; align-items: center; justify-content: center;
     }
+    .lightbox-img {
+      max-width: 100%; max-height: 88vh; object-fit: contain; border-radius: 16px;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+    }
+
+    .close-modal {
+      position: absolute; top: 20px; right: 20px; background: rgba(0,0,0,0.1); border: none;
+      width: 38px; height: 38px; border-radius: 50%; font-size: 1.3rem; color: var(--text-main); 
+      cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s ease;
+      z-index: 10;
+    }
+    .close-modal:hover { background: rgba(0,0,0,0.25); }
 
     #toast {
       visibility: hidden;
-      min-width: 280px;
+      min-width: 300px;
       background-color: var(--text-main);
       color: var(--bg-color);
       text-align: center;
-      border-radius: 12px;
-      padding: 16px 24px;
+      border-radius: 16px;
+      padding: 18px 28px;
       position: fixed;
       z-index: 3000;
       left: 50%;
-      bottom: 20px;
+      bottom: 28px;
       transform: translateX(-50%) translateY(20px);
       opacity: 0;
       transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
       font-weight: 600;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.35);
     }
     #toast.show {
       visibility: visible;
       opacity: 1;
       transform: translateX(-50%) translateY(0);
+    }
+
+    footer {
+      width: 100%;
+      max-width: 1080px;
+      margin-top: 60px;
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 40px 48px;
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--shadow);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    footer::before {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    }
+
+    .footer-left {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .footer-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .back-to-top {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--accent);
+      background: rgba(37, 99, 235, 0.08);
+      padding: 10px 18px;
+      border-radius: 14px;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      border: 1px solid rgba(37, 99, 235, 0.15);
+    }
+    .back-to-top:hover {
+      background: rgba(37, 99, 235, 0.2);
+      transform: translateY(-2px);
     }
 
     @media (max-width: 992px) {
@@ -452,13 +580,16 @@
     
     @media (max-width: 768px) {
       body { padding: 24px 16px; }
-      header { flex-direction: column; text-align: center; padding: 36px 24px; gap: 20px; }
+      header { flex-direction: column; text-align: center; padding: 36px 24px; gap: 24px; }
+      .header-content { align-items: center; text-align: center; }
       .header-content h1 { justify-content: center; font-size: 2.2rem; }
       .bento-grid { grid-template-columns: 1fr; gap: 16px; }
       .bento-card.full-width { grid-column: span 1; }
       .bento-card.col-span-2 { grid-column: span 1; }
-      .thai-name { display: block; margin-left: 0; margin-top: 4px; }
-      .link-group { justify-content: center; }
+      .thai-name { display: block; margin-left: 0; margin-top: 6px; }
+      .link-group { justify-content: center; width: 100%; }
+      footer { flex-direction: column; text-align: center; padding: 32px 20px; }
+      .footer-right { justify-content: center; width: 100%; flex-wrap: wrap; }
     }
   </style>
 </head>
@@ -466,15 +597,15 @@
 
   <main class="container">
     <header>
-      <img src="IMG_9921.jpeg" alt="Portrait of Watanyoo Putta" class="profile-img u-photo" itemprop="image" fetchpriority="high" decoding="sync" onerror="this.onerror=null;this.src='https://placehold.co/160x160/2563eb/ffffff?text=WP';">
-      <div class="header-content" style="text-align: left;">
-        <div class="badge-live" aria-label="Verified Entity Hub Status"><span></span> Verified Entity Hub</div>
+      <img src="IMG_9921.jpeg" alt="Portrait of Watanyoo Putta" class="profile-img u-photo" itemprop="image" fetchpriority="high" decoding="sync" onclick="openLightbox('IMG_9921.jpeg', 'Official portrait of Watanyoo Putta')" onerror="this.onerror=null;this.src='https://placehold.co/160x160/2563eb/ffffff?text=WP';">
+      <div class="header-content">
+        <div class="badge-live" aria-label="Verified Entity Hub Status"><span></span> Verified Entity Hub Node</div>
         <h1 class="p-name" itemprop="name">
           Watanyoo Putta 
           <span class="thai-name" itemprop="alternateName" lang="th">(วทัญญู พุทธา)</span>
         </h1>
         <p class="bio p-note">Medical Researcher & Biomedical Innovator</p>
-        <nav class="link-group" style="padding-top: 0; justify-content: flex-start;" aria-label="Primary Actions">
+        <nav class="link-group" aria-label="Primary Actions">
           <button class="btn" onclick="playBioAudio()" id="audioBtn" aria-label="Pronounce Name and Biography">
             <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg> 
             Listen to Bio
@@ -486,10 +617,6 @@
           <button class="btn secondary" onclick="openQRModal()" aria-label="Open QR Code Business Card">
             <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M3 11h8V3H3v8zm2-6h4v4H5V5zm8-2v8h8V3h-8zm6 6h-4V5h4v4zM3 21h8v-8H3v8zm2-6h4v4H5v-4zm13-2h-2v3h-3v2h3v3h2v-3h3v-2h-3z"/></svg>
             QR Business Card
-          </button>
-          <button class="btn secondary" onclick="openAIModal()" aria-label="Ask AI Assistant">
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 15h-2v-6h2zm0-8h-2V7h2z"/></svg>
-            Ask AI Assistant
           </button>
         </nav>
       </div>
@@ -505,7 +632,7 @@
         </h2>
         <p><strong>Base:</strong> Khon Kaen, Thailand</p>
         <p class="text-sm" style="margin-top: 12px;">Local Time (Asia/Bangkok):</p>
-        <div id="kk-clock" style="font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 1.75rem; font-weight: 800; color: var(--accent); margin-top: 4px; letter-spacing: -1px;">Loading...</div>
+        <div id="kk-clock" style="font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 1.8rem; font-weight: 800; color: var(--accent); margin-top: 6px; letter-spacing: -1px;">Loading...</div>
       </section>
 
       <!-- Honors & Awards (Highlighted) -->
@@ -514,11 +641,11 @@
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 6c1.4 0 2.8 1.4 2.8 2.8 0 1.96-2.8 4.2-2.8 4.2s-2.8-2.24-2.8-4.2C9.2 8.4 10.6 7 12 7z"/></svg>
           Featured Honors & Innovation
         </h2>
-        <p style="font-size: 1.1rem; font-weight: 600;">National Research Council of Thailand (NRCT)</p>
+        <p style="font-size: 1.15rem; font-weight: 600;">National Research Council of Thailand (NRCT)</p>
         <p style="color: var(--accent); font-weight: 700; margin-bottom: 12px;">Innovation Award 2026 Winner</p>
         <p class="text-sm">Recognized for developing rapid, point-of-care diagnostic biosensors targeted at snake venom detection, dramatically improving prehospital emergency outcomes in rural Southeast Asia.</p>
         
-        <div class="feature-img-container">
+        <div class="feature-img-container" onclick="openLightbox('IMG_4697.jpeg', 'Watanyoo Putta holding NRCT 2026 Innovation Award')">
           <img src="IMG_4697.jpeg" loading="lazy" alt="Watanyoo Putta holding NRCT 2026 Innovation Award" class="feature-img" onerror="this.style.display='none';">
         </div>
 
@@ -544,7 +671,7 @@
         </nav>
       </section>
 
-      <!-- Telemetry & Open Source (Full Size Uncropped Telemetry Photo) -->
+      <!-- Telemetry & Open Source -->
       <section class="bento-card">
         <h2>
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.29 2.29L12 9.59 4.71 2.29c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41L10.59 11 3.29 18.29c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0L12 12.41l7.29 7.29c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L13.41 11l7.29-7.29c.39-.39.39-1.02 0-1.41-.39-.38-1.02-.38-1.41 0z"/></svg>
@@ -554,7 +681,7 @@
         <p class="text-sm">Station ID: <span style="font-family: monospace; font-weight: bold;">E25ZVB</span></p>
         <p class="text-sm" style="margin-top: 12px;">Active contributor to the global decentralized LoRa satellite telemetry network.</p>
         
-        <div class="feature-img-container" style="margin-top: 12px;">
+        <div class="feature-img-container" style="margin-top: 14px;" onclick="openLightbox('IMG_1311.jpeg', 'TinyGS Station E25ZVB hardware setup')">
           <img src="IMG_1311.jpeg" loading="lazy" alt="TinyGS Station E25ZVB hardware setup" class="feature-img" onerror="this.style.display='none';">
         </div>
 
@@ -572,9 +699,9 @@
         </h2>
         <ul class="clean-list">
           <li>
-            <strong style="font-size: 1.15rem; display: block; margin-bottom: 4px;">Effects of Industrial Noise on Mental Health: A Case Study in Khon Kaen</strong>
+            <strong style="font-size: 1.15rem; display: block; margin-bottom: 6px;">Effects of Industrial Noise on Mental Health: A Case Study in Khon Kaen</strong>
             <p class="text-sm">Published: 2026 | Persistent ID: <a href="https://doi.org/10.5281/zenodo.23219819" class="u-url" style="color:var(--accent); font-weight: 500;">DOI 10.5281/zenodo.23219819</a></p>
-            <p class="text-sm" style="margin-top: 12px; max-width: 800px;">Independent study analyzing physiological and psychological impacts of urban industrial noise levels on local communities in Khon Kaen. Available via Zenodo open-access repository.</p>
+            <p class="text-sm" style="margin-top: 12px; max-width: 820px;">Independent study analyzing physiological and psychological impacts of urban industrial noise levels on local communities in Khon Kaen. Available via Zenodo open-access repository.</p>
             <div class="link-group" style="margin-top: 16px; justify-content: flex-start;">
               <a href="https://zenodo.org/records/23219819" target="_blank" rel="noopener noreferrer" class="btn secondary" aria-label="View Open Access Repository on Zenodo">View Repository</a>
               <button onclick="copyCitation()" class="btn secondary" aria-label="Copy Academic Citation">Copy Citation</button>
@@ -583,36 +710,36 @@
         </ul>
       </section>
 
-      <!-- Clinical & Research Domains (Full Size Uncropped Photos) -->
+      <!-- Clinical & Research Domains -->
       <section class="bento-card full-width">
         <h2>
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3L7.17 5H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2h-3.17L15 3H9zm3 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5 z"/></svg>
           Clinical & Research Domains
         </h2>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 16px;">
-          <div style="padding: 16px; background: rgba(37, 99, 235, 0.05); border-radius: 12px;">
-            <strong style="display: block; margin-bottom: 6px; color: var(--text-main);">Tropical Medicine & Lab Research</strong>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-top: 16px;">
+          <div style="padding: 24px; background: rgba(37, 99, 235, 0.04); border-radius: 20px; border: 1px solid var(--glass-border);">
+            <strong style="display: block; margin-bottom: 8px; color: var(--text-main); font-size: 1.15rem;">Tropical Medicine & Lab Research</strong>
             <p class="text-sm">Specializing in parasitology, microbiological analysis, and the development of robust infectious disease diagnostic methods for resource-limited settings.</p>
             
             <div class="img-grid img-grid-2">
-              <div class="img-box"><img src="IMG_0340.jpeg" loading="lazy" alt="Watanyoo Putta working in the lab" onerror="this.style.display='none';"></div>
-              <div class="img-box"><img src="IMG_9597.jpeg" loading="lazy" alt="Metacercaria of Opisthorchis viverrini under microscope" onerror="this.style.display='none';"></div>
+              <div class="img-box" onclick="openLightbox('IMG_0340.jpeg', 'Watanyoo Putta working in the lab')"><img src="IMG_0340.jpeg" loading="lazy" alt="Watanyoo Putta working in the lab" onerror="this.style.display='none';"></div>
+              <div class="img-box" onclick="openLightbox('IMG_9597.jpeg', 'Metacercaria under microscope')"><img src="IMG_9597.jpeg" loading="lazy" alt="Metacercaria of Opisthorchis viverrini under microscope" onerror="this.style.display='none';"></div>
             </div>
           </div>
           
-          <div style="padding: 16px; background: rgba(37, 99, 235, 0.05); border-radius: 12px;">
-            <strong style="display: block; margin-bottom: 6px; color: var(--text-main);">Public Health & EMS</strong>
+          <div style="padding: 24px; background: rgba(37, 99, 235, 0.04); border-radius: 20px; border: 1px solid var(--glass-border);">
+            <strong style="display: block; margin-bottom: 8px; color: var(--text-main); font-size: 1.15rem;">Public Health & EMS</strong>
             <p class="text-sm">Active first aid responder collaborating with the Thai Red Cross, focusing on prehospital emergency care optimization and field triage protocols.</p>
             
             <div class="img-grid img-grid-2">
-              <div class="img-box"><img src="IMG_4183.jpeg" loading="lazy" alt="Thai Red Cross field work" onerror="this.style.display='none';"></div>
-              <div class="img-box"><img src="MEW00545.jpeg" loading="lazy" alt="School First Aid Team response" onerror="this.style.display='none';"></div>
+              <div class="img-box" onclick="openLightbox('IMG_4183.jpeg', 'Thai Red Cross field work')"><img src="IMG_4183.jpeg" loading="lazy" alt="Thai Red Cross field work" onerror="this.style.display='none';"></div>
+              <div class="img-box" onclick="openLightbox('MEW00545.jpeg', 'School First Aid Team response')"><img src="MEW00545.jpeg" loading="lazy" alt="School First Aid Team response" onerror="this.style.display='none';"></div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Field Research: The Lawa Model (Uncropped Full-Size Gallery) -->
+      <!-- Field Research: The Lawa Model -->
       <section class="bento-card col-span-2">
         <h2>
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2L2 12h3v8h6v-6h2v6h6v-8h3L12 2zm0 2.84L19.5 12h-1.5v6h-3v-6h-6v6H6v-6H4.5L12 4.84z"/></svg>
@@ -620,14 +747,14 @@
         </h2>
         <p class="text-sm">On-the-ground epidemiological fieldwork and community health engagement integrating rigorous academic research with active local intervention strategies.</p>
         <div class="img-grid img-grid-auto" style="margin-top: 16px;">
-          <div class="img-box"><img src="IMG_3805.jpeg" loading="lazy" alt="Lawa Model Field Trip 1" onerror="this.style.display='none';"></div>
-          <div class="img-box"><img src="IMG_3780.jpeg" loading="lazy" alt="Lawa Model Field Trip 2" onerror="this.style.display='none';"></div>
-          <div class="img-box"><img src="IMG_7083.jpeg" loading="lazy" alt="Lawa Model Field Trip 3" onerror="this.style.display='none';"></div>
-          <div class="img-box"><img src="IMG_3752.jpeg" loading="lazy" alt="Lawa Model Field Trip 4" onerror="this.style.display='none';"></div>
+          <div class="img-box" onclick="openLightbox('IMG_3805.jpeg', 'Lawa Model Field Trip 1')"><img src="IMG_3805.jpeg" loading="lazy" alt="Lawa Model Field Trip 1" onerror="this.style.display='none';"></div>
+          <div class="img-box" onclick="openLightbox('IMG_3780.jpeg', 'Lawa Model Field Trip 2')"><img src="IMG_3780.jpeg" loading="lazy" alt="Lawa Model Field Trip 2" onerror="this.style.display='none';"></div>
+          <div class="img-box" onclick="openLightbox('IMG_7083.jpeg', 'Lawa Model Field Trip 3')"><img src="IMG_7083.jpeg" loading="lazy" alt="Lawa Model Field Trip 3" onerror="this.style.display='none';"></div>
+          <div class="img-box" onclick="openLightbox('IMG_3752.jpeg', 'Lawa Model Field Trip 4')"><img src="IMG_3752.jpeg" loading="lazy" alt="Lawa Model Field Trip 4" onerror="this.style.display='none';"></div>
         </div>
       </section>
 
-      <!-- Disaster Comms & Emergency Response (Uncropped Full-Size Gallery) -->
+      <!-- Disaster Comms & Emergency Response -->
       <section class="bento-card">
         <h2>
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-1 5h2v4h-2V6zm1 9c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1 z"/></svg>
@@ -635,58 +762,53 @@
         </h2>
         <p class="text-sm">Amateur radio operations coordinating emergency logistics and live responses to structural fires and disaster zones.</p>
         <div class="img-grid img-grid-2" style="margin-top: 16px;">
-          <div class="img-box"><img src="IMG_3313.jpeg" loading="lazy" alt="Disaster Response Comms 1" onerror="this.style.display='none';"></div>
-          <div class="img-box"><img src="IMG_3332.jpeg" loading="lazy" alt="Disaster Response Comms 2" onerror="this.style.display='none';"></div>
-          <div class="img-box"><img src="IMG_3320.jpeg" loading="lazy" alt="Disaster Response Comms 3" onerror="this.style.display='none';"></div>
-          <div class="img-box"><img src="IMG_3368.jpeg" loading="lazy" alt="Disaster Response Comms 4" onerror="this.style.display='none';"></div>
+          <div class="img-box" onclick="openLightbox('IMG_3313.jpeg', 'Disaster Response Comms 1')"><img src="IMG_3313.jpeg" loading="lazy" alt="Disaster Response Comms 1" onerror="this.style.display='none';"></div>
+          <div class="img-box" onclick="openLightbox('IMG_3332.jpeg', 'Disaster Response Comms 2')"><img src="IMG_3332.jpeg" loading="lazy" alt="Disaster Response Comms 2" onerror="this.style.display='none';"></div>
+          <div class="img-box" onclick="openLightbox('IMG_3320.jpeg', 'Disaster Response Comms 3')"><img src="IMG_3320.jpeg" loading="lazy" alt="Disaster Response Comms 3" onerror="this.style.display='none';"></div>
+          <div class="img-box" onclick="openLightbox('IMG_3368.jpeg', 'Disaster Response Comms 4')"><img src="IMG_3368.jpeg" loading="lazy" alt="Disaster Response Comms 4" onerror="this.style.display='none';"></div>
         </div>
       </section>
 
     </div>
   </main>
 
-  <!-- AI Assistant Modal -->
-  <div class="modal-overlay" id="aiModal" onclick="closeModalOnOutside(event)">
-    <div class="modal-card">
-      <button class="close-modal" onclick="closeAIModal()">&times;</button>
-      <h2>Ask AI Assistant</h2>
-      <p class="text-sm mb-4">Query Watanyoo Putta's research profile, biosensor innovations, or public health background in Khon Kaen.</p>
-      
-      <div style="display: flex; gap: 8px; margin-bottom: 16px;">
-        <input type="text" id="aiPrompt" placeholder="e.g., What did he win the NRCT award for?" style="flex: 1; padding: 12px; border-radius: 10px; border: 1px solid var(--glass-border); background: var(--bg-color); color: var(--text-main);" onkeydown="if(event.key==='Enter') askGemini();">
-        <button class="btn" onclick="askGemini()" id="askBtn">Ask</button>
-      </div>
-      
-      <div id="aiResponse" style="padding: 16px; background: rgba(37,99,235,0.05); border-radius: 12px; min-height: 80px; font-size: 0.95rem; color: var(--text-main); text-align: left;">
-        <em>AI ready. Ask a question about Watanyoo Putta's research, biosensors, or awards...</em>
-      </div>
-
-      <div class="tag-container" style="margin-top: 12px; justify-content: center;">
-        <span class="tag" style="cursor:pointer;" onclick="setPrompt('What are his research domains?')">Research Domains</span>
-        <span class="tag" style="cursor:pointer;" onclick="setPrompt('Tell me about the NRCT 2026 award.')">NRCT Award</span>
-        <span class="tag" style="cursor:pointer;" onclick="setPrompt('Explain his TinyGS station.')">TinyGS Station</span>
-      </div>
+  <footer>
+    <div class="footer-left">
+      <p style="font-weight: 700; color: var(--text-main); font-size: 1.05rem;">Watanyoo Putta (วทัญญู พุทธา)</p>
+      <p class="text-sm">&copy; 2026 Verified Entity Hub. All rights reserved.</p>
     </div>
-  </div>
+    <div class="footer-right">
+      <span class="tag" style="background: rgba(37,99,235,0.12); color: var(--accent);">Wikidata Node Q141644996</span>
+      <a href="#" class="back-to-top" aria-label="Scroll back to top">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg>
+        Top
+      </a>
+    </div>
+  </footer>
 
-  <!-- QR Business Card Modal -->
+  <!-- QR Business Card Modal with Live Client-Side Generator -->
   <div class="modal-overlay" id="qrModal" onclick="closeQRModalOnOutside(event)">
     <div class="modal-card">
       <button class="close-modal" onclick="closeQRModal()">&times;</button>
       <h2>Instant Scan & Connect</h2>
       <p class="text-sm mb-4">Point your smartphone camera at the screen to instantly save Watanyoo Putta's contact profile.</p>
       
-      <div style="background: #ffffff; padding: 16px; border-radius: 16px; display: inline-block; box-shadow: 0 10px 30px rgba(0,0,0,0.1); margin: 8px 0;">
-        <svg id="qrcodeSVG" width="200" height="200" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
-          <!-- Dynamic high-contrast SVG Matrix representing vCard data -->
-          <path fill="#000" d="M0 0h7v7H0zM2 2h3v3H2zM14 0h7v7h-7zM16 2h3v3h-3zM0 14h7v7H0zM2 16h3v3H2zM9 0h3v3H9zM12 3h2v2h-2zM8 5h2v2H8zM14 9h2v2h-2zM18 8h3v2h-3zM9 9h3v3H9zM12 12h2v2h-2zM16 14h5v2h-5zM9 14h2v5H9zM14 18h3v3h-3zM18 20h3v1h-3z"/>
-        </svg>
+      <div style="background: #ffffff; padding: 18px; border-radius: 20px; display: inline-block; box-shadow: 0 15px 35px rgba(0,0,0,0.15); margin: 8px 0;" id="qrcodeContainer">
+        <!-- Live dynamic QR canvas generated via qrcode.min.js -->
       </div>
 
-      <p class="text-sm" style="margin-top: 12px; font-weight: 600;">vCard Contact Data Embedded</p>
+      <p class="text-sm" style="margin-top: 14px; font-weight: 600;">vCard Contact Data Embedded</p>
       <div class="link-group" style="margin-top: 16px; justify-content: center;">
         <button class="btn" onclick="downloadVCard()">Download .vcf File</button>
       </div>
+    </div>
+  </div>
+
+  <!-- Full-Screen Image Lightbox Modal -->
+  <div class="modal-overlay" id="lightboxModal" onclick="closeLightboxOnOutside(event)">
+    <div class="modal-card lightbox-card">
+      <button class="close-modal" onclick="closeLightbox()">&times;</button>
+      <img id="lightboxImg" src="" alt="" class="lightbox-img">
     </div>
   </div>
 
@@ -813,66 +935,48 @@ END:VCARD`.replace(/^\s+/gm, "");
       document.body.removeChild(textArea);
     }
 
-    // 6. QR Modal Logic
-    function openQRModal() { document.getElementById('qrModal').classList.add('active'); }
+    // 6. Live Dynamic QR Code Generation via qrcode.min.js
+    let qrInitialized = false;
+    function generateQRCode() {
+      if (qrInitialized) return;
+      const container = document.getElementById('qrcodeContainer');
+      container.innerHTML = '';
+      
+      const vCardText = `BEGIN:VCARD\nVERSION:3.0\nFN:Watanyoo Putta\nN:Putta;Watanyoo;;;\nTITLE:Medical Researcher\nORG:Khon Kaen University\nURL:https://watanyooputta.github.io/\nEND:VCARD`;
+      
+      try {
+        const qr = qrcode(0, 'M');
+        qr.addData(vCardText);
+        qr.make();
+        
+        const qrMarkup = qr.createSvgTag({cellSize: 4, margin: 2});
+        container.innerHTML = qrMarkup;
+        qrInitialized = true;
+      } catch (err) {
+        container.innerHTML = '<p class="text-sm" style="color:red;">QR Generation Error</p>';
+      }
+    }
+
+    function openQRModal() { 
+      document.getElementById('qrModal').classList.add('active');
+      generateQRCode();
+    }
     function closeQRModal() { document.getElementById('qrModal').classList.remove('active'); }
     function closeQRModalOnOutside(e) { if(e.target === document.getElementById('qrModal')) closeQRModal(); }
 
-    // 7. AI Assistant Modal Logic with Live Gemini API Integration
-    function openAIModal() { document.getElementById('aiModal').classList.add('active'); }
-    function closeAIModal() { document.getElementById('aiModal').classList.remove('active'); }
-    function closeModalOnOutside(e) { if(e.target === document.getElementById('aiModal')) closeAIModal(); }
-    function setPrompt(q) { document.getElementById('aiPrompt').value = q; askGemini(); }
-
-    async function askGemini() {
-      const promptInput = document.getElementById('aiPrompt');
-      const responseDiv = document.getElementById('aiResponse');
-      const askBtn = document.getElementById('askBtn');
-      const query = promptInput.value.trim();
-      
-      if(!query) return;
-      
-      askBtn.disabled = true;
-      askBtn.innerText = 'Thinking...';
-      responseDiv.innerHTML = '<em>Querying Google Gemini AI model...</em>';
-
-      try {
-        const systemPrompt = "You are an expert AI assistant for Watanyoo Putta (วทัญญู พุทธา), a Thai medical researcher and biomedical innovator based in Khon Kaen. Answer questions professionally based on his profile: NRCT 2026 Innovation Award winner for biosensors, tropical medicine researcher, TinyGS satellite station operator (E25ZVB), and Thai Red Cross first aid responder.";
-        const apiKey = ""; // Automatically provided at runtime
-        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
-
-        const payload = {
-          contents: [{ parts: [{ text: query }] }],
-          systemInstruction: { parts: [{ text: systemPrompt }] }
-        };
-
-        const response = await fetch(apiUrl, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-
-        const result = await response.json();
-        const candidate = result.candidates?.[0];
-
-        if (candidate && candidate.content?.parts?.[0]?.text) {
-          responseDiv.innerText = candidate.content.parts[0].text;
-        } else {
-          throw new Error("Invalid response structure");
-        }
-      } catch (err) {
-        // Fallback intelligent response if offline or rate-limited
-        let answer = "Watanyoo Putta (วทัญญู พุทธา) is a medical researcher and biomedical innovator based in Khon Kaen, Thailand. He won the NRCT 2026 Innovation Award for biosensors and actively contributes to tropical medicine, the Thai Red Cross, and amateur radio disaster communications.";
-        if(query.toLowerCase().includes('award') || query.toLowerCase().includes('nrct')) {
-          answer = "He won the National Research Council of Thailand (NRCT) Innovation Award 2026 for developing point-of-care diagnostic biosensors targeted at snake venom detection.";
-        } else if(query.toLowerCase().includes('tinygs') || query.toLowerCase().includes('station')) {
-          answer = "He operates TinyGS Ground Station E25ZVB, contributing to the global decentralized LoRa satellite telemetry network.";
-        }
-        responseDiv.innerText = answer;
-      } finally {
-        askBtn.disabled = false;
-        askBtn.innerText = 'Ask';
-      }
+    // 7. Full-Screen Image Lightbox Viewer
+    function openLightbox(src, alt) {
+      const modal = document.getElementById('lightboxModal');
+      const img = document.getElementById('lightboxImg');
+      img.src = src;
+      img.alt = alt;
+      modal.classList.add('active');
+    }
+    function closeLightbox() {
+      document.getElementById('lightboxModal').classList.remove('active');
+    }
+    function closeLightboxOnOutside(e) {
+      if(e.target === document.getElementById('lightboxModal')) closeLightbox();
     }
   </script>
 </body>
