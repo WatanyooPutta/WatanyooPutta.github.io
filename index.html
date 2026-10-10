@@ -96,6 +96,7 @@
           "sameAs": [
             "https://www.wikidata.org/wiki/Q141644996",
             "https://orcid.org/0009-0007-2782-1422",
+            "https://scholar.google.com/citations?user=_8o9aVEAAAAJ",
             "https://www.linkedin.com/in/watanyoo-putta-b1a99a279",
             "https://github.com/watanyooputta"
           ],
@@ -112,7 +113,7 @@
           "@id": "https://doi.org/10.5281/zenodo.23219819",
           "headline": "The Effects of Industrial Noise on Human Mental Health and Well-being in Khonkaenwittayayon School",
           "author": { "@id": "https://watanyooputta.github.io/#person" },
-          "datePublished": "2026",
+          "datePublished": "2022",
           "publisher": { "@type": "Organization", "name": "Zenodo" },
           "sameAs": "https://doi.org/10.5281/zenodo.23219819"
         }
@@ -820,7 +821,7 @@
         </ul>
       </section>
 
-      <!-- Authored Nodes / Registries -->
+      <!-- Authored Nodes / Registries (Updated with Google Scholar) -->
       <section class="bento-card">
         <h2>
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
@@ -830,6 +831,7 @@
         <nav class="link-group" style="gap: 8px; flex-direction: column;" aria-label="Professional Registries">
           <a href="https://www.wikidata.org/wiki/Q141644996" rel="me external" class="btn secondary magnetic u-url" style="width:100%; justify-content: flex-start;">Wikidata (Q141644996)</a>
           <a href="https://orcid.org/0009-0007-2782-1422" rel="me external" class="btn secondary magnetic u-url" style="width:100%; justify-content: flex-start;">ORCID (0009-0007-2782-1422)</a>
+          <a href="https://scholar.google.com/citations?user=_8o9aVEAAAAJ" rel="me external" class="btn secondary magnetic u-url" style="width:100%; justify-content: flex-start;">Google Scholar Profile</a>
           <a href="https://www.linkedin.com/in/watanyoo-putta-b1a99a279" rel="me external" class="btn secondary magnetic u-url" style="width:100%; justify-content: flex-start;">LinkedIn Profile</a>
           <a href="https://github.com/watanyooputta" rel="me external" class="btn secondary magnetic u-url" style="width:100%; justify-content: flex-start;">GitHub Repository</a>
         </nav>
@@ -914,7 +916,7 @@
         </div>
       </section>
 
-      <!-- Open Access Research Publication -->
+      <!-- Open Access Research Publication (Updated publication year: 2022) -->
       <section class="bento-card full-width">
         <h2>
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
@@ -923,7 +925,7 @@
         <ul class="clean-list">
           <li>
             <strong style="font-size: 1.15rem; display: block; margin-bottom: 6px;">The Effects of Industrial Noise on Human Mental Health and Well-being in Khonkaenwittayayon School</strong>
-            <p class="text-sm">Published: 2026 | Persistent ID: <a href="https://doi.org/10.5281/zenodo.23219819" class="u-url" style="color:var(--accent); font-weight: 500;">DOI 10.5281/zenodo.23219819</a></p>
+            <p class="text-sm">Published: September 9, 2022 | Persistent ID: <a href="https://doi.org/10.5281/zenodo.23219819" class="u-url" style="color:var(--accent); font-weight: 500;">DOI 10.5281/zenodo.23219819</a></p>
             <p class="text-sm" style="margin-top: 12px; max-width: 820px;">Comprehensive empirical study evaluating the effects of industrial noise on human mental health and well-being, conducted at Khonkaenwittayayon School. Available via Zenodo open-access repository.</p>
             <div class="link-group" style="margin-top: 16px; justify-content: flex-start;">
               <a href="https://zenodo.org/records/23219819" target="_blank" rel="noopener noreferrer" class="btn secondary magnetic" aria-label="View Open Access Repository on Zenodo">View Repository</a>
@@ -1043,7 +1045,6 @@
   <div id="toast" role="alert" aria-live="polite">Notification message</div>
 
   <script>
-    // Robust Global Execution Engine
     (function() {
       const cursorGlow = document.getElementById('cursorGlow');
       
@@ -1100,14 +1101,12 @@
         if (progressBar) progressBar.style.width = scrolled + '%';
       });
 
-      // Immediate Initialization on DOM Ready
       document.addEventListener("DOMContentLoaded", () => {
         initMagneticButtons();
         initScrambleText();
         startClock();
       });
 
-      // Guaranteed Map Initialization on Window Load
       window.addEventListener('load', () => {
         initFieldMap();
       });
@@ -1255,7 +1254,7 @@ END:VCARD`.replace(/^\s+/gm, "");
     }
 
     function copyCitation() {
-      const citationText = "Putta, Watanyoo. (2026). The Effects of Industrial Noise on Human Mental Health and Well-being in Khonkaenwittayayon School [Independent Study]. Zenodo. https://doi.org/10.5281/zenodo.23219819";
+      const citationText = "Putta, Watanyoo. (2022). The Effects of Industrial Noise on Human Mental Health and Well-being in Khonkaenwittayayon School [Independent Study]. Zenodo. https://doi.org/10.5281/zenodo.23219819";
       
       if (navigator.clipboard && window.isSecureContext) {
         navigator.clipboard.writeText(citationText).then(() => showToast("Citation securely copied to clipboard!"))
