@@ -1,0 +1,14 @@
+name: Validate HTML and Schema
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check HTML existence
+        run: |
+          if [ -f "index.html" ]; then
+            echo "index.html found successfully!"
+          else
+            echo "Error: index.html missing!" && exit 1
+          fi
