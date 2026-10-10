@@ -812,11 +812,11 @@
         <div class="tag-container">
           <span class="tag">Tropical Disease Research Center (Internship)</span>
           <span class="tag">SatFinder_KKN_KKW (E25ZVB)</span>
-          <span class="tag">Khonkaenwittayayon School Study Site</span>
+          <span class="tag">Lawa Model Field Research Site</span>
         </div>
       </section>
 
-      <!-- Open Access Research (Corrected Publication Details) -->
+      <!-- Open Access Research (Corrected Publication Title) -->
       <section class="bento-card full-width">
         <h2>
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
@@ -1042,17 +1042,17 @@
     }
     window.addEventListener('load', initTelemetryCanvas);
 
-    // 4. Initialize Leaflet Map with Authenticated CartoDB Voyager Tiles & Persistent Labeled Markers
+    // 4. Initialize Leaflet Map with Authenticated CartoDB Voyager Tiles & Persistent Labeled Markers (Lawa Model Restored)
     function initFieldMap() {
       const mapElement = document.getElementById('map');
       if (!mapElement) return;
 
-      const centerLat = 16.4395;
-      const centerLng = 102.8350;
+      const centerLat = 16.4000;
+      const centerLng = 102.7500;
 
       const map = L.map('map', {
         scrollWheelZoom: false
-      }).setView([centerLat, centerLng], 13);
+      }).setView([centerLat, centerLng], 11);
 
       // Authenticated CartoDB Voyager Tile Layer with your API Key
       L.tileLayer('https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png?key=cb1_4gfd_1_8f4a0c9e8b3d85a310477693', {
@@ -1062,19 +1062,19 @@
 
       const locations = [
         {
-          title: "Tropical Disease Research Center, Khon Kaen University",
+          title: "Tropical Disease Research Center, KKU",
           coords: [16.4692, 102.8290],
           desc: "Completed research internship & tropical medicine research base."
         },
         {
-          title: "SatFinder_KKN_KKW (Callsign: E25ZVB)",
+          title: "SatFinder_KKN_KKW (E25ZVB)",
           coords: [16.4336, 102.8355],
           desc: "433 MHz TinyGS satellite ground station & LoRa32 telemetry node."
         },
         {
-          title: "Khonkaenwittayayon School (Noise Study Site)",
-          coords: [16.4255, 102.8312],
-          desc: "Case study site for industrial noise and human mental health research."
+          title: "Lawa Model Field Research Site",
+          coords: [16.2850, 102.5833],
+          desc: "Epidemiological fieldwork and community health engagement site."
         }
       ];
 
