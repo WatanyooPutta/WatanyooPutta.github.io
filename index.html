@@ -117,7 +117,7 @@
         {
           "@type": "ScholarlyArticle",
           "@id": "https://doi.org/10.5281/zenodo.23219819",
-          "headline": "Effects of Industrial Noise on Mental Health: A Case Study in Khon Kaen",
+          "headline": "The Effects of Industrial Noise on Human Mental Health and Well-being in Khonkaenwittayayon School",
           "author": { "@id": "https://watanyooputta.github.io/#person" },
           "datePublished": "2026",
           "publisher": { "@type": "Organization", "name": "Zenodo" },
@@ -812,7 +812,7 @@
         <div class="tag-container">
           <span class="tag">Tropical Disease Research Center (Internship)</span>
           <span class="tag">SatFinder_KKN_KKW (E25ZVB)</span>
-          <span class="tag">Lawa Model Field Site</span>
+          <span class="tag">Khonkaenwittayayon School Study Site</span>
         </div>
       </section>
 
@@ -824,9 +824,9 @@
         </h2>
         <ul class="clean-list">
           <li>
-            <strong style="font-size: 1.15rem; display: block; margin-bottom: 6px;">Evaluation of Opisthorchis viverrini Infection and Associated Risk Factors in Khon Kaen Province</strong>
+            <strong style="font-size: 1.15rem; display: block; margin-bottom: 6px;">The Effects of Industrial Noise on Human Mental Health and Well-being in Khonkaenwittayayon School</strong>
             <p class="text-sm">Published: 2026 | Persistent ID: <a href="https://doi.org/10.5281/zenodo.23219819" class="u-url" style="color:var(--accent); font-weight: 500;">DOI 10.5281/zenodo.23219819</a></p>
-            <p class="text-sm" style="margin-top: 12px; max-width: 820px;">Comprehensive epidemiological evaluation analyzing infection rates and community health risk factors regarding <em>Opisthorchis viverrini</em> transmission dynamics in Khon Kaen, Thailand. Available via Zenodo open-access repository.</p>
+            <p class="text-sm" style="margin-top: 12px; max-width: 820px;">Comprehensive empirical study evaluating the effects of industrial noise on human mental health and well-being, conducted at Khonkaenwittayayon School. Available via Zenodo open-access repository.</p>
             <div class="link-group" style="margin-top: 16px; justify-content: flex-start;">
               <a href="https://zenodo.org/records/23219819" target="_blank" rel="noopener noreferrer" class="btn secondary" aria-label="View Open Access Repository on Zenodo">View Repository</a>
               <button onclick="copyCitation()" class="btn secondary" aria-label="Copy Academic Citation">Copy Citation</button>
@@ -1047,12 +1047,12 @@
       const mapElement = document.getElementById('map');
       if (!mapElement) return;
 
-      const centerLat = 16.4692451;
-      const centerLng = 102.8290228;
+      const centerLat = 16.4395;
+      const centerLng = 102.8350;
 
       const map = L.map('map', {
         scrollWheelZoom: false
-      }).setView([centerLat, centerLng], 11);
+      }).setView([centerLat, centerLng], 13);
 
       // Authenticated CartoDB Voyager Tile Layer with your API Key
       L.tileLayer('https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png?key=cb1_4gfd_1_8f4a0c9e8b3d85a310477693', {
@@ -1063,18 +1063,18 @@
       const locations = [
         {
           title: "Tropical Disease Research Center, Khon Kaen University",
-          coords: [16.4692451, 102.8290228],
+          coords: [16.4692, 102.8290],
           desc: "Completed research internship & tropical medicine research base."
         },
         {
           title: "SatFinder_KKN_KKW (Callsign: E25ZVB)",
-          coords: [16.4336692, 102.8355604],
+          coords: [16.4336, 102.8355],
           desc: "433 MHz TinyGS satellite ground station & LoRa32 telemetry node."
         },
         {
-          title: "Lawa Model Field Research Site",
-          coords: [16.1305548, 102.6505875],
-          desc: "Epidemiological fieldwork & community health engagement site."
+          title: "Khonkaenwittayayon School (Noise Study Site)",
+          coords: [16.4255, 102.8312],
+          desc: "Case study site for industrial noise and human mental health research."
         }
       ];
 
@@ -1138,7 +1138,7 @@ END:VCARD`.replace(/^\s+/gm, "");
 
     // 7. Academic Citation Copier
     function copyCitation() {
-      const citationText = "Putta, Watanyoo. (2026). Evaluation of Opisthorchis viverrini Infection and Associated Risk Factors in Khon Kaen Province [Independent Study]. Zenodo. https://doi.org/10.5281/zenodo.23219819";
+      const citationText = "Putta, Watanyoo. (2026). The Effects of Industrial Noise on Human Mental Health and Well-being in Khonkaenwittayayon School [Independent Study]. Zenodo. https://doi.org/10.5281/zenodo.23219819";
       
       if (navigator.clipboard && window.isSecureContext) {
         navigator.clipboard.writeText(citationText).then(() => {
