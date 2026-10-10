@@ -7,7 +7,7 @@
   
   <meta name="title" content="Watanyoo Putta | Entity Hub">
   <meta name="description" content="Official entity hub of Watanyoo Putta (วทัญญู พุทธา), Thai medical researcher and biomedical innovator based in Khon Kaen.">
-  <meta name="keywords" content="Watanyoo Putta, วทัญญู พุทธา, Medical Researcher, Biosensors, Khon Kaen, Tropical Medicine, SatFinder_KKN_KKW, E25ZVB">
+  <meta name="keywords" content="Watanyoo Putta, วทัญญู พุทธา, Medical Researcher, Biosensors, Khon Kaen, Tropical Medicine, SatFinder_KKN_KKW, E25ZVB, One Health, SEAOHWA">
   <meta name="author" content="Watanyoo Putta">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <meta name="theme-color" content="#2563eb" media="(prefers-color-scheme: light)">
@@ -63,7 +63,7 @@
           "name": "Watanyoo Putta",
           "alternateName": ["วทัญญู พุทธา", "นายวทัญญู พุทธา"],
           "disambiguatingDescription": "Thai medical researcher and biomedical innovator",
-          "description": "Thai medical researcher and biomedical innovator based in Khon Kaen, specialising in tropical medicine, biosensors, and public health.",
+          "description": "Thai medical researcher and biomedical innovator based in Khon Kaen, specialising in tropical medicine, biosensors, disease surveillance, and One Health.",
           "jobTitle": "Medical Researcher",
           "nationality": {
             "@type": "Country",
@@ -73,6 +73,8 @@
           "knowsAbout": [
             { "@type": "Thing", "name": "Tropical Medicine", "sameAs": "https://en.wikipedia.org/wiki/Tropical_medicine" },
             { "@type": "Thing", "name": "Biosensor", "sameAs": "https://en.wikipedia.org/wiki/Biosensor" },
+            { "@type": "Thing", "name": "One Health", "sameAs": "https://en.wikipedia.org/wiki/One_Health" },
+            { "@type": "Thing", "name": "Disease Surveillance", "sameAs": "https://en.wikipedia.org/wiki/Disease_surveillance" },
             { "@type": "Thing", "name": "Public Health", "sameAs": "https://en.wikipedia.org/wiki/Public_health" }
           ],
           "affiliation": {
@@ -90,7 +92,7 @@
           "image": [
             { "@id": "https://watanyooputta.github.io/#primaryimage" },
             "https://watanyooputta.github.io/IMG_4697.jpeg",
-            "https://watanyooputta.github.io/IMG_0340.jpeg",
+            "https://watanyooputta.github.io/IMG_8965.jpeg",
             "https://watanyooputta.github.io/IMG_0340.jpeg",
             "https://watanyooputta.github.io/IMG_4183.jpeg",
             "https://watanyooputta.github.io/IMG_3805.jpeg",
@@ -120,28 +122,6 @@
           "datePublished": "2026",
           "publisher": { "@type": "Organization", "name": "Zenodo" },
           "sameAs": "https://doi.org/10.5281/zenodo.23219819"
-        },
-        {
-          "@type": "FAQPage",
-          "@id": "https://watanyooputta.github.io/#faq",
-          "mainEntity": [
-            {
-              "@type": "Question",
-              "name": "Who is Watanyoo Putta?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Watanyoo Putta (วทัญญู พุทธา) is a Thai medical researcher based in Khon Kaen specializing in tropical medicine, biosensors, and public health."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "What award did Watanyoo Putta win?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "He won the National Research Council of Thailand (NRCT) Innovation Award 2026 for point-of-care biosensor developments."
-              }
-            }
-          ]
         }
       ]
     }
@@ -150,8 +130,8 @@
   <style>
     :root {
       --bg-color: #f8fafc;
-      --card-bg: rgba(255, 255, 255, 0.82);
-      --card-hover-bg: rgba(255, 255, 255, 0.96);
+      --card-bg: rgba(255, 255, 255, 0.78);
+      --card-hover-bg: rgba(255, 255, 255, 0.94);
       --text-main: #0f172a;
       --text-muted: #475569;
       --accent: #2563eb;
@@ -165,8 +145,8 @@
     @media (prefers-color-scheme: dark) {
       :root {
         --bg-color: #020617;
-        --card-bg: rgba(15, 23, 42, 0.75);
-        --card-hover-bg: rgba(30, 41, 59, 0.88);
+        --card-bg: rgba(15, 23, 42, 0.72);
+        --card-hover-bg: rgba(30, 41, 59, 0.86);
         --text-main: #f8fafc;
         --text-muted: #94a3b8;
         --accent: #3b82f6;
@@ -181,15 +161,15 @@
     
     body {
       background-color: var(--bg-color);
-      /* Living Animated Aurora Background Mesh */
+      /* Living Animated Aurora Mesh Background */
       background-image: 
-        radial-gradient(at 10% 20%, rgba(37, 99, 235, 0.16) 0px, transparent 45%),
-        radial-gradient(at 90% 10%, rgba(147, 197, 253, 0.12) 0px, transparent 40%),
-        radial-gradient(at 50% 90%, rgba(37, 99, 235, 0.12) 0px, transparent 50%),
-        radial-gradient(at 80% 80%, rgba(59, 130, 246, 0.08) 0px, transparent 50%);
+        radial-gradient(at 15% 15%, rgba(37, 99, 235, 0.24) 0px, transparent 45%),
+        radial-gradient(at 85% 10%, rgba(147, 197, 253, 0.20) 0px, transparent 40%),
+        radial-gradient(at 50% 85%, rgba(59, 130, 246, 0.20) 0px, transparent 50%),
+        radial-gradient(at 85% 85%, rgba(37, 99, 235, 0.18) 0px, transparent 45%);
       background-attachment: fixed;
       background-size: 200% 200%;
-      animation: auroraShift 20s ease infinite alternate;
+      animation: auroraShift 14s ease infinite alternate;
       color: var(--text-main);
       line-height: 1.6;
       display: flex;
@@ -208,11 +188,11 @@
     .container { max-width: 1080px; width: 100%; position: relative; }
 
     @keyframes fadeUp {
-      0% { opacity: 0; transform: translateY(24px); }
-      100% { opacity: 1; transform: translateY(0); }
+      0% { opacity: 0; transform: translateY(28px) scale(0.98); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
     }
 
-    /* Enhanced World-Class Header with Spotlight Effect */
+    /* World-Class Header */
     header {
       display: flex;
       align-items: center;
@@ -235,7 +215,7 @@
       content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
       background: linear-gradient(90deg, var(--accent), #93c5fd, var(--accent));
       background-size: 200% 100%;
-      animation: shimmer 6s linear infinite;
+      animation: shimmer 5s linear infinite;
     }
 
     @keyframes shimmer {
@@ -325,7 +305,7 @@
       gap: 24px;
     }
 
-    /* Enhanced Bento Card Spotlight & Interactive Tilt Physics */
+    /* Bento Card with Mouse-Tracking Spotlight & 3D Tilt Physics */
     .bento-card {
       background: var(--card-bg);
       border-radius: var(--radius);
@@ -341,14 +321,15 @@
       animation: fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
       display: flex;
       flex-direction: column;
+      transform-style: preserve-3d;
+      perspective: 1000px;
     }
     
-    /* Interactive Mouse Spotlight Flare */
     .bento-card::before {
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(37, 99, 235, 0.08), transparent 40%);
+      background: radial-gradient(500px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(37, 99, 235, 0.12), transparent 50%);
       opacity: 0;
       transition: opacity 0.3s ease;
       pointer-events: none;
@@ -369,16 +350,16 @@
       box-shadow: 0 20px 40px var(--glow);
     }
 
-    .bento-card:nth-child(1) { animation-delay: 0.06s; }
-    .bento-card:nth-child(2) { animation-delay: 0.09s; }
-    .bento-card:nth-child(3) { animation-delay: 0.12s; }
-    .bento-card:nth-child(4) { animation-delay: 0.15s; }
-    .bento-card:nth-child(5) { animation-delay: 0.18s; }
-    .bento-card:nth-child(6) { animation-delay: 0.21s; }
-    .bento-card:nth-child(7) { animation-delay: 0.24s; }
-    .bento-card:nth-child(8) { animation-delay: 0.27s; }
-    .bento-card:nth-child(9) { animation-delay: 0.3s; }
-    .bento-card:nth-child(10) { animation-delay: 0.33s; }
+    .bento-card:nth-child(1) { animation-delay: 0.05s; }
+    .bento-card:nth-child(2) { animation-delay: 0.08s; }
+    .bento-card:nth-child(3) { animation-delay: 0.11s; }
+    .bento-card:nth-child(4) { animation-delay: 0.14s; }
+    .bento-card:nth-child(5) { animation-delay: 0.17s; }
+    .bento-card:nth-child(6) { animation-delay: 0.20s; }
+    .bento-card:nth-child(7) { animation-delay: 0.23s; }
+    .bento-card:nth-child(8) { animation-delay: 0.26s; }
+    .bento-card:nth-child(9) { animation-delay: 0.29s; }
+    .bento-card:nth-child(10) { animation-delay: 0.32s; }
 
     .bento-card:hover { 
       transform: translateY(-8px) scale(1.01); 
@@ -393,7 +374,7 @@
 
     h2 { font-size: 1.3rem; font-weight: 700; margin-bottom: 16px; display: flex; align-items: center; gap: 12px; letter-spacing: -0.01em; z-index: 2; }
     h2 svg { width: 24px; height: 24px; fill: var(--accent); flex-shrink: 0; }
-    p, blockquote, .link-group, .img-grid, .feature-img-container, .tag-container { z-index: 2; position: relative; }
+    p, blockquote, .link-group, .img-grid, .feature-img-container, .tag-container, canvas { z-index: 2; position: relative; }
 
     .link-group { display: flex; gap: 12px; flex-wrap: wrap; margin-top: auto; padding-top: 20px;}
     .btn {
@@ -429,6 +410,31 @@
     .tag-container { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
     .tag { font-size: 0.8rem; font-weight: 600; padding: 6px 14px; background: rgba(37, 99, 235, 0.08); border-radius: 12px; color: var(--accent); border: 1px solid rgba(37, 99, 235, 0.15); transition: background 0.3s ease; }
     .tag:hover { background: rgba(37, 99, 235, 0.16); }
+
+    /* Radar Pulse Badge */
+    .radar-pulse-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      background: rgba(34, 197, 94, 0.1);
+      color: #22c55e;
+      padding: 4px 10px;
+      border-radius: 20px;
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      margin-bottom: 10px;
+    }
+    .radar-dot {
+      width: 8px; height: 8px; background: #22c55e; border-radius: 50%;
+      box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+      animation: radarPulse 1.8s infinite cubic-bezier(0.4, 0, 0.6, 1);
+    }
+    @keyframes radarPulse {
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+      70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+    }
 
     .feature-img-container { 
       width: 100%; 
@@ -560,7 +566,7 @@
       transform: translateX(-50%) translateY(0);
     }
 
-    /* Enhanced World-Class Footer with Spotlight */
+    /* World-Class Footer */
     footer {
       width: 100%;
       max-width: 1080px;
@@ -585,7 +591,7 @@
       content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 4px;
       background: linear-gradient(90deg, var(--accent), #93c5fd, var(--accent));
       background-size: 200% 100%;
-      animation: shimmer 6s linear infinite;
+      animation: shimmer 5s linear infinite;
     }
 
     .footer-left {
@@ -728,31 +734,74 @@
         </nav>
       </section>
 
-      <!-- Telemetry & Open Source -->
-      <section class="bento-card">
+      <!-- One Health Professional Certificate Program (OHPCP) -->
+      <section class="bento-card col-span-2 highlight" style="background: linear-gradient(135deg, rgba(34,197,94,0.06), rgba(37,99,235,0.06)); border-left: 4px solid #22c55e;">
         <h2>
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.29 2.29L12 9.59 4.71 2.29c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41L10.59 11 3.29 18.29c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0L12 12.41l7.29 7.29c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L13.41 11l7.29-7.29c.39-.39.39-1.02 0-1.41-.39-.38-1.02-.38-1.41 0z"/></svg>
-          Open Source Tech
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+          One Health Professional Certificate (OHPCP)
         </h2>
-        <p><strong>Station:</strong> SatFinder_KKN_KKW</p>
-        <p class="text-sm">Amateur Radio Callsign: <span style="font-family: monospace; font-weight: bold; color: var(--accent);">E25ZVB</span></p>
-        <p class="text-sm" style="margin-top: 10px;">433 MHz TinyGS satellite ground station utilizing LILYGO LoRa32 and eggbeater antenna, enabling real-time CubeSat telemetry reception and integration with a global distributed network. Optimised RF performance, configured embedded systems, and established remote monitoring via PoE-enabled network infrastructure.</p>
+        <p style="font-size: 1.1rem; font-weight: 600; color: var(--text-main);">Specialization in Disease Surveillance</p>
+        <p class="text-sm" style="margin-top: 4px; color: var(--accent); font-weight: 600;">Southeast Asia One Health Workforce Academy (SEA-OHWA)</p>
+        <p class="text-sm" style="margin-top: 10px;">Completed rigorous Foundation courses developed by the <strong>Veterinary Public Health and Food Safety Centre for Asia Pacific (VPHCAP CMU)</strong> in collaboration with <strong>SEAOHUN</strong>, funded by <strong>Chevron</strong>.</p>
         
-        <div class="feature-img-container" style="margin-top: 14px;" onclick="openLightbox('IMG_1311.jpeg', 'TinyGS Ground Station hardware setup')">
-          <img src="IMG_1311.jpeg" loading="lazy" alt="TinyGS Ground Station hardware setup" class="feature-img" onerror="this.style.display='none';">
+        <div class="feature-img-container" onclick="openLightbox('IMG_8965.jpeg', 'One Health Professional Certificate (OHPCP) - SEA-OHWA')">
+          <img src="IMG_8965.jpeg" loading="lazy" alt="One Health Professional Certificate" class="feature-img" onerror="this.style.display='none';">
         </div>
 
-        <div class="tag-container">
-          <span class="tag">TinyGS</span>
-          <span class="tag">LoRa32</span>
-          <span class="tag">E25ZVB</span>
+        <div style="margin-top: 16px; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px;">
+          <div style="background: rgba(255,255,255,0.05); padding: 10px 14px; border-radius: 12px; border: 1px solid var(--glass-border); font-size: 0.88rem;">
+            ♻️ Fundamentals of One Health
+          </div>
+          <div style="background: rgba(255,255,255,0.05); padding: 10px 14px; border-radius: 12px; border: 1px solid var(--glass-border); font-size: 0.88rem;">
+            👨‍🎓 Youth Leadership Empowerment
+          </div>
+          <div style="background: rgba(255,255,255,0.05); padding: 10px 14px; border-radius: 12px; border: 1px solid var(--glass-border); font-size: 0.88rem;">
+            📢 Risk Communication & Engagement
+          </div>
+          <div style="background: rgba(255,255,255,0.05); padding: 10px 14px; border-radius: 12px; border: 1px solid var(--glass-border); font-size: 0.88rem;">
+            🔍 Community Outbreak Surveillance
+          </div>
+        </div>
+
+        <div class="tag-container" style="margin-top: 16px;">
+          <span class="tag">SEAOHWA</span>
+          <span class="tag">SEAOHUN</span>
+          <span class="tag">One Health</span>
+          <span class="tag">Disease Surveillance</span>
+        </div>
+      </section>
+
+      <!-- Telemetry & Open Source with Live Interactive Canvas -->
+      <section class="bento-card" style="position: relative; overflow: hidden;">
+        <canvas id="telemetryCanvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; opacity: 0.35; z-index: 1;"></canvas>
+        <div style="position: relative; z-index: 2;">
+          <h2>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.29 2.29L12 9.59 4.71 2.29c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41L10.59 11 3.29 18.29c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0L12 12.41l7.29 7.29c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L13.41 11l7.29-7.29c.39-.39.39-1.02 0-1.41-.39-.38-1.02-.38-1.41 0z"/></svg>
+            Open Source Tech
+          </h2>
+          <div class="radar-pulse-badge">
+            <div class="radar-dot"></div> 433 MHz TinyGS Active
+          </div>
+          <p><strong>Station:</strong> SatFinder_KKN_KKW</p>
+          <p class="text-sm">Amateur Radio Callsign: <span style="font-family: monospace; font-weight: bold; color: var(--accent);">E25ZVB</span></p>
+          <p class="text-sm" style="margin-top: 10px;">433 MHz TinyGS satellite ground station (SatFinder_KKN_KKW) utilizing LILYGO LoRa32 and eggbeater antenna, enabling real-time CubeSat telemetry reception and integration with a global distributed network. Optimised RF performance, configured embedded systems, and established remote monitoring via PoE-enabled network infrastructure.</p>
+          
+          <div class="feature-img-container" style="margin-top: 14px;" onclick="openLightbox('IMG_1311.jpeg', 'TinyGS Ground Station hardware setup')">
+            <img src="IMG_1311.jpeg" loading="lazy" alt="TinyGS Ground Station hardware setup" class="feature-img" onerror="this.style.display='none';">
+          </div>
+
+          <div class="tag-container">
+            <span class="tag">TinyGS</span>
+            <span class="tag">LoRa32</span>
+            <span class="tag">E25ZVB</span>
+          </div>
         </div>
       </section>
 
       <!-- Interactive Field Research Map (Leaflet.js) with Exact User Coordinates -->
       <section class="bento-card col-span-2">
         <h2>
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5 z"/></svg>
           Khon Kaen Field Research & Station Map
         </h2>
         <p class="text-sm">Interactive GIS telemetry and field study locations across Khon Kaen, Thailand.</p>
@@ -910,7 +959,7 @@
     setInterval(updateClock, 1000);
     updateClock();
 
-    // 2. Interactive Bento Spotlight Mouse Tracking Physics
+    // 2. Interactive Bento Spotlight & 3D Tilt Mouse Tracking Physics
     document.addEventListener('mousemove', (e) => {
       for (const card of document.getElementsByClassName('bento-card')) {
         const rect = card.getBoundingClientRect();
@@ -918,15 +967,86 @@
         const y = e.clientY - rect.top;
         card.style.setProperty('--mouse-x', `${x}px`);
         card.style.setProperty('--mouse-y', `${y}px`);
+
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = ((y - centerY) / centerY) * -2.5;
+        const rotateY = ((x - centerX) / centerX) * 2.5;
+        card.style.transform = `translateY(-4px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
       }
     });
 
-    // 3. Initialize Leaflet Map with Exact User Coordinates
+    document.addEventListener('mouseleave', () => {
+      for (const card of document.getElementsByClassName('bento-card')) {
+        card.style.transform = 'translateY(0) rotateX(0) rotateY(0)';
+      }
+    });
+
+    // 3. Live Telemetry Matrix Particle Canvas Animation
+    function initTelemetryCanvas() {
+      const canvas = document.getElementById('telemetryCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      
+      let width = canvas.width = canvas.offsetWidth;
+      let height = canvas.height = canvas.offsetHeight;
+
+      window.addEventListener('resize', () => {
+        width = canvas.width = canvas.offsetWidth;
+        height = canvas.height = canvas.offsetHeight;
+      });
+
+      const particles = [];
+      const numParticles = 18;
+
+      for(let i=0; i<numParticles; i++) {
+        particles.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          vx: (Math.random() - 0.5) * 0.8,
+          vy: (Math.random() - 0.5) * 0.8,
+          radius: Math.random() * 2 + 1
+        });
+      }
+
+      function animateTelemetry() {
+        ctx.clearRect(0, 0, width, height);
+        ctx.fillStyle = 'rgba(37, 99, 235, 0.4)';
+        ctx.strokeStyle = 'rgba(37, 99, 235, 0.2)';
+
+        particles.forEach((p, index) => {
+          p.x += p.vx;
+          p.y += p.vy;
+
+          if(p.x < 0 || p.x > width) p.vx *= -1;
+          if(p.y < 0 || p.y > height) p.vy *= -1;
+
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+          ctx.fill();
+
+          for(let j = index + 1; j < particles.length; j++) {
+            const p2 = particles[j];
+            const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+            if(dist < 90) {
+              ctx.beginPath();
+              ctx.moveTo(p.x, p.y);
+              ctx.lineTo(p2.x, p2.y);
+              ctx.stroke();
+            }
+          }
+        });
+        requestAnimationFrame(animateTelemetry);
+      }
+      animateTelemetry();
+    }
+    window.addEventListener('load', initTelemetryCanvas);
+
+    // 4. Initialize Leaflet Map with Exact User Coordinates & Free Carto Tiles
     function initFieldMap() {
       const mapElement = document.getElementById('map');
       if (!mapElement) return;
 
-      // Exact coordinates provided by user
       const centerLat = 16.4692451;
       const centerLng = 102.8290228;
 
@@ -934,14 +1054,12 @@
         scrollWheelZoom: false
       }).setView([centerLat, centerLng], 11);
 
-      // Add CartoDB Dark Matter tiles for sleek modern dark aesthetic
       L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
         subdomains: 'abcd',
         maxZoom: 19
       }).addTo(map);
 
-      // User provided exact coordinates and names
       const locations = [
         {
           title: "Tropical Disease Research Center, Khon Kaen University",
@@ -975,7 +1093,7 @@
       initFieldMap();
     });
 
-    // 4. Smooth Floating Toast Notification
+    // 5. Smooth Floating Toast Notification
     function showToast(message) {
       const toast = document.getElementById("toast");
       toast.innerText = message;
@@ -984,7 +1102,7 @@
       window.toastTimeout = setTimeout(() => { toast.classList.remove("show"); }, 3500);
     }
 
-    // 5. Native vCard (Contact) Generator
+    // 6. Native vCard Generator
     function downloadVCard() {
       const vCardData = `BEGIN:VCARD
 VERSION:3.0
@@ -993,7 +1111,7 @@ N:Putta;Watanyoo;;;
 TITLE:Medical Researcher & Biomedical Innovator
 ORG:Khon Kaen University
 URL:https://watanyooputta.github.io/
-NOTE:Thai medical researcher (วทัญญู พุทธา) specializing in tropical medicine, biosensors, and public health. NRCT 2026 Innovation Award Winner.
+NOTE:Thai medical researcher (วทัญญู พุทธา) specializing in tropical medicine, biosensors, and public health. NRCT 2026 Innovation Award Winner & OHPCP Certified.
 END:VCARD`.replace(/^\s+/gm, "");
 
       const blob = new Blob([vCardData], { type: 'text/vcard' });
@@ -1009,7 +1127,7 @@ END:VCARD`.replace(/^\s+/gm, "");
       showToast("Contact card downloaded successfully!");
     }
 
-    // 6. Academic Citation Copier
+    // 7. Academic Citation Copier
     function copyCitation() {
       const citationText = "Putta, Watanyoo. (2026). Effects of Industrial Noise on Mental Health: A Case Study in Khon Kaen [Independent Study]. Zenodo. https://doi.org/10.5281/zenodo.23219819";
       
@@ -1039,7 +1157,7 @@ END:VCARD`.replace(/^\s+/gm, "");
       document.body.removeChild(textArea);
     }
 
-    // 7. Live Dynamic QR Code Generation via qrcode.min.js
+    // 8. Live Dynamic QR Code Generation
     let qrInitialized = false;
     function generateQRCode() {
       if (qrInitialized) return;
@@ -1068,7 +1186,7 @@ END:VCARD`.replace(/^\s+/gm, "");
     function closeQRModal() { document.getElementById('qrModal').classList.remove('active'); }
     function closeQRModalOnOutside(e) { if(e.target === document.getElementById('qrModal')) closeQRModal(); }
 
-    // 8. Full-Screen Image Lightbox Viewer
+    // 9. Full-Screen Image Lightbox Viewer
     function openLightbox(src, alt) {
       const modal = document.getElementById('lightboxModal');
       const img = document.getElementById('lightboxImg');
