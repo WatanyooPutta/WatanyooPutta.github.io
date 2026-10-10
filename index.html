@@ -1204,12 +1204,12 @@
         const locations = [
           { title: "Tropical Disease Research Center", coords: [16.4692, 102.8290], desc: "Research internship affiliation & laboratory base." },
           { title: "SatFinder_KKN_KKW (E25ZVB)", coords: [16.4336, 102.8355], desc: "433 MHz TinyGS satellite ground station." },
-          { title: "Lawa Model Field Research Site", coords: [16.2850, 102.5833], desc: "Epidemiological fieldwork & community health engagement." }
+          { title: "Lawa Model", coords: [16.2850, 102.5833], desc: "Epidemiological fieldwork & community health engagement." }
         ];
 
         locations.forEach(loc => {
           const marker = L.marker(loc.coords).addTo(map);
-          marker.bindTooltip(`<b>${loc.title.split(' ')[0]}</b>`, { permanent: true, direction: 'top', offset: [0, -28], className: 'map-marker-label' });
+          marker.bindTooltip(`<b>${loc.title}</b>`, { permanent: true, direction: 'top', offset: [0, -28], className: 'map-marker-label' });
           marker.bindPopup(`
             <div style="font-family: 'Inter', sans-serif; color: #0f172a; padding: 4px;">
               <strong style="font-size: 0.98rem; color: #2563eb; display: block; margin-bottom: 2px;">${loc.title}</strong>
