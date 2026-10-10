@@ -181,10 +181,6 @@ transition: opacity 0.3s ease;
 opacity: 0;
 }
 .container { max-width: 1080px; width: 100%; position: relative; z-index: 1; }
-@keyframes fadeUp {
-0% { opacity: 0; transform: translateY(30px) scale(0.98); }
-100% { opacity: 1; transform: translateY(0) scale(1); }
-}
 header {
 display: flex;
 align-items: center;
@@ -637,7 +633,7 @@ QR Business Card
 Professional Overview (English Bio)
 </h2>
 <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-main);">
-Watanyoo Putta is a high school researcher and biomedical innovator based in Khon Kaen, Thailand, specializing in tropical medicine, biosensors, disease surveillance, and the One Health framework. With formal laboratory research training at the Tropical Disease Research Center, Khon Kaen University, he is dedicated to advancing translational biomedical innovations for public health.
+Watanyoo Putta is a high school student at Khonkaenwittayayon School and an aspiring medical researcher based in Khon Kaen, Thailand. Specializing in tropical medicine, biosensors, disease surveillance, and the One Health framework, he completed a formal research internship at the Tropical Disease Research Center, Khon Kaen University, with a long-term goal of driving public health innovation as a physician-scientist.
 </p>
 </section>
 <!-- Native Thai Biography (Neutral Formal Academic Tone) -->
@@ -715,14 +711,14 @@ Education & Training Timeline
 <div style="font-weight: 800; color: var(--accent); font-size: 0.95rem; min-width: 90px; padding-top: 2px;">2021 – 2027</div>
 <div>
 <strong style="display: block; font-size: 1.05rem; margin-bottom: 2px;">Khonkaenwittayayon School (ม.6/22)</strong>
-<p class="text-sm">High School Education (Expected Graduation: 2027). Science-Mathematics program with intensive research focus.</p>
+<p class="text-sm">High School Education (2021–2027). Science-Mathematics program with intensive research focus.</p>
 </div>
 </div>
 <div style="display: flex; gap: 16px; padding: 18px; background: rgba(37,99,235,0.04); border-radius: 16px; border: 1px solid var(--glass-border);">
-<div style="font-weight: 800; color: var(--accent); font-size: 0.95rem; min-width: 90px; padding-top: 2px;">March – May 2026</div>
+<div style="font-weight: 800; color: var(--accent); font-size: 0.95rem; min-width: 90px; padding-top: 2px;">Mar – May 2026</div>
 <div>
 <strong style="display: block; font-size: 1.05rem; margin-bottom: 2px;">Tropical Disease Research Center, KKU</strong>
-<p class="text-sm">Research Internship (Completed: May 2026). Specialized laboratory training in tropical medicine, parasitology, and diagnostic biosensors.</p>
+<p class="text-sm">Research Internship (March – May 2026). Specialized laboratory training in tropical medicine, parasitology, and diagnostic biosensors.</p>
 </div>
 </div>
 </div>
@@ -1036,9 +1032,13 @@ function updateClock() {
 try {
 const now = new Date();
 const options = { timeZone: 'Asia/Bangkok', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
-document.getElementById('kk-clock').innerText = new Intl.DateTimeFormat('en-US', options).format(now);
+const clockEl = document.getElementById('kk-clock');
+if (clockEl) {
+clockEl.innerText = new Intl.DateTimeFormat('en-US', options).format(now);
+}
 } catch (err) {
-document.getElementById('kk-clock').innerText = "12:00:00";
+const clockEl = document.getElementById('kk-clock');
+if (clockEl) clockEl.innerText = "12:00:00";
 }
 }
 setInterval(updateClock, 1000);
@@ -1051,7 +1051,7 @@ const centerLng = 102.7500;
 const map = L.map('map', {
 scrollWheelZoom: false
 }).setView([centerLat, centerLng], 10);
-L.tileLayer('https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png?key=cb1_4gfd_1_8f4a0c9e8b3d85a310477693', {
+L.tileLayer('https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png', {
 attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> © <a href="https://carto.com/attributions">CARTO</a>',
 maxZoom: 19
 }).addTo(map);
@@ -1065,6 +1065,7 @@ const marker = L.marker(loc.coords).addTo(map);
 marker.bindTooltip(⁠<b>${loc.title.split(' ')[0]}</b>⁠, { permanent: true, direction: 'top', offset: [0, -28], className: 'map-marker-label' });
 marker.bindPopup(⁠<div style="font-family: 'Inter', sans-serif; color: #0f172a; padding: 4px;"> <strong style="font-size: 0.98rem; color: #2563eb; display: block; margin-bottom: 2px;">${loc.title}</strong> <p style="font-size: 0.85rem; color: #475569; margin: 0; line-height: 1.4;">${loc.desc}</p> </div>⁠);
 });
+setTimeout(() => { map.invalidateSize(); }, 250);
 }
 window.addEventListener('load', initFieldMap);
 function showToast(message) {
