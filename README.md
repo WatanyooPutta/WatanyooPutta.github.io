@@ -1,6 +1,8 @@
 # Watanyoo Putta (วทัญญู พุทธา)
 🌐 **Sovereign Entity Hub & Professional Portfolio**
 
+![CI Status](https://github.com/WatanyooPutta/WatanyooPutta.github.io/actions/workflows/validate-schema.yml/badge.svg)
+![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.PENDING.svg)](https://zenodo.org/badge/latestdoi/10.5281/zenodo.PENDING)
 [![GPG Verified](https://img.shields.io/badge/GPG-Verified-brightgreen.svg)](https://github.com/WatanyooPutta)
 [![Status](https://img.shields.io/badge/Status-Active-success.svg)]()
@@ -27,11 +29,15 @@
 
 ### 🚀 Key Projects & Systems
 
-1. **KKW Infirmary & First Aid Management System**
-   * *Description:* Full-stack electronic medical record and operational workflow tool designed for school health room operations.
-   * *Tech:* Python, Flask, Next.js, SQLite, Supabase.
-2. **Open Science & Entity Archiving**
+1. **Open Science & Entity Archiving**
    * *Description:* Automated repository versioning linked directly with Zenodo to mint permanent, citable academic DOIs for research and codebases.
+
+---
+
+## 📝 Latest Writings
+
+<!-- BLOG-POST-LIST:START -->
+<!-- BLOG-POST-LIST:END -->
 
 ---
 
