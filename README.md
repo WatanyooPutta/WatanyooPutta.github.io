@@ -30,8 +30,7 @@ Official, cryptographically linked professional digital presence of **Watanyoo P
 ## 🔬 Key Research & Open Source Projects
 - **The Lawa Model:** Epidemiological field research and community health intervention translating One Health principles into actionable liver fluke (Opisthorchis viverrini) mitigation around Lawa Lake.
 - **SatFinder_KKN_KKW (E25ZVB):** 433 MHz TinyGS amateur radio satellite ground station utilising LILYGO LoRa32 and an eggbeater antenna for real-time CubeSat telemetry reception.
-- **School Infirmary EMR:** Full-stack medical record and operational tool designed for health room management at Khonkaenwittayayon School.
-
+- 
 ---
 
 ## 📜 Citable Release
