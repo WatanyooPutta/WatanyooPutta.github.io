@@ -3,7 +3,7 @@
 
 ![CI Status](https://github.com/WatanyooPutta/WatanyooPutta.github.io/actions/workflows/validate-schema.yml/badge.svg)
 ![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.PENDING.svg)](https://zenodo.org/badge/latestdoi/10.5281/zenodo.PENDING)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23317893.svg)](https://zenodo.org/badge/latestdoi/10.5281/zenodo.23317893)
 [![GPG Verified](https://img.shields.io/badge/GPG-Verified-brightgreen.svg)](https://github.com/WatanyooPutta)
 [![Status](https://img.shields.io/badge/Status-Active-success.svg)]()
 
