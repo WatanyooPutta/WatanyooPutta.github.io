@@ -1,12 +1,14 @@
-const CACHE_NAME = 'entity-hub-v1.1';
+const CACHE_NAME = 'sovereign-hub-v2';
+const MAP_TILE_CACHE = 'carto-tiles-v1';
+
+// Core files for offline PWA shell
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
-  '/site.webmanifest',
-  '/images/IMG_9921.jpeg'
+  '/manifest.json'
 ];
 
-// Install Event: Cache core static assets
+// Install Event: Cache app shell
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
@@ -22,7 +24,7 @@ self.addEventListener('activate', (event) => {
     caches.keys().then((keys) => {
       return Promise.all(
         keys.map((key) => {
-          if (key !== CACHE_NAME) {
+          if (key !== CACHE_NAME && key !== MAP_TILE_CACHE) {
             return caches.delete(key);
           }
         })
@@ -32,21 +34,32 @@ self.addEventListener('activate', (event) => {
   self.clients.claim();
 });
 
-// Fetch Event: Serve from cache first, fallback to network
+// Fetch Event: Intercept network requests
 self.addEventListener('fetch', (event) => {
-  // Skip non-GET requests or external API/CDN requests if needed
-  if (event.request.method !== 'GET') return;
+  const url = new URL(event.request.url);
 
+  // Special caching strategy for CARTO Map Tiles (Stale-While-Revalidate)
+  if (url.origin === 'https://basemaps.cartocdn.com') {
+    event.respondWith(
+      caches.open(MAP_TILE_CACHE).then((cache) => {
+        return cache.match(event.request).then((cachedResponse) => {
+          const fetchPromise = fetch(event.request).then((networkResponse) => {
+            cache.put(event.request, networkResponse.clone());
+            return networkResponse;
+          }).catch(() => cachedResponse);
+
+          return cachedResponse || fetchPromise;
+        });
+      })
+    );
+    return;
+  }
+
+  // Standard fetch for site assets
   event.respondWith(
     caches.match(event.request).then((cachedResponse) => {
-      if (cachedResponse) {
-        return cachedResponse;
-      }
-      return fetch(event.request).catch(() => {
-        // Fallback to index.html if offline and navigating
-        if (event.request.mode === 'navigate') {
-          return caches.match('/index.html');
-        }
+      return cachedResponse || fetch(event.request).catch(() => {
+        // Fallback option if offline
       });
     })
   );
