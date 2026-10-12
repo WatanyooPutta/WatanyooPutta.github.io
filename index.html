@@ -1314,11 +1314,11 @@
 
         const map = L.map('map', { 
           scrollWheelZoom: false,
-          tap: true // Ensures smooth touch handling on mobile phones
+          tap: true 
         }).setView([centerLat, centerLng], 12);
 
-L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
-          attribution: 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, and the GIS User Community',
+        L.tileLayer('https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png?key=cb1_4gfd_1_8f4a0c9e8b3d85a310477693', {
+          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
           maxZoom: 19
         }).addTo(map);
 
@@ -1339,7 +1339,6 @@ L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_M
           `);
         });
         
-        // Force Leaflet to recalculate size for mobile viewports after paint
         setTimeout(() => { 
           map.invalidateSize(); 
         }, 400);
