@@ -1,51 +1,38 @@
-# Watanyoo Putta (วทัญญู พุทธา)
-🌐 **Sovereign Entity Hub & Professional Portfolio**
+# Sovereign Entity Hub | Watanyoo Putta (วทัญญู พุทธา)
 
-![CI Status](https://github.com/WatanyooPutta/WatanyooPutta.github.io/actions/workflows/validate-schema.yml/badge.svg)
-![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23317893.svg)](https://zenodo.org/badge/latestdoi/10.5281/zenodo.23317893)
-[![GPG Verified](https://img.shields.io/badge/GPG-Verified-brightgreen.svg)](https://github.com/WatanyooPutta)
-[![Status](https://img.shields.io/badge/Status-Active-success.svg)]()
+[![Entity Hub Release](https://img.shields.io/badge/Release-v1.1.0-blue?style=flat-square)](https://github.com/WatanyooPutta/WatanyooPutta.github.io/releases/tag/v1.1.0)
+[![Zenodo DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.23317893-blueviolet?style=flat-square)](https://doi.org/10.5281/zenodo.23317893)
+[![Wikidata Entity](https://img.shields.io/badge/Wikidata-Q141644996-green?style=flat-square)](https://www.wikidata.org/wiki/Q141644996)
+[![ORCID iD](https://img.shields.io/badge/ORCID-0009--0007--2782--1422-brightgreen?style=flat-square)](https://orcid.org/0009-0007-2782-1422)
 
----
-
-### 🧬 About Me
-* **Role:** High School Researcher & Full-Stack Developer (M.6 student at Khon Kaen Wittayayon School, Thailand).
-* **Focus Areas:** Public health, tropical medicine (*Opisthorchis viverrini*, One Health approach), and modern full-stack web engineering.
-* **Scholarly Presence:** 
-  * [Medium Articles](https://medium.com/@watanyoo.putta) (Author of *"The Lawa Model: Translating Public Health into Community Action"*)
-  * [LinkedIn Profile](https://www.linkedin.com/in/watanyoo-putta/)
+Official, cryptographically linked professional digital presence of **Watanyoo Putta** (วทัญญู พุทธา), Thai medical researcher, student at Khonkaenwittayayon School, and biomedical innovator based in Khon Kaen, Thailand. Specialising in tropical medicine, biosensors, disease surveillance, and the One Health framework.
 
 ---
 
-### 🛠️ Technical Stack & Architecture
-
-* **Languages & Frameworks:** Python, Flask, JavaScript, React, Next.js, HTML5, CSS3
-* **Databases & Backend:** SQLite, Supabase, Node.js, npm
-* **Environment & Tooling:** Windows Workstation, VS Code, PowerShell, Git
-* **Security & Verification:** Cryptographically verified GPG commits (`25B44D3B1BFCFF61`)
-
----
-
-### 🚀 Key Projects & Systems
-
-1. **Open Science & Entity Archiving**
-   * *Description:* Automated repository versioning linked directly with Zenodo to mint permanent, citable academic DOIs for research and codebases.
+## 🌐 Verified Professional Nodes
+- **Live Entity Hub:** [watanyooputta.github.io](https://watanyooputta.github.io/)
+- **Medium Publications:** [@watanyoo.putta](https://medium.com/@watanyoo.putta)
+- **Zenodo Academic Archive:** [DOI 10.5281/zenodo.23317893](https://doi.org/10.5281/zenodo.23317893)
+- **Wikidata Entity:** [Q141644996](https://www.wikidata.org/wiki/Q141644996)
+- **ORCID Registry:** [0009-0007-2782-1422](https://orcid.org/0009-0007-2782-1422)
+- **LinkedIn Profile:** [watanyoo-putta](https://www.linkedin.com/in/watanyoo-putta/)
 
 ---
 
-## 📝 Latest Writings
+## ✍️ Latest Writing on Medium
+*(Automatically updated via GitHub Actions workflow)*
 
 <!-- BLOG-POST-LIST:START -->
-- [The Lawa Model: Translating Public Health into Community Action](https://medium.com/@watanyoo.putta/the-lawa-model-translating-public-health-into-community-action-5eba53f3502e?source=rss-2a8547fe4f2d------2)
 <!-- BLOG-POST-LIST:END -->
 
 ---
 
-### 🔐 Cryptographic Identity & Verification
-All official commits to this repository are signed with a personal GPG key to ensure cryptographic integrity:
-* **Key ID:** `25B44D3B1BFCFF61`
-* **Key Server:** Published on `keys.openpgp.org`
+## 🔬 Key Research & Open Source Projects
+- **The Lawa Model:** Epidemiological field research and community health intervention translating One Health principles into actionable liver fluke (Opisthorchis viverrini) mitigation around Lawa Lake.
+- **SatFinder_KKN_KKW (E25ZVB):** 433 MHz TinyGS amateur radio satellite ground station utilising LILYGO LoRa32 and an eggbeater antenna for real-time CubeSat telemetry reception.
+- **School Infirmary EMR:** Full-stack medical record and operational tool designed for health room management at Khonkaenwittayayon School.
 
 ---
-*Maintained with Semantic Versioning (SemVer) and open-science principles.*
+
+## 📜 Citable Release
+> Putta, Watanyoo. (2026). *Sovereign Entity Hub: Production Edition* (Version v1.1.0). Zenodo. https://doi.org/10.5281/zenodo.23317893
