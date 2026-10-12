@@ -1,14 +1,47 @@
-name: Validate HTML and Schema
-on: [push]
+name: validate-schema
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
 jobs:
-  build:
+  validate:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Check HTML existence
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Validate Core Hub Structure & Files
         run: |
+          echo "=========================================="
+          echo "Running Sovereign Entity Hub Schema Check..."
+          echo "=========================================="
+          
+          # 1. Check for the main portfolio entry point
           if [ -f "index.html" ]; then
-            echo "index.html found successfully!"
+            echo "[PASS] index.html found."
           else
-            echo "Error: index.html missing!" && exit 1
+            echo "[FAIL] Error: index.html is missing!"
+            exit 1
           fi
+          
+          # 2. Check for your professional README profile
+          if [ -f "README.md" ]; then
+            echo "[PASS] README.md found."
+          else
+            echo "[FAIL] Error: README.md is missing!"
+            exit 1
+          fi
+
+          # 3. Check for a License file (vital for open science/software hubs)
+          if [ -f "LICENSE" ] || [ -f "LICENSE.md" ]; then
+            echo "[PASS] License file found."
+          else
+            echo "[WARN] Notice: No LICENSE file detected (Recommended for open-science archiving)."
+          fi
+
+          echo "=========================================="
+          echo "All structural schema validations passed!"
+          echo "=========================================="
