@@ -1,0 +1,51 @@
+{
+
+"@context": [
+
+"https://www.w3.org/ns/did/v1"
+
+],
+
+"id": "did:web:watanyooputta.github.io",
+
+"alsoKnownAs": [
+
+"https://watanyooputta.github.io/",
+
+"https://orcid.org/0009-0007-2782-1422",
+
+"https://github.com/watanyooputta"
+
+],
+
+"verificationMethod": [
+
+{
+
+"id": "did:web:watanyooputta.github.io#owner",
+
+"type": "JsonWebKey2020",
+
+"controller": "did:web:watanyooputta.github.io",
+
+"publicKeyJwk": {
+
+"kty": "RSA",
+
+"e": "AQAB",
+
+"n": "This-is-a-placeholder-for-your-future-public-cryptographic-key"
+
+}
+
+}
+
+],
+
+"authentication": [
+
+"did:web:watanyooputta.github.io#owner"
+
+]
+
+}
