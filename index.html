@@ -21,10 +21,6 @@
   <link rel="manifest" href="site.webmanifest">
   <link rel="preload" as="image" href="images/IMG_9921.jpeg" type="image/jpeg">
 
-  <!-- Non-blocking Leaflet CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" integrity="sha256-tXCrvaljxgtN5LT/Syb5Mm9T+yzPFGH98JVcoJT7JTk=" crossorigin="anonymous" referrerpolicy="no-referrer" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" integrity="sha256-tXCrvaljxgtN5LT/Syb5Mm9T+yzPFGH98JVcoJT7JTk=" crossorigin="anonymous" referrerpolicy="no-referrer"></noscript>
-
   <meta property="og:type" content="profile">
   <meta property="og:url" content="https://watanyooputta.github.io/">
   <meta property="og:title" content="Watanyoo Putta (วทัญญู พุทธา) | Verified Entity Hub">
@@ -1123,8 +1119,8 @@
 
   <div id="toast" role="alert" aria-live="polite">Notification message</div>
 
-  <script>
-(function() {
+<script>
+    (function() {
       const cursorGlow = document.getElementById('cursorGlow');
       
       function handlePointerMove(e) {
@@ -1186,21 +1182,26 @@
         startClock();
       });
 
+      // Lazy-load map only when scrolled into view
       window.addEventListener('load', () => {
-        // Defer map initialization to free up main thread for First Contentful Paint
-        setTimeout(() => {
+        const mapElement = document.getElementById('map');
+        if (mapElement && 'IntersectionObserver' in window) {
+          const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                initFieldMap();
+                observer.disconnect();
+              }
+            });
+          }, { rootMargin: '200px' });
+          observer.observe(mapElement);
+        } else {
           initFieldMap();
-        }, 400);
+        }
 
         // Register Service Worker for PWA Compliance
         if ('serviceWorker' in navigator) {
-          navigator.serviceWorker.register('/sw.js')
-            .then((registration) => {
-              console.log('ServiceWorker registration successful with scope: ', registration.scope);
-            })
-            .catch((error) => {
-              console.log('ServiceWorker registration failed: ', error);
-            });
+          navigator.serviceWorker.register('/sw.js').catch(() => {});
         }
       });
 
@@ -1277,19 +1278,31 @@
 
       function initFieldMap() {
         const mapElement = document.getElementById('map');
-        if (!mapElement || typeof L === 'undefined') return;
+        if (!mapElement || mapElement._leaflet_id) return;
 
-        if (mapElement._leaflet_id) return;
+        if (typeof L === 'undefined') {
+          const cssLink = document.createElement('link');
+          cssLink.rel = 'stylesheet';
+          cssLink.href = 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css';
+          document.head.appendChild(cssLink);
 
+          const script = document.createElement('script');
+          script.src = 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js';
+          script.onload = () => renderMap(mapElement);
+          document.body.appendChild(script);
+        } else {
+          renderMap(mapElement);
+        }
+      }
+
+      function renderMap(mapElement) {
         const centerLat = 16.4692;
         const centerLng = 102.8290;
 
-        const map = L.map('map', {
-          scrollWheelZoom: false
-        }).setView([centerLat, centerLng], 12);
+        const map = L.map('map', { scrollWheelZoom: false }).setView([centerLat, centerLng], 12);
 
-        L.tileLayer('https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png?key=cb1_4gfd_1_8f4a0c9e8b3d85a310477693', {
-          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        L.tileLayer('https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png', {
+          attribution: '&copy; OpenStreetMap &copy; CARTO',
           maxZoom: 19
         }).addTo(map);
 
@@ -1313,84 +1326,6 @@
         setTimeout(() => { map.invalidateSize(); }, 300);
       }
     })();
-
-    function showToast(message) {
-      const toast = document.getElementById("toast");
-      if (!toast) return;
-      toast.innerText = message;
-      toast.classList.add("show");
-      if(window.toastTimeout) clearTimeout(window.toastTimeout);
-      window.toastTimeout = setTimeout(() => { toast.classList.remove("show"); }, 3500);
-    }
-
-    function downloadVCard() {
-      const vCardData = `BEGIN:VCARD
-VERSION:3.0
-FN:Watanyoo Putta
-N:Putta;Watanyoo;;;
-TITLE:Medical Researcher & Biomedical Innovator
-ORG:Tropical Disease Research Center
-URL:https://watanyooputta.github.io/
-NOTE:Thai medical researcher (วทัญญู พุทธา) specialising in tropical medicine, biosensors, and public health. Medium: @watanyoo.putta
-END:VCARD`.replace(/^\s+/gm, "");
-
-      const blob = new Blob([vCardData], { type: 'text/vcard' });
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = url;
-      link.download = 'Watanyoo_Putta.vcf';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      URL.revokeObjectURL(url);
-      showToast("Contact card downloaded successfully!");
-    }
-
-    function copyCitation() {
-      const citationText = "Putta, Watanyoo. (2022). The Effects of Industrial Noise on Human Mental Health and Well-being in Khonkaenwittayayon School [Independent Study]. Zenodo. https://doi.org/10.5281/zenodo.23219819";
-      
-      if (navigator.clipboard && window.isSecureContext) {
-        navigator.clipboard.writeText(citationText).then(() => showToast("Citation securely copied to clipboard!"))
-          .catch(() => fallbackCopy(citationText));
-      } else { fallbackCopy(citationText); }
-    }
-    
-    function fallbackCopy(text) {
-      const textArea = document.createElement("textarea");
-      textArea.value = text;
-      textArea.style.position = "fixed"; textArea.style.left = "-999999px";
-      document.body.appendChild(textArea); textArea.focus(); textArea.select();
-      try { document.execCommand('copy'); showToast("Citation copied to clipboard!"); } 
-      catch (err) { showToast("Failed to copy citation."); }
-      document.body.removeChild(textArea);
-    }
-
-    let qrInitialized = false;
-    function generateQRCode() {
-      if (qrInitialized) return;
-      const container = document.getElementById('qrcodeContainer');
-      if (!container || typeof qrcode === 'undefined') return;
-      container.innerHTML = '';
-      const vCardText = `BEGIN:VCARD\nVERSION:3.0\nFN:Watanyoo Putta\nN:Putta;Watanyoo;;;\nTITLE:Medical Researcher\nORG:Tropical Disease Research Center\nURL:https://watanyooputta.github.io/\nEND:VCARD`;
-      try {
-        const qr = qrcode(0, 'M'); qr.addData(vCardText); qr.make();
-        container.innerHTML = qr.createSvgTag({cellSize: 4, margin: 2});
-        qrInitialized = true;
-      } catch (err) { container.innerHTML = '<p class="text-sm" style="color:red;">QR Generation Error</p>'; }
-    }
-
-    function openQRModal() { document.getElementById('qrModal').classList.add('active'); generateQRCode(); }
-    function closeQRModal() { document.getElementById('qrModal').classList.remove('active'); }
-    function closeQRModalOnOutside(e) { if(e.target === document.getElementById('qrModal')) closeQRModal(); }
-
-    function openLightbox(src, alt) {
-      const modal = document.getElementById('lightboxModal');
-      const img = document.getElementById('lightboxImg');
-      if (!modal || !img) return;
-      img.src = src; img.alt = alt; modal.classList.add('active');
-    }
-    function closeLightbox() { document.getElementById('lightboxModal').classList.remove('active'); }
-    function closeLightboxOnOutside(e) { if(e.target === document.getElementById('lightboxModal')) closeLightbox(); }
   </script>
   
   <style>
