@@ -21,8 +21,9 @@
   <link rel="manifest" href="site.webmanifest">
   <link rel="preload" as="image" href="images/IMG_9921.jpeg" type="image/jpeg">
 
- <!-- Leaflet CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" integrity="sha256-tXCrvaljxgtN5LT/Syb5Mm9T+yzPFGH98JVcoJT7JTk=" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- Non-blocking Leaflet CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" integrity="sha256-tXCrvaljxgtN5LT/Syb5Mm9T+yzPFGH98JVcoJT7JTk=" crossorigin="anonymous" referrerpolicy="no-referrer" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" integrity="sha256-tXCrvaljxgtN5LT/Syb5Mm9T+yzPFGH98JVcoJT7JTk=" crossorigin="anonymous" referrerpolicy="no-referrer"></noscript>
 
   <meta property="og:type" content="profile">
   <meta property="og:url" content="https://watanyooputta.github.io/">
@@ -791,7 +792,7 @@
         <p class="text-sm">Recognised for developing rapid, point-of-care diagnostic biosensors targeted at snake venom detection, dramatically improving prehospital emergency outcomes in rural Southeast Asia.</p>
         
         <div class="feature-img-container" onclick="openLightbox('images/IMG_4697.jpeg', 'Watanyoo Putta holding NRCT 2026 Innovation Award')">
-          <img src="images/IMG_4697.jpeg" loading="lazy" alt="Watanyoo Putta holding NRCT 2026 Innovation Award" class="feature-img" onerror="this.style.display='none';">
+          <img src="images/IMG_4697.jpeg" loading="lazy" alt="Watanyoo Putta holding NRCT 2026 Innovation Award" class="feature-img" width="280" height="165" onerror="this.style.display='none';">
         </div>
 
         <div class="tag-container">
@@ -812,7 +813,7 @@
         <p class="text-sm" style="margin-top: 10px;">Official professional credential issued by NIEMS authorising prehospital emergency care triage, field response protocols, and community medical support in Thailand.</p>
         
         <div class="feature-img-container" onclick="openLightbox('images/1788584338377.jpg', 'NIEMS Official Emergency Medical Responder Certificate')">
-          <img src="images/1788584338377.jpg" loading="lazy" alt="NIEMS Official Certificate" class="feature-img" onerror="this.style.display='none';">
+          <img src="images/1788584338377.jpg" loading="lazy" alt="NIEMS Official Certificate" class="feature-img" width="277" height="184" onerror="this.style.display='none';">
         </div>
 
         <div class="tag-container" style="margin-top: 16px;">
