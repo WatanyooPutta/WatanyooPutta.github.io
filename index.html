@@ -680,6 +680,18 @@
       * { text-shadow: none !important; }
       .feature-img-container::after { display: none !important; }
     }
+    #map {
+    width: 100%;
+    height: 350px; /* Forces height on mobile phones */
+    min-height: 350px;
+    border-radius: 12px;
+  }
+
+  @media (min-width: 768px) {
+    #map {
+      height: 450px; /* Taller height for tablets and PCs */
+    }
+  }
   </style>
 </head>
 <body>
@@ -1296,14 +1308,17 @@
         }
       }
 
-      function renderMap(mapElement) {
+   function renderMap(mapElement) {
         const centerLat = 16.4692;
         const centerLng = 102.8290;
 
-        const map = L.map('map', { scrollWheelZoom: false }).setView([centerLat, centerLng], 12);
+        const map = L.map('map', { 
+          scrollWheelZoom: false,
+          tap: true // Ensures smooth touch handling on mobile phones
+        }).setView([centerLat, centerLng], 12);
 
-        L.tileLayer('https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png', {
-          attribution: '&copy; OpenStreetMap &copy; CARTO',
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; OpenStreetMap contributors',
           maxZoom: 19
         }).addTo(map);
 
@@ -1324,7 +1339,10 @@
           `);
         });
         
-        setTimeout(() => { map.invalidateSize(); }, 300);
+        // Force Leaflet to recalculate size for mobile viewports after paint
+        setTimeout(() => { 
+          map.invalidateSize(); 
+        }, 400);
       }
     })();
   </script>
