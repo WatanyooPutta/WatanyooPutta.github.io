@@ -1,0 +1,21 @@
+{
+"name": "Watanyoo Putta",
+"alternate_name": "วทัญญู พุทธา",
+"status": "Active",
+"latest_research": "The Lawa Model",
+"available_for_interviews": true,
+"roles": [
+"Medical Researcher",
+"Biomedical Innovator",
+"Open-Source Hardware Operator"
+],
+"verified_identifiers": {
+"orcid": "https://orcid.org/0009-0007-2782-1422",
+"wikidata": "https://www.wikidata.org/wiki/Q141644996"
+},
+"contact_nodes": {
+"website": "https://watanyooputta.github.io/",
+"medium": "https://medium.com/@watanyoo.putta",
+"github": "https://github.com/watanyooputta"
+}
+}
