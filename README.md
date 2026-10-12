@@ -37,6 +37,7 @@
 ## 📝 Latest Writings
 
 <!-- BLOG-POST-LIST:START -->
+- [The Lawa Model: Translating Public Health into Community Action](https://medium.com/@watanyoo.putta/the-lawa-model-translating-public-health-into-community-action-5eba53f3502e?source=rss-2a8547fe4f2d------2)
 <!-- BLOG-POST-LIST:END -->
 
 ---
