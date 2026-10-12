@@ -26,7 +26,7 @@ jobs:
             --exclude "scholar\.google\.com"
             "./**/*.html"
             "./**/*.md"
-          fail: false # Set to false so minor warnings don't block deployment
+          fail: false
 
   lighthouse:
     name: Lighthouse Performance Audit
@@ -38,7 +38,7 @@ jobs:
       - name: Run Lighthouse CI
         uses: treosh/lighthouse-ci-action@v12
         with:
-          staticDistDir: './'
+          urls: 'file:///${{ github.workspace }}/index.html'
           runs: 1
           uploadArtifacts: true
           temporaryPublicStorage: true
