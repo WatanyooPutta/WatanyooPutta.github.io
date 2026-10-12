@@ -21,8 +21,8 @@
   <link rel="manifest" href="site.webmanifest">
   <link rel="preload" as="image" href="images/IMG_9921.jpeg" type="image/jpeg">
 
-  <!-- SECURITY: Subresource Integrity (SRI) for Leaflet CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="anonymous" referrerpolicy="no-referrer" />
+ <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" integrity="sha256-tXCrvaljxgtN5LT/Syb5Mm9T+yzPFGH98JVcoJT7JTk=" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <meta property="og:type" content="profile">
   <meta property="og:url" content="https://watanyooputta.github.io/">
@@ -49,9 +49,9 @@
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link rel="preconnect" href="https://basemaps.cartocdn.com" crossorigin>
 
-  <!-- SECURITY: Subresource Integrity (SRI) for Dynamic Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js" integrity="sha512-ZDSPm/zM21uMwa0+sQOveSYF29t3D//aUf7F/J/5Rx4lQ/uI3OAtXUaU4r/j7qZ/zE+7M2kK1G51XmY+J+jD7g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- Leaflet JS & QR Code JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" integrity="sha256-XJrs/DDkVkUZ29zdzFOkGCJ9zHVo5hnpdi3c7HYJ7Uc=" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js" integrity="sha512-ZDSPMa/JM1D+7kdg2x3BsruQ6T/JpJo3jWDWkCZsP+5yVyp1KfESqLI+7RqB5k24F7p2cV7i2YHh/890y6P6Sw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
   <script type="application/ld+json">
     {
@@ -695,7 +695,7 @@
     <header>
       <div class="profile-wrapper">
         <div class="orbit-ring"></div>
-        <img src="images/IMG_9921.jpeg" alt="Portrait of Watanyoo Putta (วทัญญู พุทธา)" class="profile-img u-photo" itemprop="image" fetchpriority="high" decoding="sync" onclick="openLightbox('images/IMG_9921.jpeg', 'Official portrait of Watanyoo Putta')" onerror="this.onerror=null;this.src='https://placehold.co/160x160/2563eb/ffffff?text=WP';">
+        <img src="images/IMG_9921.jpeg" alt="Portrait of Watanyoo Putta" class="profile-img u-photo" itemprop="image" width="154" height="231" fetchpriority="high" decoding="async">
       </div>
       
       <div class="header-content">
@@ -1123,7 +1123,7 @@
   <div id="toast" role="alert" aria-live="polite">Notification message</div>
 
   <script>
-    (function() {
+(function() {
       const cursorGlow = document.getElementById('cursorGlow');
       
       function handlePointerMove(e) {
@@ -1187,6 +1187,17 @@
 
       window.addEventListener('load', () => {
         initFieldMap();
+
+        // Register Service Worker for 100% PWA Compliance
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.register('/sw.js')
+            .then((registration) => {
+              console.log('ServiceWorker registration successful with scope: ', registration.scope);
+            })
+            .catch((error) => {
+              console.log('ServiceWorker registration failed: ', error);
+            });
+        }
       });
 
       function initMagneticButtons() {
