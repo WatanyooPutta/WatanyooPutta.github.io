@@ -1317,8 +1317,8 @@
           tap: true // Ensures smooth touch handling on mobile phones
         }).setView([centerLat, centerLng], 12);
 
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-          attribution: '&copy; OpenStreetMap contributors',
+L.tileLayer('https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}{r}.png', {
+          attribution: '&copy; <a href="https://wikimediafoundation.org/wiki/Maps_Terms_of_Use">Wikimedia</a> contributors',
           maxZoom: 19
         }).addTo(map);
 
