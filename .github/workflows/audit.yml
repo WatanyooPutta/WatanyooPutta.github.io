@@ -35,10 +35,21 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Static Server
+        run: npm install -g serve
+
+      - name: Start Local Server
+        run: serve ./ -p 8080 &
+
       - name: Run Lighthouse CI
         uses: treosh/lighthouse-ci-action@v12
         with:
-          urls: 'file:///${{ github.workspace }}/index.html'
+          urls: 'http://localhost:8080/index.html'
           runs: 1
           uploadArtifacts: true
           temporaryPublicStorage: true
