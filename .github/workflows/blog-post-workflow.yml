@@ -1,0 +1,22 @@
+name: Update Blog Post List
+
+on:
+  schedule:
+    # Runs automatically every day at midnight UTC
+    - cron: '0 0 * * *'
+  workflow_dispatch: # Allows you to trigger it manually anytime from the GitHub Actions tab
+
+jobs:
+  update-readme-with-blog:
+    name: Update this repo's README with latest blog posts
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Pull Latest Medium Articles
+        uses: gautamkrishnar/blog-post-workflow@v1
+        with:
+          # Replace with your actual Medium RSS feed URL
+          feed_list: "https://medium.com/feed/@watanyoo.putta"
+          max_post_count: 5
