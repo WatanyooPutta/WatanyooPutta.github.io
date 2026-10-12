@@ -1,0 +1,37 @@
+name: Automated Quality & Link Audit
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+  workflow_dispatch:
+
+jobs:
+  link-checker:
+    name: Lychee Broken Link Audit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Run Lychee Link Checker
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: '--no-progress --accept "200..=204, 429" "./**/*.html" "./**/*.md"'
+          fail: true
+
+  lighthouse:
+    name: Lighthouse Performance Audit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Run Lighthouse CI
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          staticDistDir: './'
+          runs: 1
+          uploadArtifacts: true
+          temporaryPublicStorage: true
