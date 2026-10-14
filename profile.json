@@ -1,21 +1,44 @@
 {
-"name": "Watanyoo Putta",
-"alternate_name": "วทัญญู พุทธา",
-"status": "Active",
-"latest_research": "The Lawa Model",
-"available_for_interviews": true,
-"roles": [
-"Medical Researcher",
-"Biomedical Innovator",
-"Open-Source Hardware Operator"
-],
-"verified_identifiers": {
-"orcid": "https://orcid.org/0009-0007-2782-1422",
-"wikidata": "https://www.wikidata.org/wiki/Q141644996"
-},
-"contact_nodes": {
-"website": "https://watanyooputta.github.io/",
-"medium": "https://medium.com/@watanyoo.putta",
-"github": "https://github.com/watanyooputta"
-}
+  "name": "Watanyoo Putta",
+  "alternate_name": ["วทัญญู พุทธา", "นายวทัญญู พุทธา"],
+  "status": "Active",
+  "last_updated": "2026-10-14",
+  "location": { "city": "Khon Kaen", "country": "Thailand", "timezone": "Asia/Bangkok" },
+  "languages": ["en", "th"],
+  "latest_research": "The Lawa Model",
+  "available_for_interviews": true,
+  "roles": [
+    "Medical Researcher",
+    "Biomedical Innovator",
+    "Open-Source Hardware Operator"
+  ],
+  "affiliations": [
+    "Khonkaenwittayayon School",
+    "Tropical Disease Research Center, Khon Kaen University (research internship, March to May 2026)"
+  ],
+  "knows_about": [
+    "Tropical medicine",
+    "Biosensors",
+    "One Health",
+    "Disease surveillance",
+    "Public health",
+    "Emergency medical services"
+  ],
+  "verified_identifiers": {
+    "orcid": "https://orcid.org/0009-0007-2782-1422",
+    "wikidata": "https://www.wikidata.org/wiki/Q141644996",
+    "google_scholar": "https://scholar.google.com/citations?user=_8o9aVEAAAAJ"
+  },
+  "publications": {
+    "lawa_model_doi": "https://doi.org/10.5281/zenodo.23324693",
+    "lawa_model_article": "https://medium.com/@watanyoo.putta/the-lawa-model-translating-public-health-into-community-action-5eba53f3502e",
+    "industrial_noise_study_doi": "https://doi.org/10.5281/zenodo.23219819",
+    "entity_hub_doi": "https://doi.org/10.5281/zenodo.23317893"
+  },
+  "contact_nodes": {
+    "website": "https://watanyooputta.github.io/",
+    "medium": "https://medium.com/@watanyoo.putta",
+    "github": "https://github.com/watanyooputta",
+    "linkedin": "https://www.linkedin.com/in/watanyoo-putta/"
+  }
 }
