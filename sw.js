@@ -1,7 +1,7 @@
 const SHELL = 'shell-v3';          // bump this number whenever you want every visitor to refresh
 const TILES = 'carto-tiles-v1';
 const MAX_TILES = 300;
-const PRECACHE = ['/', '/index.html', '/site.webmanifest', '/images/IMG_9921.jpeg'];
+const PRECACHE = ['/', '/index.html', '/th.html', '/404.html', '/site.webmanifest', '/images/IMG_9921.jpeg'];
 
 self.addEventListener('install', (e) => {
   // allSettled: one missing file no longer blocks the whole install
