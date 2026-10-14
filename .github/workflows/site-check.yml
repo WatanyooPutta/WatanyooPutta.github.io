@@ -1,0 +1,51 @@
+name: Site checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: "0 3 * * 1"   # every Monday, catches links that break over time
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Validate JSON and XML files
+        run: |
+          python3 - <<'PY'
+          import json, re, xml.dom.minidom as m
+          for f in ["profile.json", "site.webmanifest"]:
+              json.load(open(f, encoding="utf-8")); print("OK", f)
+          m.parse("sitemap.xml"); print("OK sitemap.xml")
+          for f in ["index.html", "th.html"]:
+              s = open(f, encoding="utf-8").read()
+              json.loads(re.search(r'ld\+json">(.*?)</script>', s, re.S).group(1)); print("OK JSON-LD in", f)
+          PY
+
+      - name: Check links
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: --no-progress --accept 200,206,403,429,999 --timeout 20 --exclude-all-private "index.html" "th.html"
+          fail: false
+
+      - name: Update sitemap lastmod from git history
+        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+        run: |
+          d=$(git log -1 --format=%cs -- index.html th.html)
+          sed -i "s|<lastmod>.*</lastmod>|<lastmod>${d}</lastmod>|g" sitemap.xml
+
+      - name: Commit sitemap if changed
+        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: update sitemap lastmod [skip ci]"
+          file_pattern: sitemap.xml
