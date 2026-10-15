@@ -26,7 +26,7 @@ jobs:
           for f in ["profile.json", "site.webmanifest"]:
               json.load(open(f, encoding="utf-8")); print("OK", f)
           m.parse("sitemap.xml"); print("OK sitemap.xml")
-          for f in ["index.html", "th.html"]:
+          for f in ["index.html"]:
               s = open(f, encoding="utf-8").read()
               match = re.search(r'ld\+json[^>]*>(.*?)</script>', s, re.S)
               if match:
@@ -38,13 +38,13 @@ jobs:
       - name: Check links
         uses: lycheeverse/lychee-action@v2
         with:
-          args: --no-progress --accept 200,206,403,429,999 --timeout 20 --exclude-all-private "index.html" "th.html"
+          args: --no-progress --accept 200,206,403,429,999 --timeout 20 --exclude-all-private "index.html"
           fail: false
 
       - name: Update sitemap lastmod from git history
         if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
         run: |
-          d=$(git log -1 --format=%cs -- index.html th.html)
+          d=$(git log -1 --format=%cs -- index.html)
           sed -i "s|<lastmod>.*</lastmod>|<lastmod>${d}</lastmod>|g" sitemap.xml
 
       - name: Commit sitemap if changed
