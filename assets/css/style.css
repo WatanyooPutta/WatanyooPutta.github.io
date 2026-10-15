@@ -1,4 +1,3 @@
-<style>
 :root{color-scheme:dark light;--bg:#07080a;--panel:#0d0f13;--panel2:#13161c;--text:#ececf1;--muted:#98a0ae;--line:rgba(255,255,255,.08);--line2:rgba(255,255,255,.18);--accent:#3ee0b5;--ink:#04110d;--glow:rgba(62,224,181,.13);--r:18px;--mono:ui-monospace,"SF Mono","JetBrains Mono",Menlo,Consolas,monospace}
 @media(prefers-color-scheme:light){:root{--bg:#fafafa;--panel:#fff;--panel2:#f4f5f7;--text:#0b0d12;--muted:#596070;--line:rgba(11,13,18,.09);--line2:rgba(11,13,18,.2);--accent:#0b7a62;--ink:#fff;--glow:rgba(11,122,98,.1)}}
 *{box-sizing:border-box;margin:0}
@@ -71,4 +70,3 @@ dialog .btn{margin-top:10px}
 .map-marker-label{background:rgba(7,8,10,.9);color:#fff;border:1px solid rgba(255,255,255,.15);font-weight:600;font-size:.75rem;padding:4px 10px;border-radius:8px}
 dialog#qr{background:var(--panel);color:var(--text);border:1px solid var(--line2);border-radius:var(--r);padding:28px;text-align:center;max-width:420px;width:92vw;overflow:auto}
 #qrbox{background:#fff;padding:16px;border-radius:14px;display:inline-block;margin:14px 0 6px;line-height:0}
-</style>
