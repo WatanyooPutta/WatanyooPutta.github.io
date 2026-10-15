@@ -1,5 +1,7 @@
 - name: Validate JSON and XML files
         run: |
+
+        
           python3 - <<'PY'
           import json, re, xml.dom.minidom as m
           
