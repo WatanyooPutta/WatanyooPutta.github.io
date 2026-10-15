@@ -4,13 +4,14 @@
           import json, re, xml.dom.minidom as m
           
           for f in ["profile.json", "site.webmanifest"]:
-              json.load(open(f, encoding="utf-8")); print("OK", f)
+              json.load(open(f, encoding="utf-8"))
+              print("OK", f)
               
-          m.parse("sitemap.xml"); print("OK sitemap.xml")
+          m.parse("sitemap.xml")
+          print("OK sitemap.xml")
           
           for f in ["index.html", "th.html"]:
               s = open(f, encoding="utf-8").read()
-              # Improved regex to handle spaces before the >
               match = re.search(r'ld\+json[^>]*>(.*?)</script>', s, re.S)
               if match:
                   json.loads(match.group(1))
