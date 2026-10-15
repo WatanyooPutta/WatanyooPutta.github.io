@@ -14,7 +14,6 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     
-    # ── Required GitHub Pages environment declaration ──
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -30,6 +29,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: '.'
+          include-hidden: true
           
       - name: Deploy to GitHub Pages
         id: deployment
