@@ -24,6 +24,7 @@
 <link rel="me" href="https://github.com/watanyooputta">
 <link rel="preload" as="image" href="images/IMG_9921.jpeg" fetchpriority="high">
 <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+<link rel="stylesheet" href="assets/css/style.css">
 <meta property="og:type" content="profile">
 <meta property="og:site_name" content="Watanyoo Putta">
 <meta property="og:url" content="https://watanyooputta.github.io/">
@@ -52,80 +53,7 @@
 {"@type":"ScholarlyArticle","@id":"https://doi.org/10.5281/zenodo.23219819","headline":"The Effects of Industrial Noise on Human Mental Health and Well-being in Khonkaenwittayayon School","author":{"@id":"https://watanyooputta.github.io/#person"},"datePublished":"2022-09-09","url":"https://zenodo.org/records/23219819","publisher":{"@type":"Organization","name":"Zenodo"},"sameAs":"https://doi.org/10.5281/zenodo.23219819"}
 ]}
 </script>
-<style>
-:root{color-scheme:dark light;--bg:#07080a;--panel:#0d0f13;--panel2:#13161c;--text:#ececf1;--muted:#98a0ae;--line:rgba(255,255,255,.08);--line2:rgba(255,255,255,.18);--accent:#3ee0b5;--ink:#04110d;--glow:rgba(62,224,181,.13);--r:18px;--mono:ui-monospace,"SF Mono","JetBrains Mono",Menlo,Consolas,monospace}
-@media(prefers-color-scheme:light){:root{--bg:#fafafa;--panel:#fff;--panel2:#f4f5f7;--text:#0b0d12;--muted:#596070;--line:rgba(11,13,18,.09);--line2:rgba(11,13,18,.2);--accent:#0b7a62;--ink:#fff;--glow:rgba(11,122,98,.1)}}
-*{box-sizing:border-box;margin:0}
-html{scroll-behavior:smooth}
-body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans Thai",sans-serif;background:var(--bg);color:var(--text);line-height:1.65;padding:0 16px 40px;-webkit-font-smoothing:antialiased}
-body::before{content:"";position:fixed;inset:0;z-index:-1;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:56px 56px;-webkit-mask-image:radial-gradient(ellipse 80% 55% at 50% 0,#000 10%,transparent 75%);mask-image:radial-gradient(ellipse 80% 55% at 50% 0,#000 10%,transparent 75%)}
-body::after{content:"";position:fixed;left:50%;top:-220px;width:900px;height:520px;transform:translateX(-50%);z-index:-1;background:radial-gradient(closest-side,var(--glow),transparent);pointer-events:none}
-#bar{position:fixed;top:0;left:0;height:2px;width:100%;transform:scaleX(0);transform-origin:0;background:var(--accent);z-index:50}
-.wrap{max-width:1080px;margin:0 auto}
-.skip{position:absolute;left:-999px}.skip:focus{left:16px;top:8px;background:#fff;color:#000;padding:8px 12px;z-index:99}
-a{color:var(--accent)}
-:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-header{display:flex;gap:40px;align-items:center;padding:72px 4px 48px}
-header>*{animation:rise .8s cubic-bezier(.2,.7,.2,1) both}header>div{animation-delay:.1s}
-@keyframes rise{from{opacity:0;transform:translateY(14px)}}
-.avatar{width:156px;height:156px;border-radius:36px;object-fit:cover;border:1px solid var(--line2);box-shadow:0 0 0 6px var(--panel),0 30px 80px -20px var(--glow);flex-shrink:0}
-h1{font-size:clamp(2.4rem,7vw,4.2rem);line-height:1.04;letter-spacing:-.045em;font-weight:700;background:linear-gradient(180deg,var(--text) 30%,var(--muted));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-h1 small{display:block;font-size:.34em;font-weight:500;letter-spacing:0;margin-top:10px;-webkit-text-fill-color:var(--muted)}
-.lead{color:var(--muted);font-size:1.12rem;margin:18px 0 22px;max-width:56ch}
-.lead strong{color:var(--text);font-weight:600}
-.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
-.chip{display:inline-flex;align-items:center;gap:8px;font:500 .78rem var(--mono);padding:6px 12px;border:1px solid var(--line2);border-radius:999px;color:var(--muted);background:var(--panel)}
-.dot{width:7px;height:7px;border-radius:50%;background:var(--accent);animation:pulse 2.4s infinite}
-@keyframes pulse{0%{box-shadow:0 0 0 0 var(--glow)}70%{box-shadow:0 0 0 8px transparent}}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.s2{grid-column:span 2}.s3{grid-column:span 3}
-.card{position:relative;overflow:hidden;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:var(--r);padding:26px;transition:border-color .2s}
-.card::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;opacity:0;transition:opacity .25s;background:radial-gradient(420px circle at var(--x,50%) var(--y,0),var(--glow),transparent 65%)}
-.card:hover{border-color:var(--line2)}.card:hover::before{opacity:1}
-.card>*{position:relative;z-index:1}
-h2{font-size:1.05rem;font-weight:600;letter-spacing:-.01em;margin-bottom:12px}
-.muted,.small{color:var(--muted);font-size:.95rem}.small{font-size:.88rem}
-.btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 18px;border-radius:10px;border:1px solid var(--accent);background:var(--accent);color:var(--ink);font:inherit;font-weight:600;font-size:.92rem;text-decoration:none;cursor:pointer;transition:transform .15s,border-color .15s,background .15s}
-.btn.alt{background:transparent;color:var(--text);border-color:var(--line2)}
-.btn.alt:hover{border-color:var(--accent)}.btn:active{transform:translateY(1px)}.btn:not(.alt):hover{filter:brightness(1.08)}
-.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
-.tags span{font:500 .76rem var(--mono);padding:4px 10px;border-radius:8px;border:1px solid var(--line);color:var(--muted);background:var(--panel)}
-.item{padding:16px 18px;border:1px solid var(--line);background:var(--panel);border-radius:12px;margin-top:12px}
-.item strong{display:block}
-.pics{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:16px}
-.zoom{border:1px solid var(--line);border-radius:12px;padding:0;background:var(--panel);overflow:hidden;cursor:zoom-in;display:block;width:100%}
-.zoom img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;transition:transform .45s}
-.zoom:hover img{transform:scale(1.04)}
-.zoom.wide img{aspect-ratio:auto;max-height:420px;object-fit:contain}
-blockquote{font-size:1.25rem;font-weight:500;letter-spacing:-.015em;line-height:1.4;margin:6px 0 14px;padding-left:16px;border-left:2px solid var(--accent)}
-ul.list{list-style:none;padding:0}ul.list li+li{margin-top:22px;padding-top:22px;border-top:1px solid var(--line)}
-.clock{font:600 1.9rem var(--mono);letter-spacing:-.03em;color:var(--accent);margin-top:2px}
-.call{font-family:var(--mono);color:var(--accent);cursor:crosshair}
-.links{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
-.links .btn{justify-content:space-between;text-align:left}.links .btn::after{content:"↗";opacity:.6}
-footer{margin-top:40px;padding-top:24px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
-dialog{border:0;background:none;padding:0;max-width:94vw;max-height:94vh;color:#fff;overflow:visible}
-dialog::backdrop{background:rgba(0,0,0,.85);backdrop-filter:blur(6px)}
-dialog img{max-width:94vw;max-height:86vh;border-radius:14px;display:block}
-dialog .btn{margin-top:10px}
-#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--text);color:var(--bg);padding:12px 22px;border-radius:12px;font-weight:600;opacity:0;pointer-events:none;transition:opacity .3s;z-index:60}
-#toast.show{opacity:1}
-@media(max-width:900px){.grid{grid-template-columns:1fr 1fr}.s3{grid-column:span 2}}
-@media(max-width:640px){header{flex-direction:column;text-align:center;padding:48px 0 32px;gap:24px}.lead{margin-inline:auto}.btns,.chips{justify-content:center}.grid{grid-template-columns:1fr}.s2,.s3{grid-column:auto}}
-@media(prefers-reduced-motion:reduce){*,::before{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
-@media print{body{background:#fff;color:#000}body::before,body::after,.btn,dialog,#toast,#bar{display:none}}
 
-.zoom[hidden]{display:none}
-.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:8px}
-.badge{margin-bottom:10px}
-#map{height:340px;border-radius:14px;border:1px solid var(--line2);margin-top:16px;z-index:0}
-@media(min-width:768px){#map{height:440px}}
-.leaflet-container{background:var(--panel);font:inherit}
-.map-marker-label{background:rgba(7,8,10,.9);color:#fff;border:1px solid rgba(255,255,255,.15);font-weight:600;font-size:.75rem;padding:4px 10px;border-radius:8px}
-dialog#qr{background:var(--panel);color:var(--text);border:1px solid var(--line2);border-radius:var(--r);padding:28px;text-align:center;max-width:420px;width:92vw;overflow:auto}
-#qrbox{background:#fff;padding:16px;border-radius:14px;display:inline-block;margin:14px 0 6px;line-height:0}
-</style>
 </head>
 <body>
 <div id="bar"></div>
@@ -198,84 +126,6 @@ dialog#qr{background:var(--panel);color:var(--text);border:1px solid var(--line2
 <dialog id="qr" aria-label="QR business card"><h2>Instant Scan &amp; Connect</h2><p class="small">Point your smartphone camera at the screen to instantly save Watanyoo Putta's contact profile.</p><div id="qrbox"></div><p class="small"><strong>vCard Contact Data Embedded</strong></p><div class="btns" style="justify-content:center"><button class="btn" type="button" id="dl2">Download .vcf File</button><button class="btn alt" type="button" data-close>Close</button></div></dialog>
 <p id="toast" role="status" aria-live="polite"></p>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js" defer></script>
-<script>
-(function () {
-  var $ = function (s) { return document.querySelector(s); };
-  var dlg = $('#lightbox'), big = $('#big'), qr = $('#qr'), toastEl = $('#toast'), timer;
-  function toast(m) { toastEl.textContent = m; toastEl.classList.add('show'); clearTimeout(timer); timer = setTimeout(function () { toastEl.classList.remove('show'); }, 2500); }
-
-  document.addEventListener('error', function (e) { var z = e.target.closest && e.target.closest('.zoom'); if (e.target.tagName === 'IMG' && z) z.hidden = true; }, true);
-
-  document.addEventListener('click', function (e) {
-    var z = e.target.closest('.zoom');
-    if (z) { var i = z.querySelector('img'); big.src = i.currentSrc || i.src; big.alt = i.alt; dlg.showModal(); return; }
-    if (e.target === dlg || e.target === qr || e.target.closest('[data-close]')) { if (dlg.open) dlg.close(); if (qr.open) qr.close(); }
-  });
-
-  var VCARD = ['BEGIN:VCARD','VERSION:3.0','N:Putta;Watanyoo;;;','FN:Watanyoo Putta','TITLE:Medical Researcher','ORG:Khonkaenwittayayon School',
-    'URL:https://watanyooputta.github.io/','URL:https://www.linkedin.com/in/watanyoo-putta/','URL:https://medium.com/@watanyoo.putta','END:VCARD'].join('\r\n');
-  function download() {
-    var a = document.createElement('a');
-    a.href = URL.createObjectURL(new Blob([VCARD], { type: 'text/vcard' }));
-    a.download = 'watanyoo-putta.vcf'; document.body.appendChild(a); a.click(); a.remove();
-    setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000); toast('Contact file downloaded');
-  }
-  $('#vcard').addEventListener('click', download);
-  $('#dl2').addEventListener('click', download);
-  $('#qrbtn').addEventListener('click', function () {
-    var box = $('#qrbox');
-    if (!box.firstChild) {
-      if (typeof qrcode === 'undefined') { toast('QR library is still loading, try again'); return; }
-      var q = qrcode(0, 'M'); q.addData(VCARD); q.make(); box.innerHTML = q.createImgTag(5, 0);
-      var im = box.querySelector('img'); if (im) im.alt = 'QR code containing the contact card of Watanyoo Putta';
-    }
-    qr.showModal();
-  });
-
-  $('#cite').addEventListener('click', function () {
-    var c = 'Putta, W. (2022). The Effects of Industrial Noise on Human Mental Health and Well-being in Khonkaenwittayayon School. Zenodo. https://doi.org/10.5281/zenodo.23219819';
-    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(c).then(function () { toast('Citation copied'); }, function () { toast('Copy failed'); });
-    else toast('Copy is not supported in this browser');
-  });
-
-  var bar = $('#bar');
-  document.querySelectorAll('.card').forEach(function (c) {
-    c.addEventListener('pointermove', function (e) { var r = c.getBoundingClientRect(); c.style.setProperty('--x', (e.clientX - r.left) + 'px'); c.style.setProperty('--y', (e.clientY - r.top) + 'px'); });
-  });
-  addEventListener('scroll', function () { var h = document.documentElement; bar.style.transform = 'scaleX(' + (h.scrollTop / ((h.scrollHeight - h.clientHeight) || 1)) + ')'; }, { passive: true });
-
-  var still = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  document.querySelectorAll('.call').forEach(function (el) {
-    var t = el.dataset.t, abc = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789', n, iv;
-    function run() { if (still) return; clearInterval(iv); n = 0; iv = setInterval(function () { el.textContent = t.split('').map(function (ch, i) { return i < n ? ch : abc[Math.floor(Math.random() * 36)]; }).join(''); if (n >= t.length) { clearInterval(iv); el.textContent = t; } n += 1 / 3; }, 30); }
-    el.addEventListener('mouseenter', run); el.addEventListener('touchstart', run, { passive: true });
-  });
-
-  var clock = $('#clock'), fmt = new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Bangkok', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
-  function tick() { clock.textContent = fmt.format(new Date()); } tick(); setInterval(tick, 1000);
-
-  // Map: Leaflet loads only when the map scrolls near the viewport
-  var LV = 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/', mapEl = $('#map'), started = false;
-  function drawMap() {
-    var map = L.map('map', { scrollWheelZoom: false }).setView([16.4692, 102.8290], 11);
-    L.tileLayer('https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png', { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>', maxZoom: 19 }).addTo(map);
-    [['Tropical Disease Research Center', [16.4692, 102.8290], 'Research internship affiliation & laboratory base.'],
-     ['SatFinder_KKN_KKW (E25ZVB)', [16.4336, 102.8355], '433 MHz TinyGS satellite ground station.'],
-     ['Lawa Model', [16.2850, 102.5833], 'Epidemiological fieldwork & community health engagement.']].forEach(function (p) {
-      var m = L.marker(p[1], { title: p[0] }).addTo(map);
-      m.bindTooltip('<b>' + p[0] + '</b>', { permanent: true, direction: 'top', offset: [0, -28], className: 'map-marker-label' });
-      m.bindPopup('<strong>' + p[0] + '</strong><br>' + p[2]);
-    });
-    setTimeout(function () { map.invalidateSize(); }, 300);
-  }
-  function initMap() {
-    if (started) return; started = true;
-    var css = document.createElement('link'); css.rel = 'stylesheet'; css.href = LV + 'leaflet.min.css'; document.head.appendChild(css);
-    var js = document.createElement('script'); js.src = LV + 'leaflet.min.js'; js.onload = drawMap; document.body.appendChild(js);
-  }
-  if ('IntersectionObserver' in window) { new IntersectionObserver(function (en, ob) { if (en[0].isIntersecting) { initMap(); ob.disconnect(); } }, { rootMargin: '300px' }).observe(mapEl); } else { initMap(); }
-  if ('serviceWorker' in navigator) addEventListener('load', function () { navigator.serviceWorker.register('/sw.js').catch(function () {}); });
-})();
-</script>
+<script src="assets/js/script.js"></script>
 </body>
 </html>
