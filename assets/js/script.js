@@ -75,3 +75,30 @@
   if ('IntersectionObserver' in window) { new IntersectionObserver(function (en, ob) { if (en[0].isIntersecting) { initMap(); ob.disconnect(); } }, { rootMargin: '300px' }).observe(mapEl); } else { initMap(); }
   if ('serviceWorker' in navigator) addEventListener('load', function () { navigator.serviceWorker.register('/sw.js').catch(function () {}); });
 })();
+
+document.addEventListener("DOMContentLoaded", function() {
+    var mapElement = document.getElementById('map');
+    
+    if (mapElement) {
+        // Center the map on Khon Kaen
+        var map = L.map('map').setView([16.4322, 102.8236], 10);
+
+        // Your CARTO Voyager basemap WITH your API key
+        L.tileLayer('https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png?key=cb1_4gfd_1_8f4a0c9e8b3d85a310477693', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+        }).addTo(map);
+
+        // Pin 1: Tropical Disease Research Center (KKU)
+        L.marker([16.4740, 102.8220]).addTo(map)
+            .bindPopup('<b>Tropical Disease Research Center</b><br>Khon Kaen University');
+
+        // Pin 2: SatFinder_KKN_KKW (E25ZVB)
+        L.marker([16.4297, 102.8315]).addTo(map)
+            .bindPopup('<b>SatFinder_KKN_KKW (E25ZVB)</b><br>Khonkaenwittayayon School');
+
+        // Pin 3: Lawa Model Site
+        L.marker([16.0350, 102.7300]).addTo(map)
+            .bindPopup('<b>Lawa Model Site</b><br>Field Research Location');
+    }
+});
