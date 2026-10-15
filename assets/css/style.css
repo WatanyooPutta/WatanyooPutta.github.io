@@ -1,5 +1,10 @@
 :root{color-scheme:dark light;--bg:#07080a;--panel:#0d0f13;--panel2:#13161c;--text:#ececf1;--muted:#98a0ae;--line:rgba(255,255,255,.08);--line2:rgba(255,255,255,.18);--accent:#3ee0b5;--ink:#04110d;--glow:rgba(62,224,181,.13);--r:18px;--mono:ui-monospace,"SF Mono","JetBrains Mono",Menlo,Consolas,monospace}
 @media(prefers-color-scheme:light){:root{--bg:#fafafa;--panel:#fff;--panel2:#f4f5f7;--text:#0b0d12;--muted:#596070;--line:rgba(11,13,18,.09);--line2:rgba(11,13,18,.2);--accent:#0b7a62;--ink:#fff;--glow:rgba(11,122,98,.1)}}
+
+/* --- Manual Theme Override Selectors --- */
+html[data-theme="light"]{color-scheme:light;--bg:#fafafa;--panel:#fff;--panel2:#f4f5f7;--text:#0b0d12;--muted:#596070;--line:rgba(11,13,18,.09);--line2:rgba(11,13,18,.2);--accent:#0b7a62;--ink:#fff;--glow:rgba(11,122,98,.1)}
+html[data-theme="dark"]{color-scheme:dark;--bg:#07080a;--panel:#0d0f13;--panel2:#13161c;--text:#ececf1;--muted:#98a0ae;--line:rgba(255,255,255,.08);--line2:rgba(255,255,255,.18);--accent:#3ee0b5;--ink:#04110d;--glow:rgba(62,224,181,.13)}
+
 *{box-sizing:border-box;margin:0}
 html{scroll-behavior:smooth}
 body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans Thai",sans-serif;background:var(--bg);color:var(--text);line-height:1.65;padding:0 16px 40px;-webkit-font-smoothing:antialiased}
@@ -75,10 +80,9 @@ dialog#qr{background:var(--panel);color:var(--text);border:1px solid var(--line2
     height: 400px;
     width: 100%;
     border-radius: 8px;
-    z-index: 1; /* Keeps the map behind your drop-down menus/lightbox */
+    z-index: 1;
 }
 
-/* FORCE 100% WIDTH 2x2 GRID */
 .pics {
     display: grid !important;
     grid-template-columns: repeat(2, 1fr) !important;
@@ -88,7 +92,6 @@ dialog#qr{background:var(--panel);color:var(--text);border:1px solid var(--line2
     margin-top: 16px;
 }
 
-/* STRIP HIDDEN BUTTON PADDING */
 .pics button.zoom {
     display: block !important;
     width: 100% !important;
@@ -98,36 +101,33 @@ dialog#qr{background:var(--panel);color:var(--text);border:1px solid var(--line2
     border: none !important;
     background: transparent !important;
     cursor: zoom-in;
-    line-height: 0 !important; /* Removes ghost space under images */
+    line-height: 0 !important;
 }
 
-/* PERFECT IMAGE CROPPING */
 .pics img {
     display: block !important;
     width: 100% !important;
     height: 100% !important;
-    aspect-ratio: 4 / 3 !important; /* Forces uniform size */
-    object-fit: cover !important; /* Crops cleanly */
+    aspect-ratio: 4 / 3 !important;
+    object-fit: cover !important;
     border-radius: 8px !important;
 }
 
-/* PERFECTLY CENTERED LIGHTBOX */
 #lightbox {
     position: fixed !important;
     top: 50% !important;
     left: 50% !important;
     transform: translate(-50%, -50%) !important;
-    margin: 0 !important; /* THIS FIXES THE OFF-CENTER BUG */
+    margin: 0 !important;
     max-width: 90vw !important;
     max-height: 90vh !important;
     width: fit-content !important;
     padding: 16px !important;
-    background: #ffffff !important; 
-    border: none !important;
+    background: var(--panel) !important; 
+    border: 1px solid var(--line2) !important;
     border-radius: 12px !important;
     box-shadow: 0 10px 40px rgba(0,0,0,0.5) !important;
     z-index: 1000 !important;
-    
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
@@ -138,19 +138,17 @@ dialog#qr{background:var(--panel);color:var(--text);border:1px solid var(--line2
     display: none !important;
 }
 
-/* LIGHTBOX IMAGE SIZING */
 #lightbox #big {
     display: block !important;
     max-width: 100% !important;
     max-height: 75vh !important;
     width: auto !important;
     height: auto !important;
-    object-fit: contain !important; /* Prevents cropping in fullscreen */
+    object-fit: contain !important;
     border-radius: 8px !important;
-    margin: 0 auto 16px auto !important; /* Centers image inside dialog */
+    margin: 0 auto 16px auto !important;
 }
 
-/* BUTTON CENTERING */
 #lightbox button[data-close] {
     align-self: center !important;
     margin: 0 auto !important;
@@ -163,21 +161,22 @@ dialog#qr{background:var(--panel);color:var(--text);border:1px solid var(--line2
   bottom: 20px;
   right: 20px;
   z-index: 999;
-  background: var(--card-bg, #ffffff);
-  color: var(--text-color, #111827);
-  border: 1px solid var(--border-color, #e5e7eb);
+  background: var(--panel);
+  color: var(--text);
+  border: 1px solid var(--line2);
   border-radius: 50%;
-  width: 44px;
-  height: 44px;
-  font-size: 18px;
+  width: 48px;
+  height: 48px;
+  font-size: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease, background-color 0.2s ease;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
 }
 
 .theme-float-btn:hover {
-  transform: scale(1.08);
+  transform: scale(1.1);
+  border-color: var(--accent);
 }
