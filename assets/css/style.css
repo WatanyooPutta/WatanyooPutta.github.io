@@ -156,3 +156,28 @@ dialog#qr{background:var(--panel);color:var(--text);border:1px solid var(--line2
     margin: 0 auto !important;
     display: block !important;
 }
+
+/* --- Floating Theme Toggle Button --- */
+.theme-float-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+  background: var(--card-bg, #ffffff);
+  color: var(--text-color, #111827);
+  border: 1px solid var(--border-color, #e5e7eb);
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.theme-float-btn:hover {
+  transform: scale(1.08);
+}
