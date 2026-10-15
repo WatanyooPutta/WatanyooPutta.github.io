@@ -77,3 +77,30 @@ dialog#qr{background:var(--panel);color:var(--text);border:1px solid var(--line2
     border-radius: 8px;
     z-index: 1; /* Keeps the map behind your drop-down menus/lightbox */
 }
+
+/* Creates a 2-column grid for the photos */
+.pics {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-top: 16px;
+}
+
+/* Removes default button styling */
+.pics button.zoom {
+    width: 100%;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: zoom-in;
+}
+
+/* The magic fix: object-fit cover forces the image to perfectly fill the box */
+.pics img {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1 / 1; /* Makes them perfect squares. Change to 4 / 3 for rectangles */
+    object-fit: cover; 
+    border-radius: 8px;
+    display: block;
+}
