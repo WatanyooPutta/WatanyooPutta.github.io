@@ -78,11 +78,10 @@ dialog#qr{background:var(--panel);color:var(--text);border:1px solid var(--line2
     z-index: 1; /* Keeps the map behind your drop-down menus/lightbox */
 }
 
-/* Force a clean 2x2 grid for 4 photos */
+/* Update your .pics CSS to this */
 .pics {
     display: grid !important;
     grid-template-columns: repeat(2, 1fr) !important;
-    grid-auto-rows: minmax(100px, auto);
     gap: 12px;
     margin-top: 16px;
     width: 100%;
@@ -91,29 +90,64 @@ dialog#qr{background:var(--panel);color:var(--text);border:1px solid var(--line2
 .pics button.zoom {
     display: block;
     width: 100%;
+    height: 100%; /* Force button to fill grid cell */
     padding: 0;
     margin: 0;
     border: none;
     background: transparent;
     cursor: zoom-in;
-    line-height: 0; /* Prevents weird spacing under the image */
 }
 
 .pics img {
     width: 100%;
     height: 100%;
-    aspect-ratio: 4 / 3; /* Standard photo shape. Change to 1 / 1 for squares */
-    object-fit: cover !important; /* Crops perfectly without squishing */
+    aspect-ratio: 4 / 3; 
+    object-fit: cover; 
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: block;
 }
 
-/* On very small phone screens, stack them 1 by 1 */
-@media (max-width: 480px) {
-    .pics {
-        grid-template-columns: 1fr !important;
-    }
-    .pics img {
-        aspect-ratio: 16 / 9; /* Wider crop on phones so they don't take up the whole screen */
-    }
+/* Lightbox Dialog Styling */
+#lightbox {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Perfectly centers the dialog */
+    max-width: 90vw;
+    max-height: 90vh;
+    padding: 16px;
+    background: #ffffff; /* Or your dark theme background */
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    z-index: 1000;
+    
+    /* These three lines force the image and button to center inside the dialog */
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+
+/* Ensure it acts like a dialog and doesn't break display block */
+#lightbox:not([open]) {
+    display: none;
+}
+
+#lightbox::backdrop {
+    background: rgba(0, 0, 0, 0.8); /* Darkens the background */
+    backdrop-filter: blur(4px); /* Optional: blurs the background */
+}
+
+/* Image inside the lightbox */
+#lightbox #big {
+    max-width: 100%;
+    max-height: 75vh;
+    object-fit: contain; /* Ensures the whole image is visible without cropping */
+    border-radius: 8px;
+    margin-bottom: 16px;
+}
+
+/* Lightbox Close Button */
+#lightbox button[data-close] {
+    align-self: center; /* Ensures the button stays in the middle */
 }
