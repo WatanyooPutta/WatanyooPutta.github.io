@@ -42,6 +42,28 @@
 <meta name="twitter:title" content="Watanyoo Putta (วทัญญู พุทธา) | Medical Researcher & Biomedical Innovator">
 <meta name="twitter:description" content="Thai medical researcher and biomedical innovator in Khon Kaen.">
 <meta name="twitter:image" content="https://watanyooputta.github.io/assets/images/IMG_9503.webp">
+  <script>
+function toggleTheme() {
+    let currentTheme = document.documentElement.getAttribute('data-theme');
+    
+    if (!currentTheme) {
+        currentTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    
+    let newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+}
+
+// Apply saved theme immediately on page load to prevent flashing
+(function() {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    }
+})();
+</script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
@@ -148,6 +170,6 @@
 <p id="toast" role="status" aria-live="polite"></p>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js" defer></script>
 <script src="assets/js/script.js"></script>
-<button class="theme-float-btn" type="button" id="theme-toggle" aria-label="Toggle theme">🌓</button>
+<button class="theme-float-btn" type="button" id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">🌓</button>
 </body>
 </html>
