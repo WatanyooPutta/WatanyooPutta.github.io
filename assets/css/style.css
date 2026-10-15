@@ -78,76 +78,81 @@ dialog#qr{background:var(--panel);color:var(--text);border:1px solid var(--line2
     z-index: 1; /* Keeps the map behind your drop-down menus/lightbox */
 }
 
-/* Update your .pics CSS to this */
+/* FORCE 100% WIDTH 2x2 GRID */
 .pics {
     display: grid !important;
     grid-template-columns: repeat(2, 1fr) !important;
-    gap: 12px;
+    gap: 12px !important;
+    width: 100% !important; 
+    box-sizing: border-box !important;
     margin-top: 16px;
-    width: 100%;
 }
 
+/* STRIP HIDDEN BUTTON PADDING */
 .pics button.zoom {
-    display: block;
-    width: 100%;
-    height: 100%; /* Force button to fill grid cell */
-    padding: 0;
-    margin: 0;
-    border: none;
-    background: transparent;
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    background: transparent !important;
     cursor: zoom-in;
+    line-height: 0 !important; /* Removes ghost space under images */
 }
 
+/* PERFECT IMAGE CROPPING */
 .pics img {
-    width: 100%;
-    height: 100%;
-    aspect-ratio: 4 / 3; 
-    object-fit: cover; 
-    border-radius: 8px;
-    display: block;
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    aspect-ratio: 4 / 3 !important; /* Forces uniform size */
+    object-fit: cover !important; /* Crops cleanly */
+    border-radius: 8px !important;
 }
 
-/* Lightbox Dialog Styling */
+/* PERFECTLY CENTERED LIGHTBOX */
 #lightbox {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); /* Perfectly centers the dialog */
-    max-width: 90vw;
-    max-height: 90vh;
-    padding: 16px;
-    background: #ffffff; /* Or your dark theme background */
-    border: none;
-    border-radius: 12px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
-    z-index: 1000;
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    margin: 0 !important; /* THIS FIXES THE OFF-CENTER BUG */
+    max-width: 90vw !important;
+    max-height: 90vh !important;
+    width: fit-content !important;
+    padding: 16px !important;
+    background: #ffffff !important; 
+    border: none !important;
+    border-radius: 12px !important;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5) !important;
+    z-index: 1000 !important;
     
-    /* These three lines force the image and button to center inside the dialog */
-    display: flex;
-    flex-direction: column;
-    align-items: center; 
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
 }
 
-/* Ensure it acts like a dialog and doesn't break display block */
 #lightbox:not([open]) {
-    display: none;
+    display: none !important;
 }
 
-#lightbox::backdrop {
-    background: rgba(0, 0, 0, 0.8); /* Darkens the background */
-    backdrop-filter: blur(4px); /* Optional: blurs the background */
-}
-
-/* Image inside the lightbox */
+/* LIGHTBOX IMAGE SIZING */
 #lightbox #big {
-    max-width: 100%;
-    max-height: 75vh;
-    object-fit: contain; /* Ensures the whole image is visible without cropping */
-    border-radius: 8px;
-    margin-bottom: 16px;
+    display: block !important;
+    max-width: 100% !important;
+    max-height: 75vh !important;
+    width: auto !important;
+    height: auto !important;
+    object-fit: contain !important; /* Prevents cropping in fullscreen */
+    border-radius: 8px !important;
+    margin: 0 auto 16px auto !important; /* Centers image inside dialog */
 }
 
-/* Lightbox Close Button */
+/* BUTTON CENTERING */
 #lightbox button[data-close] {
-    align-self: center; /* Ensures the button stays in the middle */
+    align-self: center !important;
+    margin: 0 auto !important;
+    display: block !important;
 }
