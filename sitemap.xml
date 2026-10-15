@@ -1,19 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://watanyooputta.github.io/</loc>
     <lastmod>2026-10-15</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://watanyooputta.github.io/"/>
-    <xhtml:link rel="alternate" hreflang="th" href="https://watanyooputta.github.io/th.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://watanyooputta.github.io/"/>
-    <image:image><image:loc>https://watanyooputta.github.io/images/IMG_9921.jpeg</image:loc><image:caption>Portrait of Watanyoo Putta</image:caption></image:image>
-    <image:image><image:loc>https://watanyooputta.github.io/images/IMG_4697.jpeg</image:loc><image:caption>Watanyoo Putta holding NRCT 2026 Innovation Award</image:caption></image:image>
-  </url>
-  <url>
-    <loc>https://watanyooputta.github.io/th.html</loc>
-    <lastmod>2026-10-15</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://watanyooputta.github.io/"/>
-    <xhtml:link rel="alternate" hreflang="th" href="https://watanyooputta.github.io/th.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://watanyooputta.github.io/"/>
+    <image:image>
+      <image:loc>https://watanyooputta.github.io/assets/images/IMG_9921.webp</image:loc>
+      <image:caption>Portrait of Watanyoo Putta</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://watanyooputta.github.io/assets/images/IMG_4697.webp</image:loc>
+      <image:caption>Watanyoo Putta holding NRCT 2026 Innovation Award</image:caption>
+    </image:image>
   </url>
 </urlset>
