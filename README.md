@@ -1,7 +1,6 @@
 # Sovereign Entity Hub | Watanyoo Putta (วทัญญู พุทธา)
 
 [![Entity Hub Release](https://img.shields.io/badge/Release-v1.1.0-blue?style=flat-square)](https://github.com/WatanyooPutta/WatanyooPutta.github.io/releases/tag/v1.1.0)
-[![Zenodo DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.23317893-blueviolet?style=flat-square)](https://doi.org/10.5281/zenodo.23317893)
 [![Wikidata Entity](https://img.shields.io/badge/Wikidata-Q141644996-green?style=flat-square)](https://www.wikidata.org/wiki/Q141644996)
 [![ORCID iD](https://img.shields.io/badge/ORCID-0009--0007--2782--1422-brightgreen?style=flat-square)](https://orcid.org/0009-0007-2782-1422)
 
@@ -12,7 +11,6 @@ Official, cryptographically linked professional digital presence of **Watanyoo P
 ## 🌐 Verified Professional Nodes
 - **Live Entity Hub:** [watanyooputta.github.io](https://watanyooputta.github.io/)
 - **Medium Publications:** [@watanyoo.putta](https://medium.com/@watanyoo.putta)
-- **Zenodo Academic Archive:** [DOI 10.5281/zenodo.23317893](https://doi.org/10.5281/zenodo.23317893)
 - **Wikidata Entity:** [Q141644996](https://www.wikidata.org/wiki/Q141644996)
 - **ORCID Registry:** [0009-0007-2782-1422](https://orcid.org/0009-0007-2782-1422)
 - **LinkedIn Profile:** [watanyoo-putta](https://www.linkedin.com/in/watanyoo-putta/)
