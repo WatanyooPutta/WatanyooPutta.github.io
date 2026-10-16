@@ -1,4 +1,4 @@
-const SHELL = 'shell-v5';
+const SHELL = 'shell-v7';
 const TILES = 'carto-tiles-v1';
 const MAX_TILES = 300;
 const PRECACHE = ['/', '/index.html', '/404.html', '/site.webmanifest', '/assets/images/IMG_9921-400.webp', '/assets/css/style.css'];
