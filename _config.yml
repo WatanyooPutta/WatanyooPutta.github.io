@@ -1,0 +1,28 @@
+title: Watanyoo Putta
+description: Watanyoo Putta (วทัญญู พุทธา), Khon Kaen, Thailand. Tropical disease research, One Health and biosensors.
+url: "https://watanyooputta.github.io"
+baseurl: ""
+lang: en
+timezone: Asia/Bangkok
+
+plugins:
+  - jekyll-sitemap
+
+collections:
+  news:
+    output: true
+    permalink: /news/:title/
+
+defaults:
+  - scope:
+      path: ""
+      type: "news"
+    values:
+      layout: news
+
+# Files Jekyll should NOT publish as pages
+exclude:
+  - README.md
+  - CITATION.cff
+  - Gemfile
+  - Gemfile.lock
