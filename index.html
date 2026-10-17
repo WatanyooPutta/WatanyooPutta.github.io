@@ -1,0 +1,45 @@
+---
+layout: default
+title: "Watanyoo Putta (วทัญญู พุทธา) | Tropical Disease Research"
+description: "Watanyoo Putta (วทัญญู พุทธา), Khon Kaen, Thailand. Tropical disease research, One Health and biosensors. Medium: @watanyoo.putta."
+og_type: profile
+hero: true
+---
+<header>
+  <img class="avatar" src="{{ '/assets/images/IMG_9921-400.webp' | relative_url }}" alt="Portrait of Watanyoo Putta" width="156" height="156" fetchpriority="high" decoding="async">
+  <div>
+    <div class="chips"><span class="chip"><i class="dot"></i>Research portfolio</span></div>
+    <h1>Watanyoo Putta <small lang="th">(วทัญญู พุทธา)</small></h1>
+    <p class="lead">Medical Researcher &amp; Biomedical Innovator (นักวิจัยทางการแพทย์) | Khonkaenwittayayon School Student &amp; Medium Author (@watanyoo.putta)</p>
+    <nav class="btns" aria-label="Primary actions">
+      <button class="btn" type="button" id="vcard">Save Contact</button>
+      <button class="btn alt" type="button" id="qrbtn">QR Business Card</button>
+    </nav>
+  </div>
+</header>
+<main id="main" class="grid">
+<section class="card" lang="en"><h2>Professional Overview</h2><p>Watanyoo Putta is a high school student at Khonkaenwittayayon School and an aspiring physician-scientist based in Khon Kaen, Thailand. Specialising in tropical medicine, biosensors, disease surveillance, and the One Health framework, he completed a formal research internship at the Tropical Disease Research Center, Khon Kaen University, and publishes public science insights on Medium (<strong>@watanyoo.putta</strong>).</p></section>
+<section class="card" lang="th"><h2>ประวัติส่วนตัว</h2><p>วทัญญู พุทธา เป็นนักเรียนระดับมัธยมศึกษา ณ โรงเรียนขอนแก่นวิทยายน และนักวิจัยรุ่นเยาว์ผู้มีความสนใจด้านเวชศาสตร์เขตร้อน เซนเซอร์ชีวภาพ และแนวคิดสุขภาพหนึ่งเดียว (One Health) มีประสบการณ์การศึกษาวิจัยร่วมกับศูนย์วิจัยโรคเขตร้อน มหาวิทยาลัยขอนแก่น พร้อมทั้งเผยแพร่บทความวิทยาศาสตร์ผ่านทาง Medium (<strong>@watanyoo.putta</strong>)</p></section>
+<section class="card"><h2>Current Status</h2><p><strong>Base:</strong> Khon Kaen, Thailand</p><p class="small" style="margin-top:10px">Local Time (Asia/Bangkok):</p><div class="clock" id="clock" aria-label="Current time in Khon Kaen">--:--:--</div></section>
+<section class="card s2"><h2>Guiding Principle</h2><blockquote>“True success is not in the learning, but in its application to the benefit of mankind”</blockquote><p class="small"><strong>— Prince Mahidol of Songkla (Father of Modern Thai Medicine)</strong></p><p class="small" style="margin-top:8px">Embodied daily through biomedical innovations, tropical medicine research, and science communication on Medium (@watanyoo.putta).</p></section>
+<section class="card"><h2>Press &amp; Media Mentions</h2><p class="small">External press coverage of research innovations and award recognition.</p><div class="item"><strong>Esan Daily Online (July 9, 2026)</strong><span class="small">Covering the medical device innovation award event.</span><div class="btns"><a class="btn alt" href="https://www.esandailyonline.com/168002" target="_blank" rel="noopener noreferrer">Read Esan Daily Feature</a></div></div></section>
+<section class="card s2"><h2>Explore</h2><div class="explore">
+<a href="{{ '/research/' | relative_url }}"><strong>Research</strong><span>Publications, laboratory work, the Lawa Model and the field map</span></a>
+<a href="{{ '/awards/' | relative_url }}"><strong>Awards</strong><span>NRCT award, NIEMS credential, One Health certificate, education</span></a>
+<a href="{{ '/radio/' | relative_url }}"><strong>Radio &amp; Tech</strong><span>TinyGS ground station and disaster communication</span></a>
+<a href="{{ '/news/' | relative_url }}"><strong>News</strong><span>Latest updates</span></a></div></section>
+<section class="card"><h2>Profiles</h2><p class="small" style="margin-bottom:12px">Professional and academic profiles.</p><nav class="links" style="grid-template-columns:1fr" aria-label="Professional profiles">
+<a class="btn" href="https://medium.com/@watanyoo.putta" rel="me external">Medium Publisher (@watanyoo.putta)</a>
+<a class="btn alt" href="https://www.wikidata.org/wiki/Q141644996" rel="me external">Wikidata (Q141644996)</a>
+<a class="btn alt" href="https://orcid.org/0009-0007-2782-1422" rel="me external">ORCID (0009-0007-2782-1422)</a>
+<a class="btn alt" href="https://scholar.google.com/citations?user=_8o9aVEAAAAJ" rel="me external">Google Scholar Profile</a>
+<a class="btn alt" href="https://www.linkedin.com/in/watanyoo-putta/" rel="me external">LinkedIn Profile</a>
+<a class="btn alt" href="https://github.com/watanyooputta" rel="me external">GitHub Repository</a>
+<a class="btn alt" href="https://doi.org/10.5281/zenodo.23317893" rel="me external">Zenodo Record (DOI 10.5281/zenodo.23317893)</a></nav></section>
+<section class="card s2"><h2>Latest news</h2><ul class="newslist">
+{%- assign latest = site.news | sort: 'date' | reverse -%}
+{%- for n in latest limit: 3 -%}
+<li><a href="{{ n.url | relative_url }}">{{ n.title }}</a><br><span class="small">{{ n.date | date: "%B %-d, %Y" }}. {{ n.summary }}</span></li>
+{%- endfor -%}
+</ul><div class="btns"><a class="btn alt" href="{{ '/news/' | relative_url }}">All news</a></div></section>
+</main>
