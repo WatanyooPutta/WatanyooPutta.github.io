@@ -20,9 +20,15 @@ defaults:
     values:
       layout: news
 
-# Files Jekyll should NOT publish as pages
 exclude:
   - README.md
+  - CHANGELOG.md
+  - SECURITY.md
+  - CONTRIBUTING.md
+  - CODE_OF_CONDUCT.md
   - CITATION.cff
   - Gemfile
   - Gemfile.lock
+
+include:
+  - .well-known
