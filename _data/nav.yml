@@ -1,6 +1,8 @@
 # Edit the menu here once; every page updates.
 - title: Research
   url: /research/
+- title: Emergency
+  url: /emergency/
 - title: Awards
   url: /awards/
 - title: Radio & Tech
