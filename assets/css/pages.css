@@ -53,3 +53,52 @@ details.item .muted{display:block;margin-top:8px}
 @media(max-width:900px){.quote-zoom{grid-column:span 2}}
 @media(max-width:640px){.quote-zoom{grid-column:auto;min-height:60vh}.tile{min-height:230px}}
 @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}.qz-inner{transform:none;opacity:1}}
+
+/* ---- Page transitions (Chrome, Edge, Safari 18+; other browsers just switch pages normally) ---- */
+@view-transition{navigation:auto}
+::view-transition-old(root){animation:vt-out .22s ease both}
+::view-transition-new(root){animation:vt-in .38s cubic-bezier(.2,.7,.2,1) both}
+@keyframes vt-out{to{opacity:0;transform:translateY(-6px)}}
+@keyframes vt-in{from{opacity:0;transform:translateY(10px)}}
+.site-nav{view-transition-name:site-nav}
+
+/* ---- Sky that follows Khon Kaen time ---- */
+body::after{background:radial-gradient(closest-side,var(--sky,var(--glow)),transparent)!important}
+html[data-sky="dawn"]{--sky:rgba(255,166,92,.18)}
+html[data-sky="dusk"]{--sky:rgba(190,110,255,.17)}
+html[data-sky="night"]{--sky:rgba(80,110,255,.18)}
+html[data-sky="night"]::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.55;background-image:radial-gradient(1.5px 1.5px at 12% 18%,#fff,transparent),radial-gradient(1px 1px at 28% 8%,#fff,transparent),radial-gradient(1.5px 1.5px at 44% 22%,#cfe,transparent),radial-gradient(1px 1px at 63% 12%,#fff,transparent),radial-gradient(1.5px 1.5px at 78% 26%,#fff,transparent),radial-gradient(1px 1px at 90% 9%,#cfe,transparent),radial-gradient(1px 1px at 8% 40%,#fff,transparent),radial-gradient(1.5px 1.5px at 52% 6%,#fff,transparent)}
+.sky-label{font:500 .8rem var(--mono);color:var(--muted);margin-top:6px}
+
+/* ---- One Health network ---- */
+.oh-card{padding:0}
+.oh-head{padding:24px 26px 0}
+#oh{display:block;width:100%;height:340px;touch-action:pan-y;cursor:pointer}
+.oh-controls{display:flex;flex-wrap:wrap;gap:8px;padding:0 26px}
+.oh-btn[aria-pressed="true"]{border-color:var(--accent);color:var(--accent)}
+.oh-info{padding:14px 26px 24px;min-height:3.4em}
+@media(max-width:640px){#oh{height:300px}}
+
+/* ---- Liver fluke life cycle ---- */
+.lc-grid{display:grid;grid-template-columns:minmax(250px,400px) 1fr;gap:24px;align-items:center;margin-top:18px}
+@media(max-width:760px){.lc-grid{grid-template-columns:1fr}}
+#lc{width:100%;max-width:400px;margin:auto;display:block}
+#lc .ring{fill:none;stroke:var(--line2);stroke-width:2;stroke-dasharray:6 9;animation:flow 4s linear infinite}
+@keyframes flow{to{stroke-dashoffset:-60}}
+#lc .st{cursor:pointer;outline:none}
+#lc .st circle{fill:var(--panel2);stroke:var(--line2);stroke-width:2;transition:fill .25s,stroke .25s}
+#lc .st:hover circle,#lc .st:focus-visible circle{stroke:var(--accent)}
+#lc .st.on circle{fill:var(--glow);stroke:var(--accent);stroke-width:3}
+#lc .st text{fill:var(--text);text-anchor:middle;pointer-events:none}
+#lc .st .n{font:700 15px var(--mono)}
+#lc .st .l{font:500 11.5px system-ui,sans-serif;fill:var(--muted)}
+#lc .st.on .l{fill:var(--text)}
+.lc-panel{min-height:11em}
+.lc-panel h3{font-size:1.1rem;margin-bottom:6px}
+.lc-panel .ctl{margin-top:10px;padding:10px 14px;border-left:2px solid var(--accent);background:var(--panel);border-radius:0 10px 10px 0;font-size:.92rem}
+.lc-note{margin-top:14px}
+
+/* ---- Morse callsign ---- */
+.call.on{text-shadow:0 0 12px var(--accent),0 0 28px var(--accent)}
+.morse{display:block;font:500 .78rem var(--mono);letter-spacing:.14em;color:var(--muted);margin-top:4px;word-break:break-all}
+@media(prefers-reduced-motion:reduce){#lc .ring{animation:none}}
