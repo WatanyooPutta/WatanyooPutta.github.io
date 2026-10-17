@@ -1,0 +1,18 @@
+---
+layout: default
+title: "News | Watanyoo Putta (วทัญญู พุทธา)"
+crumb: News
+description: "Latest updates on research, awards and publications from Watanyoo Putta (วทัญญู พุทธา), Khon Kaen, Thailand."
+permalink: /news/
+---
+<header class="page-head">
+  <p class="crumbs"><a href="{{ '/' | relative_url }}">Home</a> / News</p>
+  <h1>News</h1>
+  <p>Updates on research, awards and publications.</p>
+</header>
+<main id="main"><section class="card"><ul class="newslist">
+{%- assign all = site.news | sort: 'date' | reverse -%}
+{%- for n in all -%}
+<li><a href="{{ n.url | relative_url }}">{{ n.title }}</a><br><span class="small">{{ n.date | date: "%B %-d, %Y" }}. {{ n.summary }}</span></li>
+{%- endfor -%}
+</ul></section></main>
