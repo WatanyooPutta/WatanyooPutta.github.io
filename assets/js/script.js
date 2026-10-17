@@ -121,5 +121,152 @@
     });
   });
 
+  // ===== One Health network (home) =====
+  var oh = $('#oh');
+  if (oh) {
+    var ctx = oh.getContext('2d'), W, H, dpr, parts = [], act = -1, ptr = null, raf = 0, vis = true, fr = 0, cA = '#3ee0b5', cT = '#ececf1';
+    var NODES = [
+      { l: 'Human', x: .5, y: .27, t: 'Human health: first aid, EMS and prehospital care.', a: '/emergency/', b: 'See Emergency & First Aid' },
+      { l: 'Animal', x: .2, y: .74, t: 'Animal health: fish and snails are hosts in the liver fluke life cycle.', a: '/research/#lifecycle', b: 'See the life cycle' },
+      { l: 'Environment', x: .8, y: .74, t: 'Environmental health: lakes, water and communities, as at the Lawa field site.', a: '/research/#lifecycle', b: 'See the Lawa Model' }
+    ];
+    var ohBtns = document.querySelectorAll('.oh-btn');
+    function colors() { var s = getComputedStyle(document.documentElement); cA = s.getPropertyValue('--accent').trim() || cA; cT = s.getPropertyValue('--text').trim() || cT; }
+    function ohSet(i) {
+      act = i; var n = NODES[i];
+      $('#oh-text').textContent = n.t;
+      var a = $('#oh-link'); a.textContent = n.b + ' \u2192'; a.href = n.a; a.hidden = false;
+      ohBtns.forEach(function (b, k) { b.setAttribute('aria-pressed', k === i ? 'true' : 'false'); });
+      if (still) ohDraw();
+    }
+    function ohSize() {
+      dpr = Math.min(2, window.devicePixelRatio || 1); W = oh.clientWidth; H = oh.clientHeight;
+      oh.width = W * dpr; oh.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      var N = W < 500 ? 22 : 38; parts = [];
+      for (var i = 0; i < N; i++) { var k = i % 3, n = NODES[k]; parts.push({ k: k, x: n.x * W + (Math.random() - .5) * 120, y: n.y * H + (Math.random() - .5) * 120, vx: 0, vy: 0 }); }
+      colors(); ohDraw();
+    }
+    function ohDraw() {
+      fr++; if (fr % 40 === 0) colors();
+      ctx.clearRect(0, 0, W, H); ctx.lineWidth = 1;
+      var i, j, p, q, n, d;
+      for (i = 0; i < parts.length; i++) {
+        p = parts[i]; n = NODES[p.k];
+        if (!still) {
+          p.vx += (n.x * W - p.x) * .0009 + (Math.random() - .5) * .08; p.vy += (n.y * H - p.y) * .0009 + (Math.random() - .5) * .08;
+          if (ptr) { var dx = p.x - ptr.x, dy = p.y - ptr.y, dd = Math.sqrt(dx * dx + dy * dy); if (dd < 110 && dd > 0) { p.vx += dx / dd * .6; p.vy += dy / dd * .6; } }
+          p.vx *= .96; p.vy *= .96; p.x += p.vx; p.y += p.vy;
+        }
+      }
+      ctx.strokeStyle = cA; ctx.fillStyle = cA;
+      ctx.globalAlpha = .22; ctx.beginPath();
+      for (i = 0; i < 3; i++) { ctx.moveTo(NODES[i].x * W, NODES[i].y * H); ctx.lineTo(NODES[(i + 1) % 3].x * W, NODES[(i + 1) % 3].y * H); }
+      ctx.stroke();
+      for (i = 0; i < parts.length; i++) {
+        p = parts[i]; n = NODES[p.k];
+        d = Math.hypot(p.x - n.x * W, p.y - n.y * H);
+        ctx.globalAlpha = Math.max(0, .35 - d / 420); ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(n.x * W, n.y * H); ctx.stroke();
+        for (j = i + 1; j < parts.length; j++) {
+          q = parts[j]; d = Math.hypot(p.x - q.x, p.y - q.y);
+          if (d < 70) { ctx.globalAlpha = (1 - d / 70) * .35; ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y); ctx.stroke(); }
+        }
+        ctx.globalAlpha = .9; ctx.beginPath(); ctx.arc(p.x, p.y, 2, 0, 6.3); ctx.fill();
+      }
+      for (i = 0; i < 3; i++) {
+        n = NODES[i]; var x = n.x * W, y = n.y * H, on = i === act, pulse = on && !still ? 4 * Math.sin(fr / 10) : 0;
+        ctx.globalAlpha = on ? .28 : .12; ctx.beginPath(); ctx.arc(x, y, 38 + pulse, 0, 6.3); ctx.fill();
+        ctx.globalAlpha = 1; ctx.beginPath(); ctx.arc(x, y, 24, 0, 6.3); ctx.fillStyle = on ? cA : 'rgba(10,12,16,.85)'; ctx.fill();
+        ctx.lineWidth = 2; ctx.strokeStyle = cA; ctx.stroke(); ctx.lineWidth = 1; ctx.fillStyle = cA;
+        ctx.font = '600 13px system-ui,sans-serif'; ctx.textAlign = 'center'; ctx.fillStyle = cT; ctx.fillText(n.l, x, y + 48); ctx.fillStyle = cA;
+      }
+      ctx.globalAlpha = 1;
+    }
+    function ohLoop() { if (!vis || document.hidden) { raf = 0; return; } ohDraw(); raf = requestAnimationFrame(ohLoop); }
+    function ohStart() { if (!still && !raf) raf = requestAnimationFrame(ohLoop); }
+    function ohPos(e) { var r = oh.getBoundingClientRect(), t = e.touches ? e.touches[0] : e; return { x: t.clientX - r.left, y: t.clientY - r.top }; }
+    oh.addEventListener('pointermove', function (e) { ptr = ohPos(e); });
+    oh.addEventListener('pointerleave', function () { ptr = null; });
+    oh.addEventListener('click', function (e) {
+      var p = ohPos(e);
+      NODES.forEach(function (n, i) { if (Math.hypot(p.x - n.x * W, p.y - n.y * H) < 42) ohSet(i); });
+    });
+    ohBtns.forEach(function (b) { b.addEventListener('click', function () { ohSet(+b.dataset.i); }); });
+    addEventListener('resize', ohSize);
+    if ('IntersectionObserver' in window) new IntersectionObserver(function (en) { vis = en[0].isIntersecting; if (vis) ohStart(); }).observe(oh);
+    document.addEventListener('visibilitychange', ohStart);
+    ohSize(); ohStart();
+  }
+
+  // ===== Liver fluke life cycle (research) =====
+  var lc = $('#lc');
+  if (lc) {
+    var ST = [
+      ['Eggs', 'Eggs in water', 'Eggs leave the body in stool. Where sanitation is poor they reach ponds, canals and lakes.', 'Control point: safe toilets and sanitation keep eggs out of the water.'],
+      ['Snail', 'Snail host', 'Bithynia snails eat the eggs. Inside the snail the parasite multiplies and larvae (cercariae) are released into the water.', 'Control point: managing the habitats around the water.'],
+      ['Fish', 'Freshwater fish', 'Larvae burrow into freshwater fish (cyprinids) and form tiny cysts, called metacercariae, in the flesh.', 'Control point: fish handling and farming practices.'],
+      ['People', 'People eat raw fish', 'Eating raw or undercooked fish swallows live cysts. Cats and dogs can carry the parasite too.', 'Control point: health education, thorough cooking, and treating pets.'],
+      ['Flukes', 'Adult flukes in the bile ducts', 'The cysts grow into adult flukes in the liver bile ducts and lay eggs. Long-term infection raises the risk of bile duct cancer.', 'Control point: screening and treatment, which also stops new eggs.']
+    ];
+    var cx = 200, cy = 190, R = 130, g = '<circle class="ring" cx="' + cx + '" cy="' + cy + '" r="' + R + '"/>';
+    ST.forEach(function (s, i) {
+      var a = (-90 + i * 72) * Math.PI / 180, x = cx + R * Math.cos(a), y = cy + R * Math.sin(a);
+      g += '<g class="st" tabindex="0" role="button" aria-label="Stage ' + (i + 1) + ': ' + s[1] + '" data-i="' + i + '"><circle cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" r="30"/><text class="n" x="' + x.toFixed(1) + '" y="' + (y + 5).toFixed(1) + '">' + (i + 1) + '</text><text class="l" x="' + x.toFixed(1) + '" y="' + (y + 48).toFixed(1) + '">' + s[0] + '</text></g>';
+    });
+    lc.innerHTML = g;
+    var stg = lc.querySelectorAll('.st'), timer2 = 0, cur = -1;
+    function lcSet(i) {
+      cur = i; stg.forEach(function (n, k) { n.classList.toggle('on', k === i); });
+      $('#lc-t').textContent = (i + 1) + '. ' + ST[i][1]; $('#lc-d').textContent = ST[i][2];
+      var c = $('#lc-c'); c.textContent = ST[i][3]; c.hidden = false;
+    }
+    function lcStop() { clearInterval(timer2); timer2 = 0; $('#lc-play').textContent = 'Play the cycle'; }
+    stg.forEach(function (n) {
+      n.addEventListener('click', function () { lcStop(); lcSet(+n.dataset.i); });
+      n.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); lcStop(); lcSet(+n.dataset.i); } });
+    });
+    on('#lc-play', 'click', function () {
+      if (timer2) { lcStop(); return; }
+      $('#lc-play').textContent = 'Pause'; lcSet((cur + 1) % ST.length);
+      timer2 = setInterval(function () { lcSet((cur + 1) % ST.length); }, 3200);
+    });
+  }
+
+  // ===== Morse callsign (tap it) =====
+  var MORSE = { A: '.-', B: '-...', C: '-.-.', D: '-..', E: '.', F: '..-.', G: '--.', H: '....', I: '..', J: '.---', K: '-.-', L: '.-..', M: '--', N: '-.', O: '---', P: '.--.', Q: '--.-', R: '.-.', S: '...', T: '-', U: '..-', V: '...-', W: '.--', X: '-..-', Y: '-.--', Z: '--..', 0: '-----', 1: '.----', 2: '..---', 3: '...--', 4: '....-', 5: '.....', 6: '-....', 7: '--...', 8: '---..', 9: '----.' };
+  var actx = null;
+  document.querySelectorAll('.call').forEach(function (el) {
+    var word = el.dataset.t, busy = false, label = document.createElement('span'); label.className = 'morse'; label.setAttribute('aria-hidden', 'true');
+    label.textContent = word.split('').map(function (c) { return MORSE[c] || ''; }).join('  ');
+    el.parentNode.insertBefore(label, el.nextSibling);
+    el.addEventListener('click', function () {
+      if (busy) return; busy = true;
+      var AC = window.AudioContext || window.webkitAudioContext;
+      if (AC && !actx) { try { actx = new AC(); } catch (e) { actx = null; } }
+      var t = 0, U = 90; // one dot = 90 ms
+      word.split('').forEach(function (ch, ci) {
+        (MORSE[ch] || '').split('').forEach(function (sym) {
+          var len = sym === '.' ? U : U * 3, st = t;
+          setTimeout(function () {
+            if (!still) el.classList.add('on');
+            if (actx) { try { var o = actx.createOscillator(), gn = actx.createGain(); o.frequency.value = 650; gn.gain.value = .04; o.connect(gn); gn.connect(actx.destination); o.start(); o.stop(actx.currentTime + len / 1000); } catch (e) {} }
+          }, st);
+          setTimeout(function () { el.classList.remove('on'); }, st + len);
+          t += len + U;
+        });
+        t += U * 2;
+      });
+      setTimeout(function () { busy = false; el.classList.remove('on'); }, t + 100);
+    });
+  });
+
+  // ===== Sky that follows Khon Kaen time =====
+  var skyFmt = new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Bangkok', hour: '2-digit', hour12: false });
+  function sky() {
+    var h = parseInt(skyFmt.format(new Date()), 10) % 24, s = h >= 5 && h < 7 ? 'dawn' : h >= 7 && h < 17 ? 'day' : h >= 17 && h < 19 ? 'dusk' : 'night';
+    document.documentElement.setAttribute('data-sky', s);
+    var L = { dawn: 'Dawn in Khon Kaen', day: 'Daytime in Khon Kaen', dusk: 'Dusk in Khon Kaen', night: 'Night in Khon Kaen' }, el = $('#sky-label'); if (el) el.textContent = L[s];
+  }
+  sky(); setInterval(sky, 60000);
+
   if ('serviceWorker' in navigator) addEventListener('load', function () { navigator.serviceWorker.register('/sw.js').catch(function () {}); });
 })();
