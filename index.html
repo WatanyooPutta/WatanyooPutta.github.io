@@ -18,8 +18,14 @@ hero: true
   </div>
 </header>
 <main id="main" class="grid">
+<section class="card s3 oh-card" aria-label="One Health network">
+<div class="oh-head"><h2>One Health</h2><p class="muted">Human, animal and environmental health are connected. Tap a node to explore.</p></div>
+<canvas id="oh" aria-hidden="true"></canvas>
+<div class="oh-controls" role="group" aria-label="One Health nodes"><button class="btn alt oh-btn" type="button" data-i="0" aria-pressed="false">Human</button><button class="btn alt oh-btn" type="button" data-i="1" aria-pressed="false">Animal</button><button class="btn alt oh-btn" type="button" data-i="2" aria-pressed="false">Environment</button></div>
+<p class="oh-info" id="oh-info" aria-live="polite"><span id="oh-text">Tap Human, Animal or Environment.</span> <a id="oh-link" href="#" hidden></a></p>
+</section>
 <section class="card s2" lang="en"><h2>Professional Overview</h2><p>Watanyoo Putta is a high school student at Khonkaenwittayayon School and an aspiring physician-scientist based in Khon Kaen, Thailand. Specialising in tropical medicine, biosensors, disease surveillance, and the One Health framework, he completed a formal research internship at the Tropical Disease Research Center, Khon Kaen University, and publishes public science insights on Medium (<strong>@watanyoo.putta</strong>).</p></section>
-<section class="card"><h2>Current Status</h2><p><strong>Base:</strong> Khon Kaen, Thailand</p><p class="small" style="margin-top:10px">Local Time (Asia/Bangkok):</p><div class="clock" id="clock" aria-label="Current time in Khon Kaen">--:--:--</div></section>
+<section class="card"><h2>Current Status</h2><p><strong>Base:</strong> Khon Kaen, Thailand</p><p class="small" style="margin-top:10px">Local Time (Asia/Bangkok):</p><div class="clock" id="clock" aria-label="Current time in Khon Kaen">--:--:--</div><p class="sky-label" id="sky-label"></p></section>
 <section class="card" lang="th"><h2>ประวัติส่วนตัว</h2><p>วทัญญู พุทธา เป็นนักเรียนระดับมัธยมศึกษา ณ โรงเรียนขอนแก่นวิทยายน และนักวิจัยรุ่นเยาว์ผู้มีความสนใจด้านเวชศาสตร์เขตร้อน เซนเซอร์ชีวภาพ และแนวคิดสุขภาพหนึ่งเดียว (One Health) มีประสบการณ์การศึกษาวิจัยร่วมกับศูนย์วิจัยโรคเขตร้อน มหาวิทยาลัยขอนแก่น พร้อมทั้งเผยแพร่บทความวิทยาศาสตร์ผ่านทาง Medium (<strong>@watanyoo.putta</strong>)</p></section>
 <a class="tile s2" href="{{ '/research/' | relative_url }}"><img src="{{ '/assets/images/IMG_9597.webp' | relative_url }}" alt="" width="1932" height="2576" loading="lazy" decoding="async"><span class="go" aria-hidden="true">→</span><div class="tile-body"><h2>Research</h2><p>Publications, laboratory work, the Lawa Model and the field research map</p></div></a>
 <a class="tile" href="{{ '/emergency/' | relative_url }}"><img src="{{ '/assets/images/IMG_3320.webp' | relative_url }}" alt="" width="1932" height="2576" loading="lazy" decoding="async"><span class="go" aria-hidden="true">→</span><div class="tile-body"><h2>Emergency &amp; First Aid</h2><p>NIEMS credential, Thai Red Cross, disaster comms</p></div></a>
