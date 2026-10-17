@@ -1,0 +1,24 @@
+/* Extra styles for the menu and inner pages. style.css is unchanged. */
+.site-nav{position:sticky;top:0;z-index:40;margin:0 -16px;padding:0 16px;background:color-mix(in srgb,var(--bg) 82%,transparent);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.navrow{display:flex;align-items:center;gap:4px;padding:10px 0;overflow-x:auto;scrollbar-width:none}
+.navrow::-webkit-scrollbar{display:none}
+.site-nav a{white-space:nowrap;padding:8px 14px;border-radius:999px;color:var(--muted);text-decoration:none;font-size:.92rem;font-weight:500;border:1px solid transparent}
+.site-nav a:hover{color:var(--text)}
+.site-nav a[aria-current="page"]{color:var(--text);background:var(--panel);border-color:var(--line2)}
+.site-nav .brand{margin-right:auto;padding-left:0;font-weight:700;letter-spacing:-.02em;color:var(--text)}
+header.page-head{display:block;padding:48px 4px 24px;animation:none}
+.page-head>*{animation:none}
+.page-head h1{font-size:clamp(2rem,6vw,3rem)}
+.page-head p{color:var(--muted);max-width:60ch;margin-top:12px}
+.crumbs{font:500 .8rem var(--mono);margin:0 0 12px!important}
+.crumbs a{color:var(--muted)}
+.newslist{list-style:none;padding:0}
+.newslist li+li{margin-top:20px;padding-top:20px;border-top:1px solid var(--line)}
+.newslist a{font-weight:600;text-decoration:none;color:var(--text)}
+.newslist a:hover{color:var(--accent)}
+.explore{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:8px}
+.explore a{display:block;padding:16px 18px;border:1px solid var(--line);border-radius:12px;background:var(--panel);text-decoration:none;color:var(--text);transition:border-color .2s}
+.explore a:hover{border-color:var(--accent)}
+.explore strong{display:block}
+.explore span{color:var(--muted);font-size:.88rem}
+article.card p+p{margin-top:12px}
