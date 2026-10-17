@@ -67,10 +67,18 @@
   // Map (Research page only). One map, your latest pin positions, no extra CDN loading.
   if ($('#map') && typeof L !== 'undefined') {
     var map = L.map('map', { scrollWheelZoom: false }).setView([16.4322, 102.8236], 10);
-    L.tileLayer('https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png', {
+    var tiles = L.tileLayer('https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png?key=cb1_4gfd_1_8f4a0c9e8b3d85a310477693', {
       maxZoom: 19,
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
     }).addTo(map);
+    // If CARTO rejects the key (for example it expired), switch to OpenStreetMap so the map never goes blank
+    var tileErrors = 0;
+    tiles.on('tileerror', function () {
+      if (++tileErrors === 3) {
+        map.removeLayer(tiles);
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }).addTo(map);
+      }
+    });
     [['Tropical Disease Research Center', [16.4740, 102.8220], 'Khon Kaen University. Research internship affiliation and laboratory base.'],
      ['SatFinder_KKN_KKW (E25ZVB)', [16.4297, 102.8315], '433 MHz TinyGS satellite ground station, Khonkaenwittayayon School.'],
      ['Lawa Model Site', [16.0350, 102.7300], 'Field research location: epidemiological fieldwork and community health engagement.']].forEach(function (p) {
@@ -80,6 +88,38 @@
     });
     setTimeout(function () { map.invalidateSize(); }, 300);
   }
+
+  // Scroll reveal for cards and tiles
+  if (!still && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }); }, { rootMargin: '0px 0px -8% 0px' });
+    document.querySelectorAll('.card,.tile').forEach(function (el) { el.classList.add('reveal'); io.observe(el); });
+  }
+
+  // Quote that zooms in as you scroll it to the middle of the screen
+  var zs = [].slice.call(document.querySelectorAll('[data-zoom]')), ticking = false;
+  function zoomUpdate() {
+    ticking = false; var vh = innerHeight;
+    zs.forEach(function (z) {
+      var r = z.getBoundingClientRect();
+      var d = Math.abs((r.top + r.height / 2) - vh / 2) / (vh * 0.65);
+      z.style.setProperty('--p', (still ? 1 : Math.max(0, 1 - d)).toFixed(3));
+    });
+  }
+  if (zs.length) {
+    addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(zoomUpdate); } }, { passive: true });
+    addEventListener('resize', zoomUpdate); zoomUpdate();
+  }
+
+  // Research page filter chips
+  var fb = document.querySelectorAll('[data-f]');
+  fb.forEach(function (b) {
+    b.addEventListener('click', function () {
+      var f = b.dataset.f;
+      fb.forEach(function (x) { x.classList.toggle('on', x === b); x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+      document.querySelectorAll('[data-cat]').forEach(function (c) { c.hidden = !(f === 'all' || c.dataset.cat === f); });
+      if (typeof map !== 'undefined' && map) setTimeout(function () { map.invalidateSize(); }, 60);
+    });
+  });
 
   if ('serviceWorker' in navigator) addEventListener('load', function () { navigator.serviceWorker.register('/sw.js').catch(function () {}); });
 })();
