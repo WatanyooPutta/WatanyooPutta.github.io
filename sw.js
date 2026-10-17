@@ -1,10 +1,9 @@
-const SHELL = 'shell-v7';
+const SHELL = 'shell-v4';          // bump this number to force every visitor to refresh
 const TILES = 'carto-tiles-v1';
 const MAX_TILES = 300;
-const PRECACHE = ['/', '/index.html', '/404.html', '/site.webmanifest', '/assets/images/IMG_9921-400.webp', '/assets/css/style.css'];
+const PRECACHE = ['/', '/research/', '/awards/', '/radio/', '/news/', '/404.html', '/assets/css/style.css', '/assets/css/pages.css', '/assets/js/script.js', '/assets/images/IMG_9921-400.webp'];
 
 self.addEventListener('install', (e) => {
-  // allSettled: one missing file no longer blocks the whole install
   e.waitUntil(caches.open(SHELL).then((c) => Promise.allSettled(PRECACHE.map((u) => c.add(u)))));
   self.skipWaiting();
 });
@@ -21,7 +20,6 @@ async function trim(name, max) {
   if (keys.length > max) await Promise.all(keys.slice(0, keys.length - max).map((k) => c.delete(k)));
 }
 
-// Serve the cached copy instantly, refresh it in the background
 function swr(req, name) {
   return caches.open(name).then((c) => c.match(req).then((hit) => {
     const net = fetch(req).then((r) => {
@@ -37,21 +35,18 @@ self.addEventListener('fetch', (e) => {
   if (req.method !== 'GET') return;
   const url = new URL(req.url);
 
-  // Pages: network first, so visitors always get your latest index.html; cache only when offline
   if (req.mode === 'navigate') {
     e.respondWith(
       fetch(req).then((r) => { const copy = r.clone(); caches.open(SHELL).then((c) => c.put(req, copy)); return r; })
-        .catch(() => caches.match(req).then((h) => h || caches.match('/index.html')))
+        .catch(() => caches.match(req).then((h) => h || caches.match('/')))
     );
     return;
   }
 
-  // Map tiles: stale-while-revalidate with a size cap
   if (url.hostname.endsWith('basemaps.cartocdn.com')) {
     e.respondWith(swr(req, TILES).then((r) => { trim(TILES, MAX_TILES); return r; }));
     return;
   }
 
-  // Your own images, CSS, JSON: stale-while-revalidate
   if (url.origin === self.location.origin) e.respondWith(swr(req, SHELL));
 });
