@@ -1,0 +1,16 @@
+---
+layout: default
+---
+<header class="page-head">
+  <p class="crumbs"><a href="{{ '/' | relative_url }}">Home</a> / <a href="{{ '/news/' | relative_url }}">News</a></p>
+  <h1>{{ page.title }}</h1>
+  <p><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time></p>
+</header>
+<main id="main"><article class="card">
+{{ content }}
+{% if page.link %}<div class="btns"><a class="btn" href="{{ page.link }}" target="_blank" rel="noopener noreferrer">{{ page.link_label | default: 'Read more' }}</a></div>{% endif %}
+<div class="btns"><a class="btn alt" href="{{ '/news/' | relative_url }}">All news</a></div>
+</article></main>
+<script type="application/ld+json">
+{% raw %}{"@context":"https://schema.org","@type":"NewsArticle","headline":{% endraw %}{{ page.title | jsonify }}{% raw %},"datePublished":"{% endraw %}{{ page.date | date_to_xmlschema }}{% raw %}","description":{% endraw %}{{ page.summary | jsonify }}{% raw %},"author":{"@id":"https://watanyooputta.github.io/#person"},"mainEntityOfPage":"{% endraw %}{{ page.url | absolute_url }}{% raw %}","image":"https://watanyooputta.github.io/assets/images/IMG_9503.webp"}{% endraw %}
+</script>
