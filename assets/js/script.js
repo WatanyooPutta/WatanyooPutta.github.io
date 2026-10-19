@@ -64,21 +64,24 @@
     var tick = function () { clock.textContent = fmt.format(new Date()); }; tick(); setInterval(tick, 1000);
   }
 
-  // Map (Research page only). One map, your latest pin positions, no extra CDN loading.
-  if ($('#map') && typeof L !== 'undefined') {
-    var map = L.map('map', { scrollWheelZoom: false }).setView([16.4322, 102.8236], 10);
+  // Map tiles: CARTO with your key, falling back to OpenStreetMap if CARTO refuses
+  function addTiles(map) {
     var tiles = L.tileLayer('https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png?key=cb1_4gfd_1_8f4a0c9e8b3d85a310477693', {
       maxZoom: 19,
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
-    }).addTo(map);
-    // If CARTO rejects the key (for example it expired), switch to OpenStreetMap so the map never goes blank
-    var tileErrors = 0;
+    }).addTo(map), errs = 0;
     tiles.on('tileerror', function () {
-      if (++tileErrors === 3) {
+      if (++errs === 3) {
         map.removeLayer(tiles);
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }).addTo(map);
       }
     });
+  }
+
+  // Map (Research page only). One map, your latest pin positions, no extra CDN loading.
+  if ($('#map') && typeof L !== 'undefined') {
+    var map = L.map('map', { scrollWheelZoom: false }).setView([16.4322, 102.8236], 10);
+    addTiles(map);
     [['Tropical Disease Research Center', [16.4740, 102.8220], 'Khon Kaen University. Research internship affiliation and laboratory base.'],
      ['SatFinder_KKN_KKW (E25ZVB)', [16.4297, 102.8315], '433 MHz TinyGS satellite ground station, Khonkaenwittayayon School.'],
      ['Lawa Model Site', [16.0350, 102.7300], 'Field research location: epidemiological fieldwork and community health engagement.']].forEach(function (p) {
@@ -267,6 +270,93 @@
     var L = { dawn: 'Dawn in Khon Kaen', day: 'Daytime in Khon Kaen', dusk: 'Dusk in Khon Kaen', night: 'Night in Khon Kaen' }, el = $('#sky-label'); if (el) el.textContent = L[s];
   }
   sky(); setInterval(sky, 60000);
+
+  // ===== Lawa scrollytelling =====
+  var sm = $('#story-map');
+  if (sm && typeof L !== 'undefined') {
+    var smap = L.map('story-map', { scrollWheelZoom: false, zoomControl: false, dragging: !L.Browser.mobile, tap: false }).setView([16.4740, 102.8220], 11);
+    addTiles(smap);
+    [['Tropical Disease Research Center', [16.4740, 102.8220]], ['Lawa Model Site', [16.0350, 102.7300]]].forEach(function (p) {
+      L.marker(p[1], { title: p[0] }).addTo(smap).bindTooltip('<b>' + p[0] + '</b>', { permanent: true, direction: 'top', offset: [0, -28], className: 'map-marker-label' });
+    });
+    var steps = document.querySelectorAll('.step');
+    if ('IntersectionObserver' in window) {
+      var so = new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          steps.forEach(function (s) { s.classList.toggle('active', s === e.target); });
+          var d = e.target.dataset;
+          if (d.lat) { var ll = [+d.lat, +d.lng]; if (still) smap.setView(ll, +d.zoom, { animate: false }); else smap.flyTo(ll, +d.zoom, { duration: 2 }); }
+        });
+      }, { rootMargin: '-45% 0px -45% 0px' });
+      steps.forEach(function (s) { so.observe(s); });
+    }
+    setTimeout(function () { smap.invalidateSize(); }, 300);
+  }
+
+  // ===== Rapid test explainer =====
+  var rt = $('#rt');
+  if (rt) {
+    var rFlow = $('#rt-flow'), rT = $('#rt-t'), rC = $('#rt-c'), rD = $('#rt-drop'), rR = $('#rt-range'), rCap = $('#rt-cap'), rPlay = $('#rt-play'), present = true, prog = 0, rafId = 0, last = 0;
+    var CAPS = [[0, '1. Add the sample to the sample pad.'], [12, '2. The liquid flows along the strip and picks up antibodies that carry a visible label.'], [45, '3. At the test line, a capture antibody holds the labelled target if it is present, and the line appears. If the target is absent, no line forms.'], [72, '4. The control line appears whether or not the target is present. It shows the test worked.'], [96, '5. The absorbent pad pulls the liquid through. Now read the lines.']];
+    var clamp = function (v) { return Math.max(0, Math.min(1, v)); };
+    function rtDraw(p) {
+      prog = p; rR.value = p;
+      var w = p / 100 * 485; rFlow.setAttribute('width', w.toFixed(1));
+      var front = 60 + w;
+      rT.style.opacity = present ? clamp((front - 332) / 40) : 0;
+      rC.style.opacity = clamp((front - 426) / 40);
+      rD.setAttribute('cy', (14 + Math.min(1, p / 12) * 44).toFixed(1)); rD.setAttribute('opacity', p < 12 ? 1 : 0);
+      var t = CAPS[0][1]; CAPS.forEach(function (c) { if (p >= c[0]) t = c[1]; }); rCap.textContent = t;
+    }
+    function rtStop() { cancelAnimationFrame(rafId); rafId = 0; rPlay.textContent = 'Play'; }
+    function rtStep(ts) {
+      if (!last) last = ts; var dt = ts - last; last = ts;
+      var np = prog + dt / 90; if (np >= 100) { rtDraw(100); rtStop(); return; }
+      rtDraw(np); rafId = requestAnimationFrame(rtStep);
+    }
+    rPlay.addEventListener('click', function () {
+      if (rafId) { rtStop(); return; }
+      if (prog >= 100) rtDraw(0);
+      if (still) { rtDraw(100); return; }
+      rPlay.textContent = 'Pause'; last = 0; rafId = requestAnimationFrame(rtStep);
+    });
+    rR.addEventListener('input', function () { rtStop(); rtDraw(+rR.value); });
+    function setPresent(v) { present = v; $('#rt-pos').setAttribute('aria-pressed', v ? 'true' : 'false'); $('#rt-neg').setAttribute('aria-pressed', v ? 'false' : 'true'); rtDraw(prog); }
+    $('#rt-pos').addEventListener('click', function () { setPresent(true); });
+    $('#rt-neg').addEventListener('click', function () { setPresent(false); });
+    rtDraw(0);
+  }
+
+  // ===== Search / command palette (Ctrl or Command + K) =====
+  var cmd = $('#cmd'), cdata = $('#cmd-data');
+  if (cmd && cdata) {
+    var items = [], cin = $('#cmd-in'), clist = $('#cmd-list'), sel = 0, shown = [];
+    try { items = JSON.parse(cdata.textContent); } catch (e) {}
+    var go = function (i) { if (!i) return; if (i.k === 'profile') window.open(i.u, '_blank', 'noopener'); else location.href = i.u; };
+    var mark = function () { [].forEach.call(clist.children, function (li, n) { li.classList.toggle('on', n === sel); li.setAttribute('aria-selected', n === sel ? 'true' : 'false'); }); };
+    var render = function (q) {
+      q = q.trim().toLowerCase(); sel = 0; clist.innerHTML = '';
+      shown = items.filter(function (i) { return !q || i.t.toLowerCase().indexOf(q) > -1 || i.k.indexOf(q) > -1; }).slice(0, 12);
+      shown.forEach(function (i) {
+        var li = document.createElement('li'), a = document.createElement('span'), b = document.createElement('em');
+        li.setAttribute('role', 'option'); a.textContent = i.t; b.textContent = i.k === 'profile' ? 'profile \u2197' : i.k;
+        li.appendChild(a); li.appendChild(b); li.addEventListener('click', function () { go(i); }); clist.appendChild(li);
+      });
+      if (!shown.length) { var none = document.createElement('li'); none.className = 'none'; none.textContent = 'No results'; clist.appendChild(none); }
+      mark();
+    };
+    var openCmd = function () { cin.value = ''; render(''); if (!cmd.open) cmd.showModal(); cin.focus(); };
+    on('#cmd-open', 'click', openCmd);
+    cin.addEventListener('input', function () { render(cin.value); });
+    cin.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowDown') { e.preventDefault(); sel = Math.min(shown.length - 1, sel + 1); mark(); }
+      else if (e.key === 'ArrowUp') { e.preventDefault(); sel = Math.max(0, sel - 1); mark(); }
+      else if (e.key === 'Enter') { e.preventDefault(); go(shown[sel]); }
+    });
+    cmd.addEventListener('click', function (e) { if (e.target === cmd) cmd.close(); });
+    document.addEventListener('keydown', function (e) { if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); openCmd(); } });
+  }
 
   if ('serviceWorker' in navigator) addEventListener('load', function () { navigator.serviceWorker.register('/sw.js').catch(function () {}); });
 })();
