@@ -1,10 +1,22 @@
 {
   "name": "Watanyoo Putta",
-  "alternate_name": ["วทัญญู พุทธา", "นายวทัญญู พุทธา"],
-  "last_updated": "2026-10-20",
-  "location": { "city": "Khon Kaen", "country": "Thailand", "timezone": "Asia/Bangkok" },
-  "languages": ["en", "th"],
-  "latest_article": "The Lawa Model: Translating Public Health into Community Action",
+  "alternate_name": [
+    "วทัญญู พุทธา",
+    "นายวทัญญู พุทธา"
+  ],
+  "status": "Active",
+  "last_updated": "2026-10-14",
+  "location": {
+    "city": "Khon Kaen",
+    "country": "Thailand",
+    "timezone": "Asia/Bangkok"
+  },
+  "languages": [
+    "en",
+    "th"
+  ],
+  "latest_research": "The Lawa Model",
+  "available_for_interviews": true,
   "roles": [
     "Medical Researcher",
     "Biomedical Innovator",
@@ -22,7 +34,7 @@
     "Public health",
     "Emergency medical services"
   ],
-  "identifiers": {
+  "verified_identifiers": {
     "orcid": "https://orcid.org/0009-0007-2782-1422",
     "wikidata": "https://www.wikidata.org/wiki/Q141644996",
     "google_scholar": "https://scholar.google.com/citations?user=_8o9aVEAAAAJ"
@@ -31,12 +43,13 @@
     "lawa_model_doi": "https://doi.org/10.5281/zenodo.23324693",
     "lawa_model_article": "https://medium.com/@watanyoo.putta/the-lawa-model-translating-public-health-into-community-action-5eba53f3502e",
     "industrial_noise_study_doi": "https://doi.org/10.5281/zenodo.23219819",
-    "website_archive_doi": "https://doi.org/10.5281/zenodo.23317893"
+    "entity_hub_doi": "https://doi.org/10.5281/zenodo.23317893"
   },
-  "links": {
+  "contact_nodes": {
     "website": "https://watanyooputta.com/",
     "medium": "https://medium.com/@watanyoo.putta",
     "github": "https://github.com/watanyooputta",
-    "linkedin": "https://www.linkedin.com/in/watanyoo-putta/"
+    "linkedin": "https://www.linkedin.com/in/watanyoo-putta/",
+    "previous_website": "https://watanyooputta.github.io/"
   }
 }

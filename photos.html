@@ -1,0 +1,19 @@
+---
+layout: default
+title: "Photos | Watanyoo Putta (วทัญญู พุทธา)"
+crumb: Photos
+description: "Photo wall of lab work, Lawa Model fieldwork, first aid, disaster radio and credentials of Watanyoo Putta (วทัญญู พุทธา), Khon Kaen, Thailand."
+image: /assets/og/photos.jpg
+permalink: /photos/
+---
+<header class="page-head">
+  <p class="crumbs"><a href="{{ '/' | relative_url }}">Home</a> / Photos</p>
+  <h1>Photos</h1>
+  <p>Lab work, fieldwork, first aid, radio and credentials. Tap a photo to enlarge it, then use the magnifier.</p>
+</header>
+<div class="filters" role="group" aria-label="Filter photos"><button type="button" class="on" data-f="all" aria-pressed="true">All</button><button type="button" data-f="lab" aria-pressed="false">Lab</button><button type="button" data-f="field" aria-pressed="false">Field</button><button type="button" data-f="emergency" aria-pressed="false">Emergency</button><button type="button" data-f="radio" aria-pressed="false">Radio</button><button type="button" data-f="awards" aria-pressed="false">Credentials</button></div>
+<main id="main"><div class="wall">
+{%- for p in site.data.photos -%}
+<button class="zoom" type="button" data-cat="{{ p.cat }}"><img src="{{ '/assets/images/' | append: p.file | append: '.webp' | relative_url }}" width="{{ p.w }}" height="{{ p.h }}" loading="lazy" decoding="async" alt="{{ p.alt | escape }}"></button>
+{%- endfor -%}
+</div></main>

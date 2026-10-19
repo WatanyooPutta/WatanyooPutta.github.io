@@ -1,0 +1,8 @@
+---
+title: "Your news title here"
+date: 2026-11-01
+summary: "One sentence that appears in the news list and in Google."
+link: https://example.com/optional-link      # delete this line if no link
+link_label: Read the article                 # delete this line if no link
+---
+Write one or two short paragraphs here.

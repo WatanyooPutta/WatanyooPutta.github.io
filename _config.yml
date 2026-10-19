@@ -7,6 +7,12 @@ timezone: Asia/Bangkok
 
 plugins:
   - jekyll-sitemap
+  - jekyll-feed
+
+author: Watanyoo Putta
+feed:
+  collections:
+    - news
 
 collections:
   news:
@@ -19,7 +25,9 @@ defaults:
       type: "news"
     values:
       layout: news
+      image: /assets/og/news.jpg
 
+# Files Jekyll should NOT publish as pages
 exclude:
   - README.md
   - CHANGELOG.md
@@ -30,5 +38,6 @@ exclude:
   - Gemfile
   - Gemfile.lock
 
+# Dot-folders are hidden by Jekyll unless listed here
 include:
   - .well-known
