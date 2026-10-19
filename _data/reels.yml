@@ -1,0 +1,26 @@
+lab:
+  title: Lab work
+  slides:
+    - {img: IMG_0340, cap: "Pipetting in a biosafety cabinet during cell culture work"}
+    - {img: IMG_9597, cap: "Opisthorchis viverrini metacercariae under a microscope"}
+lawa:
+  title: The Lawa Model in the field
+  slides:
+    - {img: IMG_3805, cap: "Beside the lake during the Lawa Model field visit"}
+    - {img: IMG_3780, cap: "Water buffalo beside the lake at the field site"}
+    - {img: IMG_7083, cap: "GMS-One Health workshop outside Lawa Health Promoting Hospital"}
+    - {img: IMG_3752, cap: "Community food demonstration at a field site"}
+emergency:
+  title: Emergency and first aid
+  slides:
+    - {img: IMG_4183, cap: "Thai Red Cross volunteer at a registration table"}
+    - {img: MEW00545, cap: "At the school first aid station"}
+    - {img: IMG_3313, cap: "Handheld radio at a night emergency scene"}
+    - {img: IMG_3332, cap: "Responders reviewing an incident plan at night"}
+    - {img: IMG_3320, cap: "Drone camera feed of a structural fire"}
+    - {img: IMG_3368, cap: "Responders watching a structural fire at night"}
+radio:
+  title: Radio
+  slides:
+    - {img: IMG_1311, cap: "TinyGS ground station antenna and LoRa receiver"}
+    - {img: IMG_3313, cap: "Handheld radio at an emergency scene"}

@@ -1,4 +1,6 @@
 # Edit the menu here once; every page updates.
+- title: About
+  url: /about/
 - title: Research
   url: /research/
 - title: Lawa Model
@@ -9,5 +11,7 @@
   url: /awards/
 - title: Radio & Tech
   url: /radio/
+- title: Photos
+  url: /photos/
 - title: News
   url: /news/
