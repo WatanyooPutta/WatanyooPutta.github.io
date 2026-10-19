@@ -1,86 +1,42 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Page not found | Watanyoo Putta</title>
-<meta name="robots" content="noindex, follow">
-<link rel="icon" href="/images/IMG_9921.jpeg" type="image/jpeg">
-<style>
-:root{color-scheme:dark light;--bg:#07080a;--panel:#0d0f13;--panel2:#13161c;--text:#ececf1;--muted:#98a0ae;--line:rgba(255,255,255,.08);--line2:rgba(255,255,255,.18);--accent:#3ee0b5;--ink:#04110d;--glow:rgba(62,224,181,.13);--r:18px;--mono:ui-monospace,"SF Mono","JetBrains Mono",Menlo,Consolas,monospace}
-@media(prefers-color-scheme:light){:root{--bg:#fafafa;--panel:#fff;--panel2:#f4f5f7;--text:#0b0d12;--muted:#596070;--line:rgba(11,13,18,.09);--line2:rgba(11,13,18,.2);--accent:#0b7a62;--ink:#fff;--glow:rgba(11,122,98,.1)}}
-*{box-sizing:border-box;margin:0}
-html{scroll-behavior:smooth}
-body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans Thai",sans-serif;background:var(--bg);color:var(--text);line-height:1.65;padding:0 16px 40px;-webkit-font-smoothing:antialiased}
-body::before{content:"";position:fixed;inset:0;z-index:-1;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:56px 56px;-webkit-mask-image:radial-gradient(ellipse 80% 55% at 50% 0,#000 10%,transparent 75%);mask-image:radial-gradient(ellipse 80% 55% at 50% 0,#000 10%,transparent 75%)}
-body::after{content:"";position:fixed;left:50%;top:-220px;width:900px;height:520px;transform:translateX(-50%);z-index:-1;background:radial-gradient(closest-side,var(--glow),transparent);pointer-events:none}
-#bar{position:fixed;top:0;left:0;height:2px;width:100%;transform:scaleX(0);transform-origin:0;background:var(--accent);z-index:50}
-.wrap{max-width:1080px;margin:0 auto}
-.skip{position:absolute;left:-999px}.skip:focus{left:16px;top:8px;background:#fff;color:#000;padding:8px 12px;z-index:99}
-a{color:var(--accent)}
-:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-header{display:flex;gap:40px;align-items:center;padding:72px 4px 48px}
-header>*{animation:rise .8s cubic-bezier(.2,.7,.2,1) both}header>div{animation-delay:.1s}
-@keyframes rise{from{opacity:0;transform:translateY(14px)}}
-.avatar{width:156px;height:156px;border-radius:36px;object-fit:cover;border:1px solid var(--line2);box-shadow:0 0 0 6px var(--panel),0 30px 80px -20px var(--glow);flex-shrink:0}
-h1{font-size:clamp(2.4rem,7vw,4.2rem);line-height:1.04;letter-spacing:-.045em;font-weight:700;background:linear-gradient(180deg,var(--text) 30%,var(--muted));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-h1 small{display:block;font-size:.34em;font-weight:500;letter-spacing:0;margin-top:10px;-webkit-text-fill-color:var(--muted)}
-.lead{color:var(--muted);font-size:1.12rem;margin:18px 0 22px;max-width:56ch}
-.lead strong{color:var(--text);font-weight:600}
-.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
-.chip{display:inline-flex;align-items:center;gap:8px;font:500 .78rem var(--mono);padding:6px 12px;border:1px solid var(--line2);border-radius:999px;color:var(--muted);background:var(--panel)}
-.dot{width:7px;height:7px;border-radius:50%;background:var(--accent);animation:pulse 2.4s infinite}
-@keyframes pulse{0%{box-shadow:0 0 0 0 var(--glow)}70%{box-shadow:0 0 0 8px transparent}}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.s2{grid-column:span 2}.s3{grid-column:span 3}
-.card{position:relative;overflow:hidden;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:var(--r);padding:26px;transition:border-color .2s}
-.card::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;opacity:0;transition:opacity .25s;background:radial-gradient(420px circle at var(--x,50%) var(--y,0),var(--glow),transparent 65%)}
-.card:hover{border-color:var(--line2)}.card:hover::before{opacity:1}
-.card>*{position:relative;z-index:1}
-h2{font-size:1.05rem;font-weight:600;letter-spacing:-.01em;margin-bottom:12px}
-.muted,.small{color:var(--muted);font-size:.95rem}.small{font-size:.88rem}
-.btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 18px;border-radius:10px;border:1px solid var(--accent);background:var(--accent);color:var(--ink);font:inherit;font-weight:600;font-size:.92rem;text-decoration:none;cursor:pointer;transition:transform .15s,border-color .15s,background .15s}
-.btn.alt{background:transparent;color:var(--text);border-color:var(--line2)}
-.btn.alt:hover{border-color:var(--accent)}.btn:active{transform:translateY(1px)}.btn:not(.alt):hover{filter:brightness(1.08)}
-.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
-.tags span{font:500 .76rem var(--mono);padding:4px 10px;border-radius:8px;border:1px solid var(--line);color:var(--muted);background:var(--panel)}
-.item{padding:16px 18px;border:1px solid var(--line);background:var(--panel);border-radius:12px;margin-top:12px}
-.item strong{display:block}
-.pics{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:16px}
-.zoom{border:1px solid var(--line);border-radius:12px;padding:0;background:var(--panel);overflow:hidden;cursor:zoom-in;display:block;width:100%}
-.zoom img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;transition:transform .45s}
-.zoom:hover img{transform:scale(1.04)}
-.zoom.wide img{aspect-ratio:auto;max-height:420px;object-fit:contain}
-blockquote{font-size:1.25rem;font-weight:500;letter-spacing:-.015em;line-height:1.4;margin:6px 0 14px;padding-left:16px;border-left:2px solid var(--accent)}
-ul.list{list-style:none;padding:0}ul.list li+li{margin-top:22px;padding-top:22px;border-top:1px solid var(--line)}
-.clock{font:600 1.9rem var(--mono);letter-spacing:-.03em;color:var(--accent);margin-top:2px}
-.call{font-family:var(--mono);color:var(--accent);cursor:crosshair}
-.links{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
-.links .btn{justify-content:space-between;text-align:left}.links .btn::after{content:"↗";opacity:.6}
-footer{margin-top:40px;padding-top:24px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
-dialog{border:0;background:none;padding:0;max-width:94vw;max-height:94vh;color:#fff;overflow:visible}
-dialog::backdrop{background:rgba(0,0,0,.85);backdrop-filter:blur(6px)}
-dialog img{max-width:94vw;max-height:86vh;border-radius:14px;display:block}
-dialog .btn{margin-top:10px}
-#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--text);color:var(--bg);padding:12px 22px;border-radius:12px;font-weight:600;opacity:0;pointer-events:none;transition:opacity .3s;z-index:60}
-#toast.show{opacity:1}
-@media(max-width:900px){.grid{grid-template-columns:1fr 1fr}.s3{grid-column:span 2}}
-@media(max-width:640px){header{flex-direction:column;text-align:center;padding:48px 0 32px;gap:24px}.lead{margin-inline:auto}.btns,.chips{justify-content:center}.grid{grid-template-columns:1fr}.s2,.s3{grid-column:auto}}
-@media(prefers-reduced-motion:reduce){*,::before{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
-@media print{body{background:#fff;color:#000}body::before,body::after,.btn,dialog,#toast,#bar{display:none}}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page not found | Watanyoo Putta</title>
+  <meta name="robots" content="noindex, follow">
+<link rel="icon" href="/assets/images/IMG_9921-400.webp" type="image/webp">
 
-.zoom[hidden]{display:none}
-.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:8px}
-.badge{margin-bottom:10px}
-#map{height:340px;border-radius:14px;border:1px solid var(--line2);margin-top:16px;z-index:0}
-@media(min-width:768px){#map{height:440px}}
-.leaflet-container{background:var(--panel);font:inherit}
-.map-marker-label{background:rgba(7,8,10,.9);color:#fff;border:1px solid rgba(255,255,255,.15);font-weight:600;font-size:.75rem;padding:4px 10px;border-radius:8px}
-dialog#qr{background:var(--panel);color:var(--text);border:1px solid var(--line2);border-radius:var(--r);padding:28px;text-align:center;max-width:420px;width:92vw;overflow:auto}
-#qrbox{background:#fff;padding:16px;border-radius:14px;display:inline-block;margin:14px 0 6px;line-height:0}
-
-.nf{min-height:80vh;display:grid;place-content:center;text-align:center;gap:14px}
-.nf .big{font:700 clamp(5rem,22vw,9rem)/1 var(--mono);letter-spacing:-.06em;background:linear-gradient(180deg,var(--text),var(--muted));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-</style></head>
-<body><div class="wrap nf"><div class="big">404</div>
-<h1 style="font-size:1.6rem;-webkit-text-fill-color:var(--text);background:none">Page not found</h1>
-<p class="muted">The page may have moved or never existed. หน้านี้อาจถูกย้ายหรือไม่มีอยู่</p>
-<div class="btns" style="justify-content:center"><a class="btn" href="/">Home</a><a class="btn alt" href="https://medium.com/@watanyoo.putta" rel="me">Medium</a></div></div></body></html>
+  <style>
+    :root{color-scheme:dark light;--bg:#07080a;--panel:#0d0f13;--panel2:#13161c;--text:#ececf1;--muted:#98a0ae;--line:rgba(255,255,255,.08);--line2:rgba(255,255,255,.18);--accent:#3ee0b5;--ink:#04110d;--glow:rgba(62,224,181,.13);--r:18px;--mono:ui-monospace,"SF Mono","JetBrains Mono",Menlo,Consolas,monospace}
+    @media(prefers-color-scheme:light){:root{--bg:#fafafa;--panel:#fff;--panel2:#f4f5f7;--text:#0b0d12;--muted:#596070;--line:rgba(11,13,18,.09);--line2:rgba(11,13,18,.2);--accent:#0b7a62;--ink:#fff;--glow:rgba(11,122,98,.1)}}
+    *{box-sizing:border-box;margin:0}
+    html{scroll-behavior:smooth}
+    body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans Thai",sans-serif;background:var(--bg);color:var(--text);line-height:1.65;padding:0 16px 40px;-webkit-font-smoothing:antialiased}
+    body::before{content:"";position:fixed;inset:0;z-index:-1;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:56px 56px;-webkit-mask-image:radial-gradient(ellipse 80% 55% at 50% 0,#000 10%,transparent 75%);mask-image:radial-gradient(ellipse 80% 55% at 50% 0,#000 10%,transparent 75%)}
+    body::after{content:"";position:fixed;left:50%;top:-220px;width:900px;height:520px;transform:translateX(-50%);z-index:-1;background:radial-gradient(closest-side,var(--glow),transparent);pointer-events:none}
+    .wrap{max-width:1080px;margin:0 auto}
+    a{color:var(--accent)}
+    :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+    .btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 18px;border-radius:10px;border:1px solid var(--accent);background:var(--accent);color:var(--ink);font:inherit;font-weight:600;font-size:.92rem;text-decoration:none;cursor:pointer;transition:transform .15s,border-color .15s,background .15s}
+    .btn.alt{background:transparent;color:var(--text);border-color:var(--line2)}
+    .btn.alt:hover{border-color:var(--accent)}.btn:active{transform:translateY(1px)}.btn:not(.alt):hover{filter:brightness(1.08)}
+    .muted{color:var(--muted);font-size:.95rem}
+    .nf{min-height:80vh;display:grid;place-content:center;text-align:center;gap:14px}
+    .nf .big{font:700 clamp(5rem,22vw,9rem)/1 var(--mono);letter-spacing:-.06em;background:linear-gradient(180deg,var(--text),var(--muted));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+    @media(prefers-reduced-motion:reduce){*,::before{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+  </style>
+</head>
+<body>
+  <div class="wrap nf">
+    <div class="big">404</div>
+    <h1 style="font-size:1.6rem;-webkit-text-fill-color:var(--text);background:none">Page not found</h1>
+    <p class="muted">The page may have moved or never existed. หน้านี้อาจถูกย้ายหรือไม่มีอยู่</p>
+    <div class="btns" style="justify-content:center">
+      <a class="btn" href="/">Home</a>
+      <a class="btn alt" href="https://medium.com/@watanyoo.putta" target="_blank" rel="noopener noreferrer">Medium</a>
+    </div>
+  </div>
+</body>
+</html>
