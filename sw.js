@@ -1,7 +1,7 @@
 const SHELL = 'shell-v4';          // bump this number to force every visitor to refresh
 const TILES = 'carto-tiles-v1';
 const MAX_TILES = 300;
-const PRECACHE = ['/', '/research/', '/emergency/', '/awards/', '/radio/', '/news/', '/404.html', '/assets/css/style.css', '/assets/css/pages.css', '/assets/js/script.js', '/assets/images/IMG_9921-400.webp'];
+const PRECACHE = ['/', '/research/', '/lawa/', '/emergency/', '/awards/', '/radio/', '/news/', '/404.html', '/assets/css/style.css', '/assets/css/pages.css', '/assets/js/script.js', '/assets/images/IMG_9921-400.webp'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(SHELL).then((c) => Promise.allSettled(PRECACHE.map((u) => c.add(u)))));
