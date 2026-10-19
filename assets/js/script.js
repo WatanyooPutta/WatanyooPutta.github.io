@@ -1,6 +1,6 @@
 (function () {
   var $ = function (s) { return document.querySelector(s); };
-  // Safe listener: pages without a given element no longer break execution
+  // Safe listener: pages without a given element (for example the QR button) no longer break the rest of the script
   function on(sel, evt, fn, opt) { var el = $(sel); if (el) el.addEventListener(evt, fn, opt); }
 
   var dlg = $('#lightbox'), big = $('#big'), qr = $('#qr'), toastEl = $('#toast'), timer;
@@ -14,10 +14,9 @@
     if ((dlg && e.target === dlg) || (qr && e.target === qr) || e.target.closest('[data-close]')) { if (dlg && dlg.open) dlg.close(); if (qr && qr.open) qr.close(); }
   });
 
-  // Contact card + QR (home page only) - Updated to custom domain
+  // Contact card + QR (home page only)
   var VCARD = ['BEGIN:VCARD','VERSION:3.0','N:Putta;Watanyoo;;;','FN:Watanyoo Putta','TITLE:Medical Researcher','ORG:Khonkaenwittayayon School',
     'URL:https://watanyooputta.com/','URL:https://www.linkedin.com/in/watanyoo-putta/','URL:https://medium.com/@watanyoo.putta','END:VCARD'].join('\r\n');
-  
   function download() {
     var a = document.createElement('a');
     a.href = URL.createObjectURL(new Blob([VCARD], { type: 'text/vcard' }));
@@ -65,7 +64,7 @@
     var tick = function () { clock.textContent = fmt.format(new Date()); }; tick(); setInterval(tick, 1000);
   }
 
-  // Map tiles: CARTO with fallback to OpenStreetMap
+  // Map tiles: CARTO with your key, falling back to OpenStreetMap if CARTO refuses
   function addTiles(map) {
     var tiles = L.tileLayer('https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png?key=cb1_4gfd_1_8f4a0c9e8b3d85a310477693', {
       maxZoom: 19,
@@ -79,7 +78,7 @@
     });
   }
 
-  // Map (Research page only)
+  // Map (Research page only). One map, your latest pin positions, no extra CDN loading.
   if ($('#map') && typeof L !== 'undefined') {
     var map = L.map('map', { scrollWheelZoom: false }).setView([16.4322, 102.8236], 10);
     addTiles(map);
@@ -99,7 +98,7 @@
     document.querySelectorAll('.card,.tile').forEach(function (el) { el.classList.add('reveal'); io.observe(el); });
   }
 
-  // Quote zoom effect
+  // Quote that zooms in as you scroll it to the middle of the screen
   var zs = [].slice.call(document.querySelectorAll('[data-zoom]')), ticking = false;
   function zoomUpdate() {
     ticking = false; var vh = innerHeight;
@@ -246,7 +245,7 @@
       if (busy) return; busy = true;
       var AC = window.AudioContext || window.webkitAudioContext;
       if (AC && !actx) { try { actx = new AC(); } catch (e) { actx = null; } }
-      var t = 0, U = 90;
+      var t = 0, U = 90; // one dot = 90 ms
       word.split('').forEach(function (ch, ci) {
         (MORSE[ch] || '').split('').forEach(function (sym) {
           var len = sym === '.' ? U : U * 3, st = t;
@@ -295,39 +294,95 @@
     setTimeout(function () { smap.invalidateSize(); }, 300);
   }
 
-  // ===== Rapid test explainer =====
-  var rt = $('#rt');
-  if (rt) {
-    var rFlow = $('#rt-flow'), rT = $('#rt-t'), rC = $('#rt-c'), rD = $('#rt-drop'), rR = $('#rt-range'), rCap = $('#rt-cap'), rPlay = $('#rt-play'), present = true, prog = 0, rafId = 0, last = 0;
-    var CAPS = [[0, '1. Add the sample to the sample pad.'], [12, '2. The liquid flows along the strip and picks up antibodies that carry a visible label.'], [45, '3. At the test line, a capture antibody holds the labelled target if it is present, and the line appears. If the target is absent, no line forms.'], [72, '4. The control line appears whether or not the target is present. It shows the test worked.'], [96, '5. The absorbent pad pulls the liquid through. Now read the lines.']];
-    var clamp = function (v) { return Math.max(0, Math.min(1, v)); };
-    function rtDraw(p) {
-      prog = p; rR.value = p;
-      var w = p / 100 * 485; rFlow.setAttribute('width', w.toFixed(1));
-      var front = 60 + w;
-      rT.style.opacity = present ? clamp((front - 332) / 40) : 0;
-      rC.style.opacity = clamp((front - 426) / 40);
-      rD.setAttribute('cy', (14 + Math.min(1, p / 12) * 44).toFixed(1)); rD.setAttribute('opacity', p < 12 ? 1 : 0);
-      var t = CAPS[0][1]; CAPS.forEach(function (c) { if (p >= c[0]) t = c[1]; }); rCap.textContent = t;
-    }
-    function rtStop() { cancelAnimationFrame(rafId); rafId = 0; rPlay.textContent = 'Play'; }
-    function rtStep(ts) {
-      if (!last) last = ts; var dt = ts - last; last = ts;
-      var np = prog + dt / 90; if (np >= 100) { rtDraw(100); rtStop(); return; }
-      rtDraw(np); rafId = requestAnimationFrame(rtStep);
-    }
-    rPlay.addEventListener('click', function () {
-      if (rafId) { rtStop(); return; }
-      if (prog >= 100) rtDraw(0);
-      if (still) { rtDraw(100); return; }
-      rPlay.textContent = 'Pause'; last = 0; rafId = requestAnimationFrame(rtStep);
-    });
-    rR.addEventListener('input', function () { rtStop(); rtDraw(+rR.value); });
-    function setPresent(v) { present = v; $('#rt-pos').setAttribute('aria-pressed', v ? 'true' : 'false'); $('#rt-neg').setAttribute('aria-pressed', v ? 'false' : 'true'); rtDraw(prog); }
-    $('#rt-pos').addEventListener('click', function () { setPresent(true); });
-    $('#rt-neg').addEventListener('click', function () { setPresent(false); });
-    rtDraw(0);
+  // ===== Story reels =====
+  var rl = $('#reel'), rdata = $('#reel-data');
+  if (rl && rdata) {
+    var RD = {}, cur = null, ri = 0, bars = $('#reel-bars'), rimg = $('#reel-img'), rcap = $('#reel-cap');
+    try { RD = JSON.parse(rdata.textContent); } catch (e) {}
+    var rshow = function (i) {
+      var s = RD[cur].slides; if (i < 0) i = 0; if (i >= s.length) { rl.close(); return; }
+      ri = i; rimg.src = rl.dataset.base + s[i].img + '.webp'; rimg.alt = s[i].cap; rcap.textContent = s[i].cap;
+      [].forEach.call(bars.children, function (b, k) { b.className = k < i ? 'done' : ''; });
+      var cb = bars.children[i]; void cb.offsetWidth; cb.className = 'on';
+    };
+    var ropen = function (id) {
+      if (!RD[id]) return; cur = id; bars.innerHTML = '';
+      RD[id].slides.forEach(function () { var b = document.createElement('b'); b.appendChild(document.createElement('i')); bars.appendChild(b); });
+      rl.showModal(); rshow(0);
+    };
+    document.addEventListener('click', function (e) { var b = e.target.closest('.reel-btn'); if (b) ropen(b.dataset.reel); });
+    bars.addEventListener('animationend', function (e) { if (e.target.tagName === 'I') rshow(ri + 1); });
+    $('#reel-next').addEventListener('click', function () { rshow(ri + 1); });
+    $('#reel-prev').addEventListener('click', function () { rshow(ri - 1); });
+    $('#reel-x').addEventListener('click', function () { rl.close(); });
+    rl.addEventListener('pointerdown', function () { rl.classList.add('paused'); });
+    ['pointerup', 'pointercancel', 'pointerleave'].forEach(function (ev) { rl.addEventListener(ev, function () { rl.classList.remove('paused'); }); });
+    rl.addEventListener('keydown', function (e) { if (e.key === 'ArrowRight') rshow(ri + 1); else if (e.key === 'ArrowLeft') rshow(ri - 1); });
+    rl.addEventListener('click', function (e) { if (e.target === rl) rl.close(); });
   }
+
+  // ===== Holographic credential cards =====
+  document.querySelectorAll('.holo').forEach(function (h) {
+    h.addEventListener('pointermove', function (e) {
+      var r = h.getBoundingClientRect(), px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
+      h.style.setProperty('--hx', (px * 100) + '%'); h.style.setProperty('--hy', (py * 100) + '%'); h.classList.add('live');
+      if (!still) h.style.transform = 'perspective(700px) rotateX(' + ((.5 - py) * 8).toFixed(1) + 'deg) rotateY(' + ((px - .5) * 10).toFixed(1) + 'deg)';
+    });
+    ['pointerleave', 'pointercancel'].forEach(function (ev) { h.addEventListener(ev, function () { h.classList.remove('live'); h.style.transform = ''; }); });
+  });
+
+  // ===== Magnifier in the photo viewer =====
+  var lens = $('#lens'), lbtn = $('#lens-btn'), lensOn = false;
+  if (dlg && lens && lbtn) {
+    var Z = 2.6, S = 140;
+    lbtn.addEventListener('click', function () {
+      lensOn = !lensOn; lbtn.setAttribute('aria-pressed', lensOn ? 'true' : 'false'); lbtn.textContent = lensOn ? 'Magnifier: on' : 'Magnifier';
+      big.style.touchAction = lensOn ? 'none' : ''; if (!lensOn) lens.style.display = 'none';
+    });
+    var lmove = function (e) {
+      if (!lensOn) return;
+      var r = big.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
+      if (x < 0 || y < 0 || x > r.width || y > r.height) { lens.style.display = 'none'; return; }
+      var d = dlg.getBoundingClientRect(), off = e.pointerType === 'touch' ? -(S / 2 + 28) : 0;
+      lens.style.display = 'block'; lens.style.backgroundImage = 'url("' + big.src + '")';
+      lens.style.backgroundSize = (r.width * Z) + 'px ' + (r.height * Z) + 'px';
+      lens.style.backgroundPosition = (-(x * Z - S / 2)) + 'px ' + (-(y * Z - S / 2)) + 'px';
+      lens.style.left = (e.clientX - d.left - S / 2) + 'px'; lens.style.top = (e.clientY - d.top - S / 2 + off) + 'px';
+    };
+    big.addEventListener('pointermove', lmove); big.addEventListener('pointerdown', lmove);
+    big.addEventListener('pointerleave', function () { lens.style.display = 'none'; });
+    dlg.addEventListener('close', function () { lens.style.display = 'none'; lensOn = false; lbtn.setAttribute('aria-pressed', 'false'); lbtn.textContent = 'Magnifier'; big.style.touchAction = ''; });
+  }
+
+  // ===== Journey timeline progress =====
+  var tl = $('#tl'), tf = $('#tl-fill');
+  if (tl && tf) {
+    var tlUpdate = function () { var m = tl.scrollWidth - tl.clientWidth; tf.style.setProperty('--tp', (m > 0 ? 6 + (tl.scrollLeft / m) * 94 : 100) + '%'); tf.style.width = ''; tf.parentNode.style.setProperty('--tp', (m > 0 ? 6 + (tl.scrollLeft / m) * 94 : 100) + '%'); };
+    tl.addEventListener('scroll', tlUpdate, { passive: true }); addEventListener('resize', tlUpdate); tlUpdate();
+  }
+
+  // ===== Cinematic intro (first visit per session) =====
+  var intro = $('#intro');
+  if (intro && document.documentElement.classList.contains('has-intro')) {
+    var left = false;
+    var leave = function () {
+      if (left) return; left = true; intro.classList.add('out');
+      try { sessionStorage.setItem('intro', '1'); } catch (e) {}
+      setTimeout(function () { document.documentElement.classList.remove('has-intro'); }, 1000);
+    };
+    setTimeout(leave, 3500);
+    intro.addEventListener('click', leave);
+    document.addEventListener('keydown', function (e) { if (!left && (e.key === 'Escape' || e.key === 'Enter')) leave(); });
+  }
+
+  // ===== Copy buttons (media kit) =====
+  document.querySelectorAll('[data-copy]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var t = document.getElementById(b.dataset.copy).innerText;
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(function () { toast('Copied'); }, function () { toast('Copy failed'); });
+      else toast('Copy is not supported in this browser');
+    });
+  });
 
   // ===== Search / command palette (Ctrl or Command + K) =====
   var cmd = $('#cmd'), cdata = $('#cmd-data');
