@@ -210,3 +210,8 @@ html.has-intro #intro{display:flex;animation:introAuto .01s 7s forwards}
 .facts dt{color:var(--muted);font:500 .82rem var(--mono)}
 .facts dd{margin:0}
 .pics>div{display:flex;flex-direction:column}
+
+@media(max-width:640px){
+  .zoom.wide img{max-height:220px;object-fit:contain}
+  .holo{transform:none!important}
+}
