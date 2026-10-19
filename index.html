@@ -31,6 +31,13 @@ hero: true
 <a class="tile" href="{{ '/emergency/' | relative_url }}"><img src="{{ '/assets/images/IMG_3320.webp' | relative_url }}" alt="" style="view-transition-name:hero-emergency" width="1932" height="2576" loading="lazy" decoding="async"><span class="go" aria-hidden="true">→</span><div class="tile-body"><h2>Emergency &amp; First Aid</h2><p>NIEMS credential, Thai Red Cross, disaster comms</p></div></a>
 <a class="tile" href="{{ '/awards/' | relative_url }}"><img src="{{ '/assets/images/IMG_4697.webp' | relative_url }}" alt="" style="view-transition-name:hero-awards" width="1667" height="981" loading="lazy" decoding="async"><span class="go" aria-hidden="true">→</span><div class="tile-body"><h2>Awards</h2><p>MedSpark first place, One Health certificate, education</p></div></a>
 <a class="tile s2" href="{{ '/radio/' | relative_url }}"><img src="{{ '/assets/images/IMG_1311.webp' | relative_url }}" alt="" style="view-transition-name:hero-radio" width="1932" height="2576" loading="lazy" decoding="async"><span class="go" aria-hidden="true">→</span><div class="tile-body"><h2>Radio &amp; Open Tech</h2><p>TinyGS satellite ground station, callsign E25ZVB</p></div></a>
+<section class="card s3 tl-card" aria-label="Journey"><h2>Journey</h2>
+<div class="tl-bar" aria-hidden="true"><i id="tl-fill"></i></div>
+<ol class="tl" id="tl">
+{%- for t in site.data.timeline -%}
+<li><time>{{ t.date }}</time><h3>{{ t.title }}</h3><p class="muted">{{ t.text }}</p>{% if t.url %}<a class="small" href="{{ t.url | relative_url }}">{{ t.label }} &rarr;</a>{% elsif t.ext %}<a class="small" href="{{ t.ext }}" target="_blank" rel="noopener noreferrer">{{ t.label }} &rarr;</a>{% endif %}</li>
+{%- endfor -%}
+</ol></section>
 <section class="card s3 quote-zoom"><div class="qz-inner" data-zoom><blockquote>“True success is not in the learning, but in its application to the benefit of mankind”</blockquote><p class="small"><strong>— Prince Mahidol of Songkla (Father of Modern Thai Medicine)</strong></p><p class="small" style="margin-top:8px">Embodied daily through biomedical innovations, tropical medicine research, and science communication on Medium (@watanyoo.putta).</p></div></section>
 <section class="card"><h2>Press &amp; Media Mentions</h2><p class="small">External press coverage of research innovations and award recognition.</p><div class="item"><strong>Esan Daily Online (July 9, 2026)</strong><span class="small">Covering the medical device innovation award event.</span><div class="btns"><a class="btn alt" href="https://www.esandailyonline.com/168002" target="_blank" rel="noopener noreferrer">Read Esan Daily Feature</a></div></div></section>
 <section class="card s2"><h2>Latest news</h2><ul class="newslist">
@@ -46,5 +53,6 @@ hero: true
 <a class="btn alt" href="https://scholar.google.com/citations?user=_8o9aVEAAAAJ" rel="me external">Google Scholar Profile</a>
 <a class="btn alt" href="https://www.linkedin.com/in/watanyoo-putta/" rel="me external">LinkedIn Profile</a>
 <a class="btn alt" href="https://github.com/watanyooputta" rel="me external">GitHub Repository</a>
-<a class="btn alt" href="https://doi.org/10.5281/zenodo.23317893" rel="me external">Zenodo Record (DOI 10.5281/zenodo.23317893)</a></nav></section>
+<a class="btn alt" href="https://doi.org/10.5281/zenodo.23317893" rel="me external">Zenodo Record (DOI 10.5281/zenodo.23317893)</a>
+<a class="btn alt" href="{{ '/cv/' | relative_url }}">Printable CV</a></nav></section>
 </main>
