@@ -104,6 +104,7 @@ function toggleTheme(){var c=document.documentElement.getAttribute('data-theme')
 
 {% if page.map %}<script src="{{ '/assets/js/vendor/leaflet/leaflet.js' | relative_url }}"></script>{% endif %}
 <script src="{{ '/assets/js/script.js' | relative_url }}?v={{ v }}"></script>
+<script src="{{ '/assets/js/fx.js' | relative_url }}?v={{ v }}" defer></script>
 <button class="theme-float-btn" type="button" id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">🌓</button>
 </body>
 </html>
