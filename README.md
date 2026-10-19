@@ -9,7 +9,7 @@ Official, cryptographically linked professional digital presence of **Watanyoo P
 ---
 
 ## 🌐 Verified Professional Nodes
-- **Live Entity Hub:** [watanyooputta.github.io](https://watanyooputta.github.io/)
+- **Live Entity Hub:** [watanyooputta.com](https://watanyooputta.com/)
 - **Medium Publications:** [@watanyoo.putta](https://medium.com/@watanyoo.putta)
 - **Wikidata Entity:** [Q141644996](https://www.wikidata.org/wiki/Q141644996)
 - **ORCID Registry:** [0009-0007-2782-1422](https://orcid.org/0009-0007-2782-1422)
