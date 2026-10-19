@@ -1,9 +1,9 @@
 {
   "name": "Watanyoo Putta",
   "alternate_name": ["วทัญญู พุทธา", "นายวทัญญู พุทธา"],
-  "last_updated": "2026-10-15",
+  "last_updated": "2026-10-20",
   "location": { "city": "Khon Kaen", "country": "Thailand", "timezone": "Asia/Bangkok" },
-  "languages": ["en"],
+  "languages": ["en", "th"],
   "latest_article": "The Lawa Model: Translating Public Health into Community Action",
   "roles": [
     "Medical Researcher",
@@ -34,7 +34,7 @@
     "website_archive_doi": "https://doi.org/10.5281/zenodo.23317893"
   },
   "links": {
-    "website": "https://watanyooputta.github.io/",
+    "website": "https://watanyooputta.com/",
     "medium": "https://medium.com/@watanyoo.putta",
     "github": "https://github.com/watanyooputta",
     "linkedin": "https://www.linkedin.com/in/watanyoo-putta/"
