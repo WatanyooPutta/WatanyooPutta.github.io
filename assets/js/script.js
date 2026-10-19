@@ -1,6 +1,6 @@
 (function () {
   var $ = function (s) { return document.querySelector(s); };
-  // Safe listener: pages without a given element (for example the QR button) no longer break the rest of the script
+  // Safe listener: pages without a given element no longer break execution
   function on(sel, evt, fn, opt) { var el = $(sel); if (el) el.addEventListener(evt, fn, opt); }
 
   var dlg = $('#lightbox'), big = $('#big'), qr = $('#qr'), toastEl = $('#toast'), timer;
@@ -14,9 +14,10 @@
     if ((dlg && e.target === dlg) || (qr && e.target === qr) || e.target.closest('[data-close]')) { if (dlg && dlg.open) dlg.close(); if (qr && qr.open) qr.close(); }
   });
 
-  // Contact card + QR (home page only)
+  // Contact card + QR (home page only) - Updated to custom domain
   var VCARD = ['BEGIN:VCARD','VERSION:3.0','N:Putta;Watanyoo;;;','FN:Watanyoo Putta','TITLE:Medical Researcher','ORG:Khonkaenwittayayon School',
-    'URL:https://watanyooputta.github.io/','URL:https://www.linkedin.com/in/watanyoo-putta/','URL:https://medium.com/@watanyoo.putta','END:VCARD'].join('\r\n');
+    'URL:https://watanyooputta.com/','URL:https://www.linkedin.com/in/watanyoo-putta/','URL:https://medium.com/@watanyoo.putta','END:VCARD'].join('\r\n');
+  
   function download() {
     var a = document.createElement('a');
     a.href = URL.createObjectURL(new Blob([VCARD], { type: 'text/vcard' }));
@@ -64,7 +65,7 @@
     var tick = function () { clock.textContent = fmt.format(new Date()); }; tick(); setInterval(tick, 1000);
   }
 
-  // Map tiles: CARTO with your key, falling back to OpenStreetMap if CARTO refuses
+  // Map tiles: CARTO with fallback to OpenStreetMap
   function addTiles(map) {
     var tiles = L.tileLayer('https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png?key=cb1_4gfd_1_8f4a0c9e8b3d85a310477693', {
       maxZoom: 19,
@@ -78,7 +79,7 @@
     });
   }
 
-  // Map (Research page only). One map, your latest pin positions, no extra CDN loading.
+  // Map (Research page only)
   if ($('#map') && typeof L !== 'undefined') {
     var map = L.map('map', { scrollWheelZoom: false }).setView([16.4322, 102.8236], 10);
     addTiles(map);
@@ -98,7 +99,7 @@
     document.querySelectorAll('.card,.tile').forEach(function (el) { el.classList.add('reveal'); io.observe(el); });
   }
 
-  // Quote that zooms in as you scroll it to the middle of the screen
+  // Quote zoom effect
   var zs = [].slice.call(document.querySelectorAll('[data-zoom]')), ticking = false;
   function zoomUpdate() {
     ticking = false; var vh = innerHeight;
@@ -245,7 +246,7 @@
       if (busy) return; busy = true;
       var AC = window.AudioContext || window.webkitAudioContext;
       if (AC && !actx) { try { actx = new AC(); } catch (e) { actx = null; } }
-      var t = 0, U = 90; // one dot = 90 ms
+      var t = 0, U = 90;
       word.split('').forEach(function (ch, ci) {
         (MORSE[ch] || '').split('').forEach(function (sym) {
           var len = sym === '.' ? U : U * 3, st = t;
