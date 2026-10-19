@@ -10,11 +10,11 @@
   "background_color": "#07080a",
   "theme_color": "#07080a",
   "icons": [
-{
-  "src": "/assets/images/IMG_9921-400.webp",
-  "sizes": "400x400",
-  "type": "image/webp",
-  "purpose": "any"
-}
+    {
+      "src": "/assets/images/IMG_9921-400.webp",
+      "sizes": "400x400",
+      "type": "image/webp",
+      "purpose": "any"
+    }
   ]
 }
