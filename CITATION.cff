@@ -4,11 +4,15 @@ type: software
 authors:
   - family-names: "Putta"
     given-names: "Watanyoo"
-    orcid: "https://orcid.org/0009-0007-2782-1422" # You can add your actual ORCID profile URL here if you'd like!
+    orcid: "https://orcid.org/0009-0007-2782-1422"
 title: "Sovereign Entity Hub"
-version: 1.0.0
+version: 1.1.0
 date-released: 2026-10-12
-url: "https://watanyoo-putta.github.io"
+url: "https://watanyooputta.com"
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.23317893
+    description: "Zenodo archived record of Sovereign Entity Hub"
 abstract: "A high-grade, cryptographically secure academic and technical engineering portfolio integrating automated schema validation CI/CD, open-science governance, and persistent research archiving."
 keywords:
   - "Sovereign Entity Hub"
