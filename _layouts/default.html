@@ -45,7 +45,7 @@ function toggleTheme(){var c=document.documentElement.getAttribute('data-theme')
 <link rel="canonical" href="{{ canon }}">
 <link rel="icon" href="{{ '/assets/images/IMG_9921-400.webp' | relative_url }}" type="image/webp">
 <link rel="apple-touch-icon" href="{{ '/assets/images/IMG_9921-400.webp' | relative_url }}">
-<link rel="manifest" href="{{ '/site.webmanifest' | relative_url }}">
+<link rel="manifest" href="{{ '/manifest.json' | relative_url }}">
 <link rel="alternate" type="application/json" href="{{ '/profile.json' | relative_url }}" title="Machine-readable profile">
 <link rel="sitemap" type="application/xml" href="{{ '/sitemap.xml' | relative_url }}">
 <link rel="me" href="https://medium.com/@watanyoo.putta">
@@ -77,7 +77,7 @@ function toggleTheme(){var c=document.documentElement.getAttribute('data-theme')
 <!-- STRUCTURED DATA -->
 {% if page.url == '/' %}{% include jsonld-home.html %}{% else %}
 <script type="application/ld+json">
-{% raw %}{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"{% endraw %}{{ canon }}{% raw %}#webpage","url":"{% endraw %}{{ canon }}{% raw %}","name":{% endraw %}{{ ttl | jsonify }}{% raw %},"description":{% endraw %}{{ desc | strip_html | jsonify }}{% raw %},"inLanguage":"en","isPartOf":{"@id":"https://watanyooputta.github.io/#website"},"about":{"@id":"https://watanyooputta.github.io/#person"},"breadcrumb":{"@id":"{% endraw %}{{ canon }}{% raw %}#crumbs"}},{"@type":"BreadcrumbList","@id":"{% endraw %}{{ canon }}{% raw %}#crumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://watanyooputta.github.io/"},{"@type":"ListItem","position":2,"name":{% endraw %}{{ page.crumb | default: page.title | jsonify }}{% raw %},"item":"{% endraw %}{{ canon }}{% raw %}"}]}]}{% endraw %}
+{% raw %}{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"{% endraw %}{{ canon }}{% raw %}#webpage","url":"{% endraw %}{{ canon }}{% raw %}","name":{% endraw %}{{ ttl | jsonify }}{% raw %},"description":{% endraw %}{{ desc | strip_html | jsonify }}{% raw %},"inLanguage":"en","isPartOf":{"@id":"https://watanyooputta.com/#website"},"about":{"@id":"https://watanyooputta.com/#person"},"breadcrumb":{"@id":"{% endraw %}{{ canon }}{% raw %}#crumbs"}},{"@type":"BreadcrumbList","@id":"{% endraw %}{{ canon }}{% raw %}#crumbs","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://watanyooputta.com/"},{"@type":"ListItem","position":2,"name":{% endraw %}{{ page.crumb | default: page.title | jsonify }}{% raw %},"item":"{% endraw %}{{ canon }}{% raw %}"}]}]}{% endraw %}
 </script>
 {% endif %}
 </head>
