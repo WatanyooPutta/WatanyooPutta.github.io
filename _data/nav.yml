@@ -1,6 +1,8 @@
 # Edit the menu here once; every page updates.
 - title: Research
   url: /research/
+- title: Lawa Model
+  url: /lawa/
 - title: Emergency
   url: /emergency/
 - title: Awards
