@@ -1,25 +1,25 @@
 {
-"subject": "acct:watanyoo@watanyooputta.github.io",
-"aliases": [
-"https://watanyooputta.github.io/",
-"https://medium.com/@watanyoo.putta",
-"https://orcid.org/0009-0007-2782-1422"
-],
-"links": [
-{
-"rel": "http://webfinger.net/rel/profile-page",
-"type": "text/html",
-"href": "https://watanyooputta.github.io/"
-},
-{
-"rel": "http://webfinger.net/rel/avatar",
-"type": "image/jpeg",
-"href": "https://watanyooputta.github.io/images/IMG_9921.jpeg"
-},
-{
-"rel": "self",
-"type": "application/activity+json",
-"href": "https://watanyooputta.github.io/profile.json"
-}
-]
+  "subject": "acct:watanyoo@watanyooputta.com",
+  "aliases": [
+    "https://watanyooputta.com/",
+    "https://medium.com/@watanyoo.putta",
+    "https://orcid.org/0009-0007-2782-1422"
+  ],
+  "links": [
+    {
+      "rel": "http://webfinger.net/rel/profile-page",
+      "type": "text/html",
+      "href": "https://watanyooputta.com/"
+    },
+    {
+      "rel": "http://webfinger.net/rel/avatar",
+      "type": "image/webp",
+      "href": "https://watanyooputta.com/assets/images/IMG_9921-400.webp"
+    },
+    {
+      "rel": "self",
+      "type": "application/activity+json",
+      "href": "https://watanyooputta.com/profile.json"
+    }
+  ]
 }
