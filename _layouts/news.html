@@ -12,5 +12,5 @@ layout: default
 <div class="btns"><a class="btn alt" href="{{ '/news/' | relative_url }}">All news</a></div>
 </article></main>
 <script type="application/ld+json">
-{% raw %}{"@context":"https://schema.org","@type":"NewsArticle","headline":{% endraw %}{{ page.title | jsonify }}{% raw %},"datePublished":"{% endraw %}{{ page.date | date_to_xmlschema }}{% raw %}","description":{% endraw %}{{ page.summary | jsonify }}{% raw %},"author":{"@id":"https://watanyooputta.com/#person"},"mainEntityOfPage":"{% endraw %}{{ page.url | absolute_url }}{% raw %}","image":"{% endraw %}{{ '/assets/images/IMG_9503.webp' | absolute_url }}{% raw %}"}{% endraw %}
+{% raw %}{"@context":"https://schema.org","@type":"NewsArticle","headline":{% endraw %}{{ page.title | jsonify }}{% raw %},"datePublished":"{% endraw %}{{ page.date | date_to_xmlschema }}{% raw %}","description":{% endraw %}{{ page.summary | jsonify }}{% raw %},"author":{"@id":"https://watanyooputta.com/#person"},"mainEntityOfPage":"{% endraw %}{{ page.url | absolute_url }}{% raw %}","image":"https://watanyooputta.com/assets/images/IMG_9503.webp"}{% endraw %}
 </script>
