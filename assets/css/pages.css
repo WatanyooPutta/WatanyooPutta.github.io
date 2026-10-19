@@ -215,3 +215,19 @@ html.has-intro #intro{display:flex;animation:introAuto .01s 7s forwards}
   .zoom.wide img{max-height:220px;object-fit:contain}
   .holo{transform:none!important}
 }
+
+/* ---- Mobile overflow fix: grid cells may shrink below their content ---- */
+.grid>*{min-width:0}
+.tl-card{min-width:0;max-width:100%}
+html,body{overflow-x:clip}
+@media(max-width:640px){
+  .zoom.wide img{max-height:220px;object-fit:contain}
+  .holo{transform:none!important}
+}
+
+/* ---- Effects: spinning light on credential cards, cursor glow ---- */
+@property --ang{syntax:"<angle>";inherits:false;initial-value:0deg}
+.card:has(.holo)::after{content:"";position:absolute;inset:0;border-radius:inherit;padding:1.5px;pointer-events:none;z-index:2;background:conic-gradient(from var(--ang),transparent 0 68%,var(--accent) 84%,transparent 100%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:ang 6s linear infinite}
+@keyframes ang{to{--ang:360deg}}
+#cursor-glow{position:fixed;top:0;left:0;width:420px;height:420px;border-radius:50%;pointer-events:none;z-index:0;opacity:0;transition:opacity .3s;background:radial-gradient(circle,var(--glow),transparent 65%);will-change:transform}
+@media(prefers-reduced-motion:reduce){.card:has(.holo)::after{animation:none}}
