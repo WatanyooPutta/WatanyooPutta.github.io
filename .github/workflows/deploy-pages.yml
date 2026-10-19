@@ -12,7 +12,7 @@ permissions:
 
 concurrency:
   group: "pages"
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   deploy:
@@ -26,34 +26,25 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-
-      - name: Delete stale GitHub Pages artifacts
-        uses: actions/github-script@v7
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
         with:
-          script: |
-            const { data: artifacts } = await github.rest.actions.listWorkflowRunArtifacts({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              run_id: context.runId,
-            });
-            for (const artifact of artifacts.artifacts) {
-              if (artifact.name === 'github-pages') {
-                console.log(`Deleting stale artifact: ${artifact.id}`);
-                await github.rest.actions.deleteArtifact({
-                  owner: context.repo.owner,
-                  repo: context.repo.repo,
-                  artifact_id: artifact.id,
-                });
-              }
-            }
+          ruby-version: '3.3'
+          bundler-cache: true
+
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v5
+
+      - name: Build Jekyll Site
+        run: bundle exec jekyll build
+        env:
+          JEKYLL_ENV: production
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'
-          include-hidden: true
+          path: './_site'
 
       - name: Deploy to GitHub Pages
         id: deployment
