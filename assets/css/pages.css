@@ -231,3 +231,14 @@ html,body{overflow-x:clip}
 @keyframes ang{to{--ang:360deg}}
 #cursor-glow{position:fixed;top:0;left:0;width:420px;height:420px;border-radius:50%;pointer-events:none;z-index:0;opacity:0;transition:opacity .3s;background:radial-gradient(circle,var(--glow),transparent 65%);will-change:transform}
 @media(prefers-reduced-motion:reduce){.card:has(.holo)::after{animation:none}}
+
+/* Images must never be wider than their box (fixes iPhone overflow) */
+img{max-width:100%;height:auto}
+.zoom{display:block;width:100%;padding:0;margin:0;border:1px solid var(--line);border-radius:12px;background:var(--panel);overflow:hidden;cursor:zoom-in;line-height:0}
+.zoom img{display:block;width:100%;height:auto}
+.pics .zoom{border:0;background:transparent}
+.pics .zoom img{height:100%}
+.zoom.wide img{aspect-ratio:auto;max-height:420px;object-fit:contain}
+.wall .zoom img{height:auto}
+.badge{margin-bottom:10px}
+
