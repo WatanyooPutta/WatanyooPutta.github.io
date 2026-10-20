@@ -249,3 +249,9 @@ img{max-width:100%;height:auto}
 .about-row .edu-photo{flex-basis:120px;width:120px}
 .edu-photo img{width:100%;height:auto;aspect-ratio:3/4;object-fit:cover;display:block}
 @media(max-width:420px){.edu-photo,.about-row .edu-photo{flex-basis:84px;width:84px}}
+
+/* ---- Record chips (About page) ---- */
+.vchips{margin:0 0 20px}
+.vchips .chips{margin:8px 0 0}
+a.chip{text-decoration:none;transition:border-color .2s,color .2s}
+a.chip:hover,a.chip:focus-visible{border-color:var(--accent);color:var(--text)}
