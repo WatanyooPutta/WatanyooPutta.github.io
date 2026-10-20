@@ -242,3 +242,10 @@ img{max-width:100%;height:auto}
 .wall .zoom img{height:auto}
 .badge{margin-bottom:10px}
 
+/* ---- Student photo beside text (education entry and About page) ---- */
+.edu-row{display:flex;gap:16px;align-items:flex-start;margin-top:10px}
+.edu-row>div,.edu-row>span{flex:1;min-width:0}
+.edu-photo{flex:0 0 96px;width:96px;border-radius:12px}
+.about-row .edu-photo{flex-basis:120px;width:120px}
+.edu-photo img{width:100%;height:auto;aspect-ratio:3/4;object-fit:cover;display:block}
+@media(max-width:420px){.edu-photo,.about-row .edu-photo{flex-basis:84px;width:84px}}
