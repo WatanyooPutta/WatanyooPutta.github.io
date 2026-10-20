@@ -10,7 +10,7 @@
 
   document.addEventListener('click', function (e) {
     var z = e.target.closest('.zoom');
-    if (z && dlg) { var i = z.querySelector('img'); big.src = i.currentSrc || i.src; big.alt = i.alt; dlg.showModal(); return; }
+    if (z && dlg) { var i = z.querySelector('img'); big.src = i.dataset.full || i.currentSrc || i.src; big.alt = i.alt; dlg.showModal(); return; }
     if ((dlg && e.target === dlg) || (qr && e.target === qr) || e.target.closest('[data-close]')) { if (dlg && dlg.open) dlg.close(); if (qr && qr.open) qr.close(); }
   });
 
