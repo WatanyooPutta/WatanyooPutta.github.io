@@ -15,3 +15,4 @@ The two-student team, Watanyoo Putta (M.6/22) and Panisara Wongsanga (M.6/3), wa
 The team has advanced to the on-site national final at the Workpoint Studio in Pathum Thani Province on 12 to 13 December 2026. The televised broadcast will air on Workpoint TV (Channel 23) on 13, 20 and 27 January 2027.
 
 Source: press release from Khon Kaen Wittayayon School, published on openPR on 22 October 2026.
+
