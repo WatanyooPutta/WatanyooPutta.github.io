@@ -5,7 +5,7 @@
     "นายวทัญญู พุทธา"
   ],
   "status": "Active",
-  "last_updated": "2026-10-14",
+  "last_updated": "2026-10-22",
   "location": {
     "city": "Khon Kaen",
     "country": "Thailand",
@@ -43,13 +43,24 @@
     "lawa_model_doi": "https://doi.org/10.5281/zenodo.23324693",
     "lawa_model_article": "https://medium.com/@watanyoo.putta/the-lawa-model-translating-public-health-into-community-action-5eba53f3502e",
     "industrial_noise_study_doi": "https://doi.org/10.5281/zenodo.23219819",
-    "entity_hub_doi": "https://doi.org/10.5281/zenodo.23317893"
+    "entity_hub_doi": "https://doi.org/10.5281/zenodo.23317893",
+    "first_aid_guidelines": {
+      "title_en": "Operational Guidelines for Student First Aid Volunteers: Khon Kaen Wittayayon School Health Services (B.E. 2569)",
+      "title_th": "คู่มือการปฏิบัติงานสำหรับอาสาพยาบาล งานพยาบาลโรงเรียนขอนแก่นวิทยายน พ.ศ. 2569",
+      "status": "awaiting Google Books review",
+      "identifier": "GGKEY:N2KZ8Y3PQRY"
+    }
   },
   "contact_nodes": {
     "website": "https://watanyooputta.com/",
     "medium": "https://medium.com/@watanyoo.putta",
     "github": "https://github.com/watanyooputta",
     "linkedin": "https://www.linkedin.com/in/watanyoo-putta/",
-    "previous_website": "https://watanyooputta.github.io/"
+    "previous_website": "https://watanyooputta.github.io/",
+    "internet_archive": "https://archive.org/details/@watanyoo_putta/web-archive",
+    "gravatar": "https://gravatar.com/delicate5bee6abfc2",
+    "knowledge_commons": "https://profile.hcommons.org/members/watanyooputta/",
+    "crunchbase": "https://www.crunchbase.com/person/watanyoo-putta",
+    "about_me": "https://about.me/watanyooputta"
   }
 }
