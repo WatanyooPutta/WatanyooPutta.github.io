@@ -2,10 +2,11 @@
   "name": "Watanyoo Putta",
   "alternate_name": [
     "วทัญญู พุทธา",
-    "นายวทัญญู พุทธา"
+    "นายวทัญญู พุทธา",
+    "E25ZVB"
   ],
   "status": "Active",
-  "last_updated": "2026-10-22",
+  "last_updated": "2026-10-14",
   "location": {
     "city": "Khon Kaen",
     "country": "Thailand",
@@ -37,7 +38,8 @@
   "verified_identifiers": {
     "orcid": "https://orcid.org/0009-0007-2782-1422",
     "wikidata": "https://www.wikidata.org/wiki/Q141644996",
-    "google_scholar": "https://scholar.google.com/citations?user=_8o9aVEAAAAJ"
+    "google_scholar": "https://scholar.google.com/citations?user=_8o9aVEAAAAJ",
+    "web_of_science_researcher_id": "https://www.webofscience.com/wos/author/record/RHX-9803-2026"
   },
   "publications": {
     "lawa_model_doi": "https://doi.org/10.5281/zenodo.23324693",
@@ -61,6 +63,15 @@
     "gravatar": "https://gravatar.com/delicate5bee6abfc2",
     "knowledge_commons": "https://profile.hcommons.org/members/watanyooputta/",
     "crunchbase": "https://www.crunchbase.com/person/watanyoo-putta",
-    "about_me": "https://about.me/watanyooputta"
+    "about_me": "https://about.me/watanyooputta",
+    "frontiers_loop": "https://loop.frontiersin.org/people/3730773/overview",
+    "academia_edu": "https://independent.academia.edu/WatanyooPutta",
+    "sciprofiles": "https://sciprofiles.com/profile/watanyooputta",
+    "qrz": "https://www.qrz.com/db/E25ZVB",
+    "qrzcq": "https://www.qrzcq.com/call/E25ZVB"
+  },
+  "amateur_radio_callsign": "E25ZVB",
+  "press": {
+    "openpr": "https://www.openpr.com/news/4668912/khon-kaen-wittayayon-school-team-places-first-in-all-four-online"
   }
 }
