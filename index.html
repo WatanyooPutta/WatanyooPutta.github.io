@@ -14,6 +14,7 @@ hero: true
     <nav class="btns" aria-label="Primary actions">
       <button class="btn" type="button" id="vcard">Save Contact</button>
       <button class="btn alt" type="button" id="qrbtn">QR Business Card</button>
+      <a class="btn alt" href="{{ '/contact/' | relative_url }}">All profiles</a>
     </nav>
   </div>
 </header>
@@ -46,13 +47,4 @@ hero: true
 <li><a href="{{ n.url | relative_url }}">{{ n.title }}</a><br><span class="small">{{ n.date | date: "%B %-d, %Y" }}. {{ n.summary }}</span></li>
 {%- endfor -%}
 </ul><div class="btns"><a class="btn alt" href="{{ '/news/' | relative_url }}">All news</a></div></section>
-<section class="card s3"><h2>Profiles</h2><p class="small" style="margin-bottom:12px">Professional and academic profiles.</p><nav class="links" aria-label="Professional profiles">
-<a class="btn" href="https://medium.com/@watanyoo.putta" rel="me external">Medium Publisher (@watanyoo.putta)</a>
-<a class="btn alt" href="https://www.wikidata.org/wiki/Q141644996" rel="me external">Wikidata (Q141644996)</a>
-<a class="btn alt" href="https://orcid.org/0009-0007-2782-1422" rel="me external">ORCID (0009-0007-2782-1422)</a>
-<a class="btn alt" href="https://scholar.google.com/citations?user=_8o9aVEAAAAJ" rel="me external">Google Scholar Profile</a>
-<a class="btn alt" href="https://www.linkedin.com/in/watanyoo-putta/" rel="me external">LinkedIn Profile</a>
-<a class="btn alt" href="https://github.com/watanyooputta" rel="me external">GitHub Repository</a>
-<a class="btn alt" href="https://doi.org/10.5281/zenodo.23317893" rel="me external">Zenodo Record (DOI 10.5281/zenodo.23317893)</a>
-<a class="btn alt" href="{{ '/cv/' | relative_url }}">Printable CV</a></nav></section>
 </main>
