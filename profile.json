@@ -39,7 +39,9 @@
     "orcid": "https://orcid.org/0009-0007-2782-1422",
     "wikidata": "https://www.wikidata.org/wiki/Q141644996",
     "google_scholar": "https://scholar.google.com/citations?user=_8o9aVEAAAAJ",
-    "web_of_science_researcher_id": "https://www.webofscience.com/wos/author/record/RHX-9803-2026"
+    "web_of_science_researcher_id": "https://www.webofscience.com/wos/author/record/RHX-9803-2026",
+    "openalex": "https://openalex.org/A5157901647",
+    "openalex_id": "A5157901647"
   },
   "publications": {
     "lawa_model_doi": "https://doi.org/10.5281/zenodo.23324693",
