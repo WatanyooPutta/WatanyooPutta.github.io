@@ -6,7 +6,7 @@
     "E25ZVB"
   ],
   "status": "Active",
-  "last_updated": "2026-10-14",
+  "last_updated": "2026-10-25",
   "location": {
     "city": "Khon Kaen",
     "country": "Thailand",
@@ -47,7 +47,6 @@
     "lawa_model_doi": "https://doi.org/10.5281/zenodo.23324693",
     "lawa_model_article": "https://medium.com/@watanyoo.putta/the-lawa-model-translating-public-health-into-community-action-5eba53f3502e",
     "industrial_noise_study_doi": "https://doi.org/10.5281/zenodo.23219819",
-    "entity_hub_doi": "https://doi.org/10.5281/zenodo.23317893",
     "first_aid_guidelines": {
       "title_en": "Operational Guidelines for Student First Aid Volunteers: Khon Kaen Wittayayon School Health Services (B.E. 2569)",
       "title_th": "คู่มือการปฏิบัติงานสำหรับอาสาพยาบาล งานพยาบาลโรงเรียนขอนแก่นวิทยายน พ.ศ. 2569",
@@ -70,7 +69,8 @@
     "academia_edu": "https://independent.academia.edu/WatanyooPutta",
     "sciprofiles": "https://sciprofiles.com/profile/watanyooputta",
     "qrz": "https://www.qrz.com/db/E25ZVB",
-    "qrzcq": "https://www.qrzcq.com/call/E25ZVB"
+    "qrzcq": "https://www.qrzcq.com/call/E25ZVB",
+    "quora": "https://www.quora.com/profile/Watanyoo-Putta"
   },
   "amateur_radio_callsign": "E25ZVB",
   "press": {
