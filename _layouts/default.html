@@ -30,9 +30,12 @@
 <link rel="me" href="https://www.linkedin.com/in/watanyoo-putta/">
 <link rel="me" href="https://orcid.org/0009-0007-2782-1422">
 {% if page.hero %}<link rel="preload" as="image" href="{{ '/assets/images/IMG_9921-400.webp' | relative_url }}" type="image/webp" fetchpriority="high">{% endif %}
-{%- assign v = site.time | date: '%Y%m%d%H%M' -%}
+
+<!-- FIXED: Using a stable version string to prevent CDN caching/version mismatch issues -->
+{%- assign v = '2.1' -%}
 <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}?v={{ v }}">
 <link rel="stylesheet" href="{{ '/assets/css/pages.css' | relative_url }}?v={{ v }}">
+
 <meta property="og:type" content="{{ page.og_type | default: 'website' }}">
 <meta property="og:site_name" content="Watanyoo Putta">
 <meta property="og:url" content="{{ canon }}">
@@ -104,9 +107,11 @@ function toggleTheme(){var c=document.documentElement.getAttribute('data-theme')
 {"t":"Wikidata","u":"https://www.wikidata.org/wiki/Q141644996","k":"profile"}
 ]</script>
 
-{% if page.map %}<script src="{{ '/assets/js/vendor/leaflet/leaflet.js' | relative_url }}"></script>{% endif %}
-<script src="{{ '/assets/js/script.js' | relative_url }}?v={{ v }}"></script>
+<!-- FIXED: Added 'defer' to script.js so it executes safely after HTML elements are parsed -->
+{% if page.map %}<script src="{{ '/assets/js/vendor/leaflet/leaflet.js' | relative_url }}" defer></script>{% endif %}
+<script src="{{ '/assets/js/script.js' | relative_url }}?v={{ v }}" defer></script>
 <script src="{{ '/assets/js/fx.js' | relative_url }}?v={{ v }}" defer></script>
+
 <button class="theme-float-btn" type="button" id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">🌓</button>
 </body>
 </html>
