@@ -6,7 +6,7 @@
     "E25ZVB"
   ],
   "status": "Active",
-  "last_updated": "2026-10-29",
+  "last_updated": "2026-10-31",
   "location": {
     "city": "Khon Kaen",
     "country": "Thailand",
@@ -84,5 +84,12 @@
     "en": "Watanyoo Putta (วทัญญู พุทธา) is a Thai medical researcher and student at Khonkaenwittayayon School in Khon Kaen, Thailand. He works on tropical disease, One Health and diagnostic biosensors, completed a research internship at the Tropical Disease Research Center, Khon Kaen University, and won first place at the MedSpark Innovation Competition 2026.",
     "th": "วทัญญู พุทธา เป็นนักวิจัยทางการแพทย์ชาวไทยและนักเรียนโรงเรียนขอนแก่นวิทยายน จังหวัดขอนแก่น ทำงานด้านโรคเขตร้อน แนวคิดสุขภาพหนึ่งเดียว (One Health) และเซนเซอร์ชีวภาพ ฝึกงานวิจัยที่ศูนย์วิจัยโรคเขตร้อน มหาวิทยาลัยขอนแก่น และได้รับรางวัลชนะเลิศ MedSpark Innovation Competition 2026",
     "short": "Thai medical researcher in Khon Kaen, Thailand. Works on tropical disease, One Health and biosensors. First place, MedSpark Innovation Competition 2026."
-  }
+  },
+  "memberships": [
+    {
+      "organization": "Royal Society of Biology",
+      "grade": "BioNet (ages 14-19)",
+      "admitted": "2026-10-25"
+    }
+  ]
 }
