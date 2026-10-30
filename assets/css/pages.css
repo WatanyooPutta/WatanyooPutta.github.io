@@ -255,3 +255,26 @@ img{max-width:100%;height:auto}
 .vchips .chips{margin:8px 0 0}
 a.chip{text-decoration:none;transition:border-color .2s,color .2s}
 a.chip:hover,a.chip:focus-visible{border-color:var(--accent);color:var(--text)}
+
+
+/* ---- Majestic quote (fixed size, words fade in) ---- */
+:root{--gold:#c9a64c}
+@media(prefers-color-scheme:light){:root{--gold:#8a6a1f}}
+html[data-theme="light"]{--gold:#8a6a1f}
+html[data-theme="dark"]{--gold:#c9a64c}
+.regal{grid-column:span 3;position:relative;min-height:78vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:72px 18px;border-radius:var(--r);background:radial-gradient(60% 55% at 50% 42%,color-mix(in srgb,var(--gold) 13%,transparent),transparent 72%)}
+.regal-orn{display:flex;align-items:center;gap:14px;margin-bottom:34px;opacity:0;transition:opacity 1.2s ease}
+.regal-orn i{display:block;width:clamp(48px,14vw,120px);height:1px;background:linear-gradient(90deg,transparent,var(--gold))}
+.regal-orn i:last-child{background:linear-gradient(270deg,transparent,var(--gold))}
+.regal-orn b{width:9px;height:9px;border:1px solid var(--gold);transform:rotate(45deg);display:block}
+.regal blockquote.regal-quote{max-width:26ch;margin:0 auto;padding:0;border:0;font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman","Noto Serif Thai",serif;font-style:italic;font-weight:500;font-size:clamp(1.65rem,5.2vw,3.1rem);line-height:1.38;letter-spacing:.005em;color:var(--text)}
+.regal-quote .w{display:inline-block;opacity:0;transform:translateY(.45em);filter:blur(6px);transition:opacity 1s ease,transform 1s cubic-bezier(.2,.7,.2,1),filter 1s ease}
+.regal.in .w{opacity:1;transform:none;filter:none}
+.regal.in .regal-orn,.regal.in .regal-by,.regal.in .regal-role,.regal.in .regal-note{opacity:1}
+.regal-by,.regal-role,.regal-note{opacity:0;transition:opacity 1.2s ease 1.6s}
+.regal-by{margin-top:36px;font:600 .82rem var(--mono);letter-spacing:.28em;text-transform:uppercase;color:var(--gold)}
+.regal-role{margin-top:6px;color:var(--muted);font-size:.95rem;letter-spacing:.04em}
+.regal-note{margin-top:30px;max-width:46ch;color:var(--muted);font-size:.9rem}
+@media(max-width:900px){.regal{grid-column:span 2}}
+@media(max-width:640px){.regal{grid-column:auto;min-height:68vh;padding:56px 12px}}
+@media(prefers-reduced-motion:reduce){.regal-quote .w,.regal-orn,.regal-by,.regal-role,.regal-note{opacity:1;transform:none;filter:none;transition:none}}
