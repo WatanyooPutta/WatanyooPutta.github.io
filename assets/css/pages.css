@@ -277,21 +277,3 @@ html[data-theme="dark"]{--gold:#c9a64c}
 @media(max-width:900px){.regal{grid-column:span 2}}
 @media(max-width:640px){.regal{grid-column:auto;min-height:68vh;padding:56px 12px}}
 @media(prefers-reduced-motion:reduce){.regal-quote .w,.regal-orn,.regal-by,.regal-role,.regal-note{opacity:1;transform:none;filter:none;transition:none}}
-
-/* ===== Topic 1: Mudmee x science pattern =====
-   Stepped diamonds (inspired by Isan mudmee silk) alternate with molecule hexagons.
-   Paste at the very bottom of assets/css/pages.css */
-:root{--mm:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='15' viewBox='0 0 60 15'%3E%3Cg fill='%23000'%3E%3Crect x='13.5' y='0' width='3' height='3'/%3E%3Crect x='10.5' y='3' width='9' height='3'/%3E%3Crect x='7.5' y='6' width='15' height='3'/%3E%3Crect x='10.5' y='9' width='9' height='3'/%3E%3Crect x='13.5' y='12' width='3' height='3'/%3E%3Crect x='28.5' y='6' width='3' height='3'/%3E%3Crect x='58.5' y='6' width='3' height='3'/%3E%3Crect x='-1.5' y='6' width='3' height='3'/%3E%3C/g%3E%3Cpolygon points='45,0.9 50.8,4.2 50.8,10.8 45,14.1 39.2,10.8 39.2,4.2' fill='none' stroke='%23000' stroke-width='1.6' stroke-linejoin='round'/%3E%3C/svg%3E")}
-.card>h2::after,.page-head::after,footer::before,.regal::before,.regal::after{content:"";display:block;height:15px;background:var(--gold,#c9a64c);-webkit-mask-image:var(--mm);mask-image:var(--mm);-webkit-mask-repeat:repeat-x;mask-repeat:repeat-x;-webkit-mask-size:60px 15px;mask-size:60px 15px;pointer-events:none}
-.card>h2::after{width:72px;margin-top:8px;opacity:.75;transition:width .5s cubic-bezier(.2,.7,.2,1),opacity .3s}
-.card:hover>h2::after{width:180px;opacity:1}
-.page-head::after{width:min(300px,70%);margin-top:22px;opacity:.85}
-footer{position:relative}
-footer::before{position:absolute;top:-8px;left:0;right:0;width:100%;opacity:.55}
-.regal::before,.regal::after{position:absolute;left:50%;width:min(420px,80%);transform:translateX(-50%);opacity:.8;-webkit-mask-image:var(--mm),linear-gradient(90deg,transparent,#000 22%,#000 78%,transparent);mask-image:var(--mm),linear-gradient(90deg,transparent,#000 22%,#000 78%,transparent);-webkit-mask-composite:source-in;mask-composite:intersect;-webkit-mask-repeat:repeat-x,no-repeat;mask-repeat:repeat-x,no-repeat;-webkit-mask-size:60px 15px,100% 100%;mask-size:60px 15px,100% 100%}
-.regal::before{top:18px}
-.regal::after{bottom:18px}
-@keyframes mmflow{to{-webkit-mask-position:60px 0,0 0;mask-position:60px 0,0 0}}
-.regal::before,.regal::after{animation:mmflow 14s linear infinite}
-@media(prefers-reduced-motion:reduce){.regal::before,.regal::after,.card>h2::after{animation:none;transition:none}}
-@media print{.card>h2::after,.page-head::after,footer::before,.regal::before,.regal::after{display:none}}
