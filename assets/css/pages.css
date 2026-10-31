@@ -278,7 +278,7 @@ html[data-theme="dark"]{--gold:#c9a64c}
 @media(max-width:640px){.regal{grid-column:auto;min-height:68vh;padding:56px 12px}}
 @media(prefers-reduced-motion:reduce){.regal-quote .w,.regal-orn,.regal-by,.regal-role,.regal-note{opacity:1;transform:none;filter:none;transition:none}}
 
-/* ===== Apple-style hero: large portrait, pinned while you scroll ===== */
+/* ===== Apple-Style Cinematic Hero ===== */
 .apl {
   position: relative;
   height: 320vh;
@@ -295,13 +295,44 @@ html[data-theme="dark"]{--gold:#c9a64c}
   overflow: hidden;
   display: grid;
   place-items: center;
+  touch-action: pan-y;
+  will-change: transform;
+  overscroll-behavior: none;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  perspective: 1000px;
 }
 
+/* Organic film grain overlay to eliminate digital color banding */
+.apl-grain {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.035;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Atmospheric ambient glow that shifts hue across scroll states */
 .apl-glow {
   position: absolute;
   inset: 0;
+  z-index: 0;
   background: radial-gradient(52% 44% at 50% 36%, rgba(255,255,255,.08), transparent 70%),
               radial-gradient(46% 32% at 50% 100%, color-mix(in srgb, var(--accent) 18%, transparent), transparent 70%);
+  transform: translate3d(0, calc(var(--p, 0) * 4%), 0);
+  transition: background 1s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.apl[data-s="1"] .apl-glow {
+  background: radial-gradient(52% 44% at 50% 36%, rgba(59, 130, 246, .12), transparent 70%),
+              radial-gradient(46% 32% at 50% 100%, rgba(139, 92, 246, .15), transparent 70%);
+}
+
+.apl[data-s="2"] .apl-glow {
+  background: radial-gradient(52% 44% at 50% 36%, rgba(16, 185, 129, .12), transparent 70%),
+              radial-gradient(46% 32% at 50% 100%, rgba(59, 130, 246, .18), transparent 70%);
 }
 
 .apl-photo {
@@ -314,58 +345,54 @@ html[data-theme="dark"]{--gold:#c9a64c}
   max-width: 92vw;
   object-fit: cover;
   border-radius: 34px;
-  box-shadow: 0 50px 120px -30px rgba(0,0,0,.75), 0 0 0 1px var(--line2);
+  box-shadow: 0 50px 120px -30px rgba(0,0,0,.85), 0 0 0 1px var(--line2);
   transform: translate3d(0, calc(var(--p, 0) * -5%), 0) scale(calc(1 + var(--p, 0) * .06));
   filter: brightness(1) saturate(1);
-  transition: filter 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: filter 0.7s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform, filter;
 }
 
 .apl[data-s="1"] .apl-photo,
 .apl[data-s="2"] .apl-photo {
-  filter: brightness(.5) saturate(.9);
+  filter: brightness(.42) saturate(.85);
 }
 
-/* Enhanced tall scrim for robust contrast behind text */
+/* Deep cinematic bottom scrim for legibility without container boxes */
 .apl-scrim {
   position: absolute;
   z-index: 2;
   left: 0;
   right: 0;
   bottom: 0;
-  height: 75%;
+  height: 70%;
   background: linear-gradient(
     to bottom,
     transparent 0%,
-    color-mix(in srgb, var(--bg) 40%, transparent) 40%,
-    var(--bg) 85%
+    color-mix(in srgb, var(--bg) 35%, transparent) 40%,
+    var(--bg) 92%
   );
   pointer-events: none;
 }
 
-/* Frosted glass container panel + text shadows for ultimate readability */
+/* Floating, clean Apple typography layer (completely unboxed) */
 .apl-copy {
   position: absolute;
   z-index: 3;
-  left: 50%;
-  transform: translateX(-50%) translate3d(0, 26px, 0);
-  width: 100%;
-  max-width: 700px;
+  left: 0;
+  right: 0;
   bottom: max(6svh, env(safe-area-inset-bottom));
-  padding: 24px 20px;
+  padding: 0 20px;
   text-align: center;
   opacity: 0;
+  transform: translate3d(0, 26px, 0);
   pointer-events: none;
-  
-  background: color-mix(in srgb, var(--bg) 45%, transparent);
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
-  border-radius: 24px;
-  border: 1px solid color-mix(in srgb, var(--line2) 40%, transparent);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
-
+  background: none;
+  border: 0;
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
   will-change: opacity, transform;
-  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .apl:not([data-s]) .c0,
@@ -374,20 +401,22 @@ html[data-theme="dark"]{--gold:#c9a64c}
 .apl[data-s="2"] .c2,
 .apl[data-s="3"] .c3 {
   opacity: 1;
-  transform: translateX(-50%) translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
   pointer-events: auto;
 }
 
+/* Drop shadows preserve crisp readability directly over skin and hair */
 .apl .apl-copy h1,
 .apl .apl-big,
 .apl .lead,
 .apl-eye {
-  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6), 0 1px 3px rgba(0, 0, 0, 0.4);
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.85), 0 1px 4px rgba(0, 0, 0, 0.6);
 }
 
 .apl .apl-copy h1 {
   font-size: clamp(2.3rem, 8.5vw, 5rem);
   margin: 6px 0 0;
+  letter-spacing: -.02em;
 }
 
 .apl .lead {
@@ -416,7 +445,7 @@ html[data-theme="dark"]{--gold:#c9a64c}
   opacity: 0;
   transform: translate3d(0, 18px, 0);
   will-change: opacity, transform;
-  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .apl-big.apl-sm {
@@ -431,8 +460,8 @@ html[data-theme="dark"]{--gold:#c9a64c}
   transform: translate3d(0, 0, 0);
 }
 
-.c1 .apl-big:nth-child(2) { transition-delay: .1s; }
-.c1 .apl-big:nth-child(3) { transition-delay: .2s; }
+.c1 .apl-big:nth-child(2) { transition-delay: .12s; }
+.c1 .apl-big:nth-child(3) { transition-delay: .24s; }
 
 .apl-pills {
   list-style: none;
@@ -448,13 +477,13 @@ html[data-theme="dark"]{--gold:#c9a64c}
   border: 1px solid var(--line2);
   border-radius: 999px;
   background: color-mix(in srgb, var(--panel) 80%, transparent);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
   font-weight: 500;
   opacity: 0;
   transform: translate3d(0, 14px, 0);
   will-change: opacity, transform;
-  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .apl[data-s="2"] .apl-pills li {
@@ -462,8 +491,8 @@ html[data-theme="dark"]{--gold:#c9a64c}
   transform: translate3d(0, 0, 0);
 }
 
-.apl-pills li:nth-child(2) { transition-delay: .08s; }
-.apl-pills li:nth-child(3) { transition-delay: .16s; }
+.apl-pills li:nth-child(2) { transition-delay: .1s; }
+.apl-pills li:nth-child(3) { transition-delay: .2s; }
 
 .apl-cue {
   position: absolute;
@@ -488,7 +517,7 @@ html[data-theme="dark"]{--gold:#c9a64c}
 
 .apl.still { height: auto; }
 .apl.still .apl-stage { position: relative; height: auto; padding: 56px 0; gap: 24px; }
-.apl.still .apl-copy { position: relative; bottom: auto; transform: translateX(-50%) translate3d(0,0,0); opacity: 1; pointer-events: auto; margin-top: 18px; }
+.apl.still .apl-copy { position: relative; bottom: auto; transform: translate3d(0,0,0); opacity: 1; pointer-events: auto; margin-top: 18px; }
 .apl.still .apl-big, .apl.still .apl-pills li { opacity: 1; transform: translate3d(0,0,0); }
 .apl.still .apl-photo { transform: none; }
 .apl.still .apl-cue, .apl.still .apl-scrim { display: none; }
@@ -500,7 +529,6 @@ html[data-theme="dark"]{--gold:#c9a64c}
 @media print {
   .apl { height: auto; }
   .apl-stage { position: relative; height: auto; }
-  .apl-copy { position: relative; opacity: 1; transform: translateX(-50%) translate3d(0,0,0); }
+  .apl-copy { position: relative; opacity: 1; transform: translate3d(0,0,0); }
   .apl-big, .apl-pills li { opacity: 1; transform: translate3d(0,0,0); }
 }
-
