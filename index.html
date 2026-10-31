@@ -6,28 +6,50 @@ og_type: profile
 hero: true
 ---
 <header>
-<section class="apl" aria-label="Introduction">
+<section class="apl">
   <div class="apl-stage">
-    <div class="apl-glow" aria-hidden="true"></div>
-    <img class="apl-photo" src="{{ '/assets/images/IMG_9921.webp' | relative_url }}" srcset="{{ '/assets/images/IMG_9921-400.webp' | relative_url }} 400w, {{ '/assets/images/IMG_9921.webp' | relative_url }} 1718w" sizes="(max-width: 700px) 92vw, 560px" alt="Portrait of Watanyoo Putta" width="1718" height="2576" fetchpriority="high" decoding="async">
-    <div class="apl-scrim" aria-hidden="true"></div>
+    <div class="apl-grain"></div>
+    <div class="apl-glow"></div>
+    <img class="apl-photo" src="your-portrait.jpg" alt="WATANYOO PUTTA" />
+    <div class="apl-scrim"></div>
+
+    <!-- Stage 0: Name & Tagline -->
     <div class="apl-copy c0">
-      <p class="apl-eye">Medical researcher &middot; Khon Kaen, Thailand</p>
-      <h1>Watanyoo Putta <small lang="th">(วทัญญู พุทธา)</small></h1>
-      <p class="lead">Medical Researcher &amp; Biomedical Innovator (นักวิจัยทางการแพทย์) | Khonkaenwittayayon School Student</p>
-      <nav class="btns" aria-label="Primary actions">
-        <button class="btn" type="button" id="vcard">Save Contact</button>
-        <button class="btn alt" type="button" id="qrbtn">QR Business Card</button>
-        <a class="btn alt" href="{{ '/contact/' | relative_url }}">All profiles</a>
-      </nav>
+      <span class="apl-eye">Biomedical Innovation</span>
+      <h1>WATANYOO PUTTA</h1>
+      <p class="lead">Grade 12 Scholar &amp; Diagnostic Biosensing Researcher</p>
+      <div class="btns">
+        <button id="vcard" class="btn primary">Save vCard</button>
+        <button id="qrbtn" class="btn secondary">QR Code</button>
+      </div>
     </div>
-    <div class="apl-copy c1"><p class="apl-big">Tropical disease.</p><p class="apl-big">One Health.</p><p class="apl-big">Diagnostic biosensors.</p></div>
-    <div class="apl-copy c2"><ul class="apl-pills"><li>First place, MedSpark Innovation Competition 2026</li><li>BioNet member, Royal Society of Biology</li><li>Research intern, Tropical Disease Research Center, Khon Kaen University</li></ul></div>
-    <div class="apl-copy c3"><p class="apl-big apl-sm">Research &middot; Emergency &middot; Awards</p><a class="btn alt" href="#main">Explore</a></div>
-    <div class="apl-cue" aria-hidden="true"><span></span></div>
+
+    <!-- Stage 1: Core Research Pillars -->
+    <div class="apl-copy c1">
+      <p class="apl-big">Pioneering diagnostic biosensors.</p>
+      <p class="apl-big">Pioneering disease surveillance networks.</p>
+      <p class="apl-big">Translating molecular research into real-world care.</p>
+    </div>
+
+    <!-- Stage 2: Key Milestones -->
+    <div class="apl-copy c2">
+      <p class="apl-big apl-sm">Track Record &amp; Distinctions</p>
+      <ul class="apl-pills">
+        <li>MedUMORE National Competition — Ranked 1st Overall</li>
+        <li>BioNet Professional Member — Royal Society of Biology</li>
+        <li>RNA Molecular Computation — Stanford Medicine Eterna</li>
+      </ul>
+    </div>
+
+    <!-- Stage 3: Call to Action -->
+    <div class="apl-copy c3">
+      <p class="apl-big">Explore the Portfolio</p>
+      <p class="lead">Scroll to examine research publications, interactive life-cycle models, and achievements.</p>
+    </div>
+
+    <div class="apl-cue"></div>
   </div>
 </section>
-<script src="{{ '/assets/js/hero.js' | relative_url }}" defer></script>
 
 </header>
 <main id="main" class="grid">
