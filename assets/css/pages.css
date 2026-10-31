@@ -325,3 +325,260 @@ html[data-sky="night"]::before{content:"";position:fixed;inset:0;z-index:-1;poin
 .apl.still .apl-big, .apl.still .apl-pills li { opacity: 1; transform: translate3d(0,0,0); }
 .apl.still .apl-photo { transform: none; }
 .apl.still .apl-cue, .apl.still .apl-scrim { display: none; }
+
+/* ===== Modern Science Apple-Style Hero (Final & Bulletproof) ===== */
+.apl {
+  position: relative;
+  height: 320vh;
+  width: 100%;
+  max-width: 100vw;
+  margin-left: 0;
+  overflow-x: clip;
+}
+
+.apl-stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  touch-action: pan-y;
+  will-change: transform;
+  overscroll-behavior: none;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  perspective: 1000px;
+}
+
+/* Organic medical film grain texture */
+.apl-grain {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.03;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Clinical bio-luminescent glow */
+.apl-glow {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: radial-gradient(52% 44% at 50% 36%, rgba(59, 130, 246, .09), transparent 70%),
+              radial-gradient(46% 32% at 50% 100%, color-mix(in srgb, var(--accent) 15%, transparent), transparent 70%);
+  transform: translate3d(0, calc(var(--p, 0) * 4%), 0);
+  transition: background 1s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.apl[data-s="1"] .apl-glow {
+  background: radial-gradient(52% 44% at 50% 36%, rgba(14, 165, 233, .12), transparent 70%),
+              radial-gradient(46% 32% at 50% 100%, rgba(99, 102, 241, .15), transparent 70%);
+}
+
+.apl[data-s="2"] .apl-glow {
+  background: radial-gradient(52% 44% at 50% 36%, rgba(16, 185, 129, .12), transparent 70%),
+              radial-gradient(46% 32% at 50% 100%, rgba(14, 116, 144, .18), transparent 70%);
+}
+
+.apl-photo {
+  position: relative;
+  z-index: 1;
+  aspect-ratio: 2/3;
+  height: min(82vh, calc((100vw - 32px) * 1.5));
+  height: min(82svh, calc((100vw - 32px) * 1.5));
+  width: auto;
+  max-width: 92vw;
+  object-fit: cover;
+  border-radius: 24px;
+  box-shadow: 0 40px 100px -30px rgba(0,0,0,.9), 0 0 0 1px var(--line2);
+  transform: translate3d(0, calc(var(--p, 0) * -4%), 0) scale(calc(1 + var(--p, 0) * .04));
+  filter: brightness(1) saturate(1);
+  transition: filter 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, filter;
+}
+
+.apl[data-s="1"] .apl-photo,
+.apl[data-s="2"] .apl-photo {
+  filter: brightness(.4) saturate(.8);
+}
+
+.apl-scrim {
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 72%;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    color-mix(in srgb, var(--bg) 40%, transparent) 35%,
+    var(--bg) 92%
+  );
+  pointer-events: none;
+}
+
+.apl-copy {
+  position: absolute;
+  z-index: 3;
+  left: 0;
+  right: 0;
+  bottom: max(6svh, env(safe-area-inset-bottom));
+  padding: 0 20px;
+  text-align: center;
+  opacity: 0;
+  transform: translate3d(0, 20px, 0);
+  pointer-events: none;
+  background: none;
+  border: 0;
+  box-shadow: none;
+  will-change: opacity, transform;
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.apl:not([data-s]) .c0,
+.apl[data-s="0"] .c0,
+.apl[data-s="1"] .c1,
+.apl[data-s="2"] .c2,
+.apl[data-s="3"] .c3 {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  pointer-events: auto;
+}
+
+/* Modern Science Typography & High-Precision Legibility */
+.apl .apl-copy h1,
+.apl .apl-big,
+.apl .lead,
+.apl-eye {
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.9), 0 1px 4px rgba(0, 0, 0, 0.7);
+}
+
+.apl .apl-copy h1 {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+  font-size: clamp(2.2rem, 7.5vw, 4.5rem);
+  font-weight: 700;
+  letter-spacing: -.03em;
+  margin: 8px 0 0;
+  text-transform: uppercase;
+}
+
+.apl .lead {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 400;
+  letter-spacing: -.01em;
+  margin: 10px auto 16px;
+  max-width: 48ch;
+  color: var(--muted);
+}
+
+.apl .btns {
+  justify-content: center;
+  margin-top: 0;
+}
+
+.apl-eye {
+  font-family: var(--mono);
+  font-size: .75rem;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.apl-big {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+  font-size: clamp(1.8rem, 6.2vw, 3.4rem);
+  font-weight: 600;
+  letter-spacing: -.03em;
+  line-height: 1.15;
+  color: var(--text);
+  opacity: 0;
+  transform: translate3d(0, 16px, 0);
+  will-change: opacity, transform;
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.apl-big.apl-sm {
+  font-size: clamp(1.1rem, 3.4vw, 1.5rem);
+  margin-bottom: 14px;
+  letter-spacing: -.01em;
+  color: var(--muted);
+  font-family: var(--mono);
+  text-transform: uppercase;
+}
+
+.apl[data-s="1"] .c1 .apl-big,
+.apl[data-s="3"] .c3 .apl-big {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.c1 .apl-big:nth-child(2) { transition-delay: .1s; }
+.c1 .apl-big:nth-child(3) { transition-delay: .2s; }
+
+.apl-pills {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  max-width: 540px;
+  display: grid;
+  gap: 10px;
+}
+
+.apl-pills li {
+  padding: 12px 18px;
+  border: 1px solid var(--line2);
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--panel) 75%, transparent);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  font-family: var(--mono);
+  font-size: .88rem;
+  font-weight: 500;
+  opacity: 0;
+  transform: translate3d(0, 12px, 0);
+  will-change: opacity, transform;
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.apl[data-s="2"] .apl-pills li {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.apl-pills li:nth-child(2) { transition-delay: .08s; }
+.apl-pills li:nth-child(3) { transition-delay: .16s; }
+
+.apl-cue {
+  position: absolute;
+  z-index: 3;
+  left: 50%;
+  bottom: 1.6svh;
+  width: 1px;
+  height: 24px;
+  background: linear-gradient(var(--accent), transparent);
+  transform: translateX(-50%);
+  opacity: .7;
+  animation: aplcue 2.2s ease-in-out infinite;
+}
+
+@keyframes aplcue {
+  50% { transform: translate(-50%, 6px); opacity: .2; }
+}
+
+.apl:not([data-s="0"]):not(:not([data-s])) .apl-cue {
+  display: none;
+}
+
+.apl.still { height: auto; }
+.apl.still .apl-stage { position: relative; height: auto; padding: 56px 0; gap: 24px; }
+.apl.still .apl-copy { position: relative; bottom: auto; transform: translate3d(0,0,0); opacity: 1; pointer-events: auto; margin-top: 18px; }
+.apl.still .apl-big, .apl.still .apl-pills li { opacity: 1; transform: translate3d(0,0,0); }
+.apl.still .apl-photo { transform: none; }
+.apl.still .apl-cue, .apl.still .apl-scrim { display: none; }
